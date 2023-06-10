@@ -7,6 +7,7 @@ public class PaladinClass implements Classes {
     int defense = 7;
     int damage = 4;
     int dodge = 40;
+    int maxMana = 8;
 
     /**
      * getter method for class name
@@ -26,6 +27,16 @@ public class PaladinClass implements Classes {
     @Override
     public int getHealth() {
         return maxHealth;
+    }
+
+    /**
+     * getter method for class mana
+     *
+     * @return maxHMana
+     */
+    @Override
+    public int getMana() {
+        return maxMana;
     }
 
     /**

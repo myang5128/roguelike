@@ -10,6 +10,15 @@ public class PlayerCreateText {
                 "MAY HIS NAME INSPIRE FEAR AND SUBSERVIENCE ACROSS GENERATIONS, HAS PLANS FOR YOU. \nI CANNOT BETRAY MY MASTER. " +
                 "I HOPE YOU THE BEST IN YOUR ENDEAVORS.\n");
     }
+    public PlayerCreateText(String name, int curHealth, int maxHealth, int curMana, int maxMana, int defense, int dodge, int damage, int curExp, int reqExp, int gold, int level) {
+        dialText.put("PLAYERSTAT", "NAME: " + name + "     LEVEL: " + level + "\n" +
+                "HP: " + curHealth + "/" + maxHealth + "     MANA: " + curMana + "/" + maxMana + "\n"+
+                "DEFENSE: " + defense + "\n" + "     DODGE: " + dodge + "\n" +
+                "DAMAGE: " + damage + "\n" + "     GOLD: " + gold + "\n" +
+                "EXP: " + curExp + "/" + reqExp + "\n"
+
+        );
+    }
 
     /**
      * return player confirm
@@ -18,7 +27,18 @@ public class PlayerCreateText {
     public String playerConfirmText() {
         return dialText.get("PLAYERCONFIRM");
     }
-    public void playerConfirmeTextDisplay() {
+    public void playerConfirmTextDisplay() {
         System.out.print(dialText.get("PLAYERCONFIRM"));
+    }
+
+    /**
+     * return player stats
+     * @return player stats
+     */
+    public String playerStatText() {
+        return dialText.get("PLAYERSTAT");
+    }
+    public void playerStatTextDisplay() {
+        System.out.print(dialText.get("PLAYERSTAT"));
     }
 }

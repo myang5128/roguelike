@@ -4,6 +4,7 @@ public class KnightClass implements Classes {
 
     String name = "KNIGHT CLASS";
     int maxHealth = 12;
+    int maxMana = 4;
     int defense = 5;
     int damage = 3;
     int dodge = 45;
@@ -26,6 +27,16 @@ public class KnightClass implements Classes {
     @Override
     public int getHealth() {
         return maxHealth;
+    }
+
+    /**
+     * getter method for class mana
+     *
+     * @return maxHMana
+     */
+    @Override
+    public int getMana() {
+        return maxMana;
     }
 
     /**

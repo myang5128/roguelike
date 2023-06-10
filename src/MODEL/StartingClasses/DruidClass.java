@@ -4,6 +4,7 @@ public class DruidClass implements Classes {
 
     String name = "DRUID CLASS";
     int maxHealth = 9;
+    int maxMana = 20;
     int defense = 3;
     int damage = 4;
     int dodge = 50;
@@ -30,6 +31,16 @@ public class DruidClass implements Classes {
     @Override
     public int getHealth() {
         return maxHealth;
+    }
+
+    /**
+     * getter method for class mana
+     *
+     * @return maxHMana
+     */
+    @Override
+    public int getMana() {
+        return maxMana;
     }
 
     /**

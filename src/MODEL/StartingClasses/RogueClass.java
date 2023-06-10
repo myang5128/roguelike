@@ -4,6 +4,7 @@ public class RogueClass implements Classes {
 
     String name = "ROGUE CLASS";
     int maxHealth = 5;
+    int maxMana = 8;
     int defense = 2;
     int damage = 8;
     int dodge = 70;
@@ -26,6 +27,16 @@ public class RogueClass implements Classes {
     @Override
     public int getHealth() {
         return maxHealth;
+    }
+
+    /**
+     * getter method for class mana
+     *
+     * @return maxHMana
+     */
+    @Override
+    public int getMana() {
+        maxMana
     }
 
     /**

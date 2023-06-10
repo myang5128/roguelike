@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 public class Main {
     static CharCreateText charGenText = new CharCreateText();
-    static Player p;
     static String playerName;
     static String playerClass;
     static DruidClass druid = new DruidClass();
@@ -18,6 +17,7 @@ public class Main {
     static PaladinClass paladin = new PaladinClass();
     static RangerClass ranger = new RangerClass();
     static RogueClass rogue = new RogueClass();
+    static Player p;
 
     /**
      * function that asks user to click ENTER before continuing
@@ -28,6 +28,10 @@ public class Main {
         scanner.nextLine();
     }
 
+    /**
+     * gets name
+     * @return playerName
+     */
     public static String askForName() {
         charGenText.nameTextDisplay();
         Scanner scanner = new Scanner(System.in);
@@ -35,6 +39,10 @@ public class Main {
         return playerName;
     }
 
+    /**
+     * gets class
+     * @return playerClass
+     */
     public static String askForClass() {
         charGenText.classTextDisplay();
         Scanner scanner = new Scanner(System.in);
@@ -61,20 +69,33 @@ public class Main {
         // generate player based on response
         switch (playerClass) {
             case "DRUID":
-                p = new Player(playerName, playerClass, druid.getHealth(), druid.getDefense(), druid.getDodge(), druid.getDamage());
+                p = new Player(playerName, playerClass, druid.getHealth(), druid.getMana(), druid.getDefense(), druid.getDodge(), druid.getDamage());
+                break;
             case "KNIGHT":
-                p = new Player(playerName, playerClass, knight.getHealth(), knight.getDefense(), knight.getDodge(), knight.getDamage());
+                p = new Player(playerName, playerClass, knight.getHealth(), knight.getMana(), knight.getDefense(), knight.getDodge(), knight.getDamage());
+                break;
             case "MAGE":
-                p = new Player(playerName, playerClass, mage.getHealth(), mage.getDefense(), mage.getDodge(), mage.getDamage());
+                p = new Player(playerName, playerClass, mage.getHealth(), mage.getMana(), mage.getDefense(), mage.getDodge(), mage.getDamage());
+                break;
             case "PALADIN":
-                p = new Player(playerName, playerClass, paladin.getHealth(), paladin.getDefense(), paladin.getDodge(), paladin.getDamage());
+                p = new Player(playerName, playerClass, paladin.getHealth(), paladin.getMana(), paladin.getDefense(), paladin.getDodge(), paladin.getDamage());
+                break;
             case "RANGER":
-                p = new Player(playerName, playerClass, ranger.getHealth(), ranger.getDefense(), ranger.getDodge(), ranger.getDamage());
+                p = new Player(playerName, playerClass, ranger.getHealth(), ranger.getMana(), ranger.getDefense(), ranger.getDodge(), ranger.getDamage());
+                break;
             default:
-                p = new Player(playerName, playerClass, rogue.getHealth(), rogue.getDefense(), rogue.getDodge(), rogue.getDamage());
+                p = new Player(playerName, playerClass, rogue.getHealth(), rogue.getMana(), rogue.getDefense(), rogue.getDodge(), rogue.getDamage());
         }
+
+        // post player-gen text
         PlayerCreateText playerGenText = new PlayerCreateText(playerName, playerClass);
-        playerGenText.playerConfirmeTextDisplay();
+        playerGenText.playerConfirmTextDisplay();
         promptEnterKey();
+        p.setExpReq(p.getLevel());
+        playerGenText = new PlayerCreateText(p.getName(), p.getCurHealth(), p.getMaxHealth(), p.getCurMana(), p.getMaxMana(), p.getDefense(), p.getDodge(), p.getDamage(), p.getCurExp(), p.getExpReq(), p.getGold(), p.getLevel());
+        playerGenText.playerStatTextDisplay();
+        promptEnterKey();
+
+
     }
 }

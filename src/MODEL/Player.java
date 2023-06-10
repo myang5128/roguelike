@@ -12,8 +12,12 @@ public class Player {
     String playerClass;
     int curHealth;
     int maxHealth;
+    int curMana;
+    int maxMana;
     int defense;
+    int tempDefense;
     int dodge;
+    int tempDodge;
     int damage;
     int curExp;
     int expReq;
@@ -23,34 +27,38 @@ public class Player {
     /**
      * Constructor
      */
-    public Player(String name, String playerClass, int maxHealth, int defense, int dodge, int damage) {
+    public Player(String name, String playerClass, int maxHealth, int maxMana, int defense, int dodge, int damage) {
         this.name = name;
         this.playerClass = playerClass;
         this.curHealth = maxHealth;
         this.maxHealth = maxHealth;
+        this.curMana = maxMana;
+        this.maxMana = maxMana;
         this.defense = defense;
         this.dodge = dodge;
         this.damage = damage;
         this.curExp = 0;
-        this.expReq = ExpReqChecker(this.level);
         this.gold = 0;
         this.level = 1;
     }
 
     /**
      * checks to see how much exp is needed for next level up
-     * @param level current player level
+     *
      * @return exp needed
      */
-    public int ExpReqChecker(int level) {
-        if (level < 5) {
-            return (level * 25);
+    public int setExpReq(int level) {
+        if (this.level < 5) {
+            this.expReq = (this.level * 25);
+            return this.expReq;
         }
-        else if (level < 15) {
-            return (level * 50);
+        else if (this.level < 15) {
+            this.expReq = (this.level * 50);
+            return this.expReq;
         }
         else {
-            return (level * 75);
+            this.expReq = (this.level * 75);
+            return this.expReq;
         }
     }
 
@@ -73,7 +81,7 @@ public class Player {
         this.dodge += 1;
         this.damage += 1;
         this.level += 1;
-        this.expReq = ExpReqChecker(this.level);
+        this.expReq = setExpReq(this.level);
     }
 
     /**
@@ -119,6 +127,22 @@ public class Player {
     }
 
     /**
+     * getter method for current mana
+     * @return current health
+     */
+    public int getCurMana() {
+        return this.curMana;
+    }
+
+    /**
+     * getter method for max mana
+     * @return max health
+     */
+    public int getMaxMana() {
+        return this.maxMana;
+    }
+
+    /**
      * getter method for defense
      * @return defense
      */
@@ -127,11 +151,27 @@ public class Player {
     }
 
     /**
+     * getter method for temp defense
+     * @return temp defense
+     */
+    public int getTempDefense() {
+        return this.tempDefense;
+    }
+
+    /**
      * getter method for dodge
      * @return dodge
      */
     public int getDodge() {
         return this.dodge;
+    }
+
+    /**
+     * getter method for tempdodge
+     * @return temp dodge
+     */
+    public int getTempDodge() {
+        return this.tempDodge;
     }
 
     /**

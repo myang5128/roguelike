@@ -4,6 +4,7 @@ public class MageClass implements Classes {
 
     String name = "MAGE CLASS";
     int maxHealth = 7;
+    int maxMana = 25;
     int defense = 2;
     int damage = 2;
     int dodge = 55;
@@ -26,6 +27,16 @@ public class MageClass implements Classes {
     @Override
     public int getHealth() {
         return maxHealth;
+    }
+
+    /**
+     * getter method for class mana
+     *
+     * @return maxHMana
+     */
+    @Override
+    public int getMana() {
+        return maxMana;
     }
 
     /**

@@ -4,6 +4,7 @@ public class RangerClass implements Classes {
 
     String name = "RANGER CLASS";
     int maxHealth = 8;
+    int maxMana = 6;
     int defense = 3;
     int damage = 5;
     int dodge = 60;
@@ -26,6 +27,16 @@ public class RangerClass implements Classes {
     @Override
     public int getHealth() {
         return maxHealth;
+    }
+
+    /**
+     * getter method for class mana
+     *
+     * @return maxHMana
+     */
+    @Override
+    public int getMana() {
+        return maxMana;
     }
 
     /**

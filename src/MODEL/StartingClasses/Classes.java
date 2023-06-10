@@ -16,6 +16,7 @@ public interface Classes {
      */
     String name = null;
     int maxHealth = 0;
+    int maxMana = 0;
     int defense = 0;
     int damage = 0;
     int dodge = 0;
@@ -31,6 +32,12 @@ public interface Classes {
      * @return maxHealth
      */
     public int getHealth();
+
+    /**
+     * getter method for class mana
+     * @return maxHMana
+     */
+    public int getMana();
 
     /**
      * getter method for class defense
