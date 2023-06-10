@@ -36,7 +36,7 @@ public class RogueClass implements Classes {
      */
     @Override
     public int getMana() {
-        maxMana
+        return maxMana;
     }
 
     /**
