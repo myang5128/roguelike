@@ -1,10 +1,15 @@
 package CONTROLLER;
 
+import MODEL.Enemies.Enemies;
+import MODEL.Enemies.Skeleton;
 import MODEL.Player;
 import MODEL.StartingClasses.*;
 import VIEW.CharCreateText;
+import VIEW.EnemyCombatText;
 import VIEW.PlayerCreateText;
 
+import java.io.Console;
+import java.lang.reflect.Array;
 import java.util.Scanner;
 
 public class Main {
@@ -56,10 +61,24 @@ public class Main {
     }
 
     /**
+     * picks a random enemy
+     * @param scale how the enemy stats should be compared to the player's level
+     * @return enemy
+     */
+    public static Enemies enemyPicker(int scale) {
+        Skeleton skelly = new Skeleton(scale);
+        Enemies[] enemyArray = {skelly};
+
+        return (enemyArray[(int) (Math.random() * enemyArray.length)]);
+    }
+
+    /**
      * main method
      * @param args
      */
     public static void main(String[] args) {
+        Enemies e;
+
         // intro text
         charGenText.welcomeTextDisplay();
         promptEnterKey();
@@ -96,6 +115,11 @@ public class Main {
         playerGenText.playerStatTextDisplay();
         promptEnterKey();
 
+        // pre-combat
+        e = enemyPicker(p.getScale());
+        EnemyCombatText enemyText = new EnemyCombatText(e.getName());
+        enemyText.enemyStartTextDisplay();
+        promptEnterKey();
 
     }
 }

@@ -13,8 +13,8 @@ public class PlayerCreateText {
     public PlayerCreateText(String name, int curHealth, int maxHealth, int curMana, int maxMana, int defense, int dodge, int damage, int curExp, int reqExp, int gold, int level) {
         dialText.put("PLAYERSTAT", "NAME: " + name + "     LEVEL: " + level + "\n" +
                 "HP: " + curHealth + "/" + maxHealth + "     MANA: " + curMana + "/" + maxMana + "\n"+
-                "DEFENSE: " + defense + "\n" + "     DODGE: " + dodge + "\n" +
-                "DAMAGE: " + damage + "\n" + "     GOLD: " + gold + "\n" +
+                "DEFENSE: " + defense + "     DODGE: " + dodge + "\n" +
+                "DAMAGE: " + damage + "     GOLD: " + gold + "\n" +
                 "EXP: " + curExp + "/" + reqExp + "\n"
 
         );

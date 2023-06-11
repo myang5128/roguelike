@@ -213,4 +213,21 @@ public class Player {
     public int getLevel() {
         return this.level;
     }
+
+    /**
+     * gets a scale factor according to the level
+     * @return scale factor
+     */
+    public int getScale() {
+        if (this.level < 5) {
+            return 1;
+        }
+        else if (this.level < 10) {
+            return 2;
+        }
+        else {
+            int scale = (int) (this.level / 5);
+            return scale;
+        }
+    }
 }
