@@ -81,6 +81,22 @@ public class Goblin implements Enemies{
     }
 
     /**
+     * getter method for enemy max health
+     * @return max health
+     */
+    public int getMaxHealth() {
+        return maxHealth;
+    };
+
+    /**
+     * getter method for enemy cur health
+     * @return cur health
+     */
+    public int getCurHealth(){
+        return curHealth;
+    };
+
+    /**
      * getter method for enemy defense
      *
      * @return defense

@@ -38,6 +38,18 @@ public interface Enemies {
     public String getName();
 
     /**
+     * getter method for enemy max health
+     * @return max health
+     */
+    public int getMaxHealth();
+
+    /**
+     * getter method for enemy cur health
+     * @return cur health
+     */
+    public int getCurHealth();
+
+    /**
      * getter method for enemy defense
      * @return defense
      */

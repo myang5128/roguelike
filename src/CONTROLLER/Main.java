@@ -74,9 +74,21 @@ public class Main {
         Orc orc = new Orc(scale);
         Skeleton skelly = new Skeleton(scale);
         Zombie zombie = new Zombie(scale);
-        Enemies[] enemyArray = {skelly, fKnight, fMage, froggy, gobby, gooey, orc, zombie};
+        Enemies[] enemyArray = {skelly, batty, fKnight, fMage, froggy, gobby, gooey, orc, zombie};
 
         return (enemyArray[(int) (Math.random() * enemyArray.length)]);
+    }
+
+    /**
+     * simulates combat until either party dies
+     * @param p player
+     * @param e enemy
+     * @return 0 if enemy wins, 1 if player wins
+     */
+    public static int combat(Player p, Enemies e) {
+        EnemyCombatText combat = new EnemyCombatText(e.getName(), e.getCurHealth(), e.getMaxHealth(), e.getDefense(), e.getDodge(), e.getDamage());
+        combat.enemyStatTextDisplay();
+        return 0;
     }
 
     /**
@@ -127,6 +139,16 @@ public class Main {
         EnemyCombatText enemyText = new EnemyCombatText(e.getName());
         enemyText.enemyStartTextDisplay();
         promptEnterKey();
+
+        // combat
+        int result = combat(p, e);
+        if (result == 0) {
+            enemyText.enemyLoseTextDisplay();
+        }
+        else if (result == 1) {
+            EnemyCombatText winner = new EnemyCombatText(e.getName(), e.getExp(), e.getGold());
+            winner.enemyWinTextDisplay();
+        }
 
     }
 }
