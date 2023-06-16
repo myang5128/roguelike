@@ -1,6 +1,6 @@
 package MODEL.Enemies;
 
-public class Skeleton implements Enemies{
+public class GooSlime implements Enemies{
 
     String name;
     int curHealth;
@@ -12,17 +12,17 @@ public class Skeleton implements Enemies{
     int gold;
 
     /**
-     * constructor that creates a skeleton
-     * @param scale how the skeleton should scale accordingly to the player's level
+     * constructor that creates a goo slime
+     * @param scale how the goo slime should scale accordingly to the player's level
      */
-    public Skeleton(int scale) {
-        this.name = "SKELETON";
-        this.maxHealth = (int) ((Math.random() * 10) * scale + 2);
+    public GooSlime(int scale) {
+        this.name = "GOO SLIME";
+        this.maxHealth = (int) ((Math.random() * 10) + scale);
         this.curHealth = this.maxHealth;
-        this.defense = (int) ((Math.random() * scale) + 1);
-        this.dodge = (int) (30 + (scale * 2.5));
-        this.damage = (int) ((Math.random() * scale) + 2);
-        this.exp = 5 * scale;
+        this.defense = scale;
+        this.dodge = 65 + scale;
+        this.damage = scale;
+        this.exp = 7 * scale;
         this.gold = 2 * scale;
     }
 

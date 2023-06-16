@@ -1,7 +1,6 @@
 package CONTROLLER;
 
-import MODEL.Enemies.Enemies;
-import MODEL.Enemies.Skeleton;
+import MODEL.Enemies.*;
 import MODEL.Player;
 import MODEL.StartingClasses.*;
 import VIEW.CharCreateText;
@@ -66,8 +65,16 @@ public class Main {
      * @return enemy
      */
     public static Enemies enemyPicker(int scale) {
+        BatSwarm batty = new BatSwarm(scale);
+        FallenKnight fKnight = new FallenKnight(scale);
+        FallenMage fMage = new FallenMage(scale);
+        GiantFrog froggy = new GiantFrog(scale);
+        Goblin gobby = new Goblin(scale);
+        GooSlime gooey = new GooSlime(scale);
+        Orc orc = new Orc(scale);
         Skeleton skelly = new Skeleton(scale);
-        Enemies[] enemyArray = {skelly};
+        Zombie zombie = new Zombie(scale);
+        Enemies[] enemyArray = {skelly, fKnight, fMage, froggy, gobby, gooey, orc, zombie};
 
         return (enemyArray[(int) (Math.random() * enemyArray.length)]);
     }

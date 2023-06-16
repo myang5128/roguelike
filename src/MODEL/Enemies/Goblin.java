@@ -1,6 +1,6 @@
 package MODEL.Enemies;
 
-public class Skeleton implements Enemies{
+public class Goblin implements Enemies{
 
     String name;
     int curHealth;
@@ -12,18 +12,18 @@ public class Skeleton implements Enemies{
     int gold;
 
     /**
-     * constructor that creates a skeleton
-     * @param scale how the skeleton should scale accordingly to the player's level
+     * constructor that creates a goblin
+     * @param scale how the goblin should scale accordingly to the player's level
      */
-    public Skeleton(int scale) {
-        this.name = "SKELETON";
-        this.maxHealth = (int) ((Math.random() * 10) * scale + 2);
+    public Goblin(int scale) {
+        this.name = "GOBLIN";
+        this.maxHealth = (int) ((Math.random() * 6) * scale + 2);
         this.curHealth = this.maxHealth;
-        this.defense = (int) ((Math.random() * scale) + 1);
-        this.dodge = (int) (30 + (scale * 2.5));
-        this.damage = (int) ((Math.random() * scale) + 2);
+        this.defense = (int) ((Math.random() * scale) + 2);
+        this.dodge = (int) (40 + (scale * 2));
+        this.damage = (int) ((Math.random() * scale) + 3);
         this.exp = 5 * scale;
-        this.gold = 2 * scale;
+        this.gold = 4 * scale;
     }
 
     /**

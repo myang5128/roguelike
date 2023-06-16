@@ -1,6 +1,6 @@
 package MODEL.Enemies;
 
-public class Skeleton implements Enemies{
+public class GiantFrog implements Enemies{
 
     String name;
     int curHealth;
@@ -12,18 +12,18 @@ public class Skeleton implements Enemies{
     int gold;
 
     /**
-     * constructor that creates a skeleton
-     * @param scale how the skeleton should scale accordingly to the player's level
+     * constructor that creates a giant frog
+     * @param scale how the zombie should scale accordingly to the player's level
      */
-    public Skeleton(int scale) {
-        this.name = "SKELETON";
-        this.maxHealth = (int) ((Math.random() * 10) * scale + 2);
+    public GiantFrog(int scale) {
+        this.name = "GIANT FROG";
+        this.maxHealth = (int) ((Math.random() * 7) + scale + 2);
         this.curHealth = this.maxHealth;
-        this.defense = (int) ((Math.random() * scale) + 1);
-        this.dodge = (int) (30 + (scale * 2.5));
-        this.damage = (int) ((Math.random() * scale) + 2);
-        this.exp = 5 * scale;
-        this.gold = 2 * scale;
+        this.defense = (int) ((Math.random() * scale) + scale);
+        this.dodge = (int) (35 + (scale * 6));
+        this.damage = (int) ((Math.random() * scale) + scale);
+        this.exp = 6 * scale;
+        this.gold = 3 * scale;
     }
 
     /**
