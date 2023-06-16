@@ -7,7 +7,7 @@ public class EnemyCombatText {
     HashMap<String, String> dialText = new HashMap<>();
     public EnemyCombatText(String name) {
         dialText.put("ENEMYSTART", "A " + name + " HAS APPEARED IN YOUR WAY! IT STARTS MOVING TOWARDS YOU!\n");
-        dialText.put("ENEMYLOSE", "THE " + name + " HAS BESTED YOU! YOU FEEL THE GROUND SHAKE AS IT OPENS UP." +
+        dialText.put("ENEMYLOSE", "THE " + name + " HAS BESTED YOU! YOU FEEL THE GROUND SHAKE AS IT OPENS UP.\n" +
                 "FIERY HANDS FROM THE PITS OF HELL REACHES UP AND TAKE HOLD OF YOU AND PULLS YOU DOWN, FOREVER LOSING SIGHT OF FREEDOM AND HEAVEN.\n");
     }
 
