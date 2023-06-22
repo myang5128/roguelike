@@ -230,4 +230,64 @@ public class Player {
             return scale;
         }
     }
+
+    /**
+     * light attack function
+     * @param eDodge enemy dodge chance
+     * @return 0 if doesn't hit, > 0 for raw damage
+     */
+    public int lightAttack(int eDodge) {
+        int hitChance = ( (int) Math.random() * 100) + 30;
+        if (hitChance >= eDodge) {
+            return this.damage;
+        }
+        else {
+            return 0;
+        }
+    }
+
+    /**
+     * heavy attack function
+     * @param eDodge enemy dodge chance
+     * @return 0 if doesn't hit, > 0 for raw damage
+     */
+    public int heavyAttack(int eDodge) {
+        int hitChance = ( (int) Math.random() * 100) + 15;
+        if (hitChance >= eDodge) {
+            return (int) (this.damage * 1.7);
+        }
+        else {
+            return 0;
+        }
+    }
+
+    /**
+     * calculate flee chance
+     * @return 1 if successful, 0 if not
+     */
+    public int flee() {
+        int flee = ( (int) Math.random() * 100) + 1;
+        if (flee >= 70) {
+            flee = 1;
+        }
+        else {
+            flee = 0;
+        }
+        return flee;
+    }
+
+    /**
+     * calculates dmg done to player and changes player health accordingly
+     * @param dmg enemy raw dmg value
+     */
+    public void takeDamage(int dmg) {
+        int dmgValue = dmg - this.defense;
+        if (dmgValue <= 0) {
+            this.curHealth--;
+        }
+        else {
+            this.curHealth -= dmgValue;
+        }
+    }
+
 }

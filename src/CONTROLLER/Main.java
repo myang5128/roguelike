@@ -4,6 +4,7 @@ import MODEL.Enemies.*;
 import MODEL.Player;
 import MODEL.StartingClasses.*;
 import VIEW.CharCreateText;
+import VIEW.CombatText;
 import VIEW.EnemyCombatText;
 import VIEW.PlayerCreateText;
 
@@ -83,12 +84,66 @@ public class Main {
      * simulates combat until either party dies
      * @param p player
      * @param e enemy
-     * @return 0 if enemy wins, 1 if player wins
+     * @return 0 if enemy wins, 1 if player wins, 2 for flee
      */
     public static int combat(Player p, Enemies e) {
         EnemyCombatText combat = new EnemyCombatText(e.getName(), e.getCurHealth(), e.getMaxHealth(), e.getDefense(), e.getDodge(), e.getDamage());
+
+        // shows enemy stats
         combat.enemyStatTextDisplay();
-        return 0;
+        promptEnterKey();
+
+        // shows player stats
+        PlayerCreateText playerGenText = new PlayerCreateText(p.getName(), p.getCurHealth(), p.getMaxHealth(), p.getCurMana(), p.getMaxMana(), p.getDefense(), p.getDodge(), p.getDamage(), p.getCurExp(), p.getExpReq(), p.getGold(), p.getLevel());
+        playerGenText.playerStatTextDisplay();
+        promptEnterKey();
+
+        CombatText combatText = new CombatText();
+
+        // starts player turn
+        combatText.combatMoveTextDisplay();
+        Scanner scanner = new Scanner(System.in);
+        String move = scanner.nextLine().toUpperCase();
+        while ( (!move.equals("LIGHT")) && (!move.equals("HEAVY")) && (!move.equals("FLEE")) ) {
+            combatText.moveInvalidTextDisplay();
+            move = scanner.nextLine().toUpperCase();
+        }
+
+        // light attack
+        if (move.equals("LIGHT")) {
+            int value = p.lightAttack(e.getDodge());
+            // miss
+            if (value == 0) {
+
+            }
+            // hit
+            else {
+
+            }
+        }
+
+        // heavy attack
+        else if (move.equals("HEAVY")) {
+            int value = p.heavyAttack(e.getDodge());
+            // miss
+            if (value == 0) {
+
+            }
+            // hit
+            else {
+
+            }
+        }
+
+        // flee
+        else {
+            int flee = p.flee();
+            if (flee == 1) {
+                return 2;
+            }
+        }
+
+        return -1;
     }
 
     /**
