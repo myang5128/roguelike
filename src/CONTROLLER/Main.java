@@ -8,8 +8,6 @@ import VIEW.CombatText;
 import VIEW.EnemyCombatText;
 import VIEW.PlayerCreateText;
 
-import java.io.Console;
-import java.lang.reflect.Array;
 import java.util.Scanner;
 
 public class Main {
@@ -27,7 +25,7 @@ public class Main {
     /**
      * function that asks user to click ENTER before continuing
      */
-    public static void promptEnterKey(){
+    public static void promptEnterKey() {
         charGenText.pressContinueTextDisplay();
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
@@ -35,6 +33,7 @@ public class Main {
 
     /**
      * gets name
+     *
      * @return playerName
      */
     public static String askForName() {
@@ -46,6 +45,7 @@ public class Main {
 
     /**
      * gets class
+     *
      * @return playerClass
      */
     public static String askForClass() {
@@ -53,7 +53,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         playerClass = scanner.nextLine().toUpperCase();
         while (!playerClass.equals("DRUID") && (!playerClass.equals("KNIGHT")) && (!playerClass.equals("MAGE")) && (!playerClass.equals("PALADIN")) &&
-                (!playerClass.equals("RANGER")) && (!playerClass.equals("ROGUE")) ) {
+                (!playerClass.equals("RANGER")) && (!playerClass.equals("ROGUE"))) {
             charGenText.classAgainTextDisplay();
             playerClass = scanner.nextLine().toUpperCase();
         }
@@ -62,6 +62,7 @@ public class Main {
 
     /**
      * picks a random enemy
+     *
      * @param scale how the enemy stats should be compared to the player's level
      * @return enemy
      */
@@ -81,7 +82,97 @@ public class Main {
     }
 
     /**
+     * simulates a player turn
+     *
+     * @param p player
+     * @param e enemy
+     * @return 1 if player turn is done, 2 if successful flee
+     */
+    public static int playerTurn(Player p, Enemies e) {
+        CombatText combatText = new CombatText();
+        combatText.combatMoveTextDisplay();
+        Scanner scanner = new Scanner(System.in);
+        String move = scanner.nextLine().toUpperCase();
+        while ((!move.equals("LIGHT")) && (!move.equals("HEAVY")) && (!move.equals("FLEE"))) {
+            combatText.moveInvalidTextDisplay();
+            move = scanner.nextLine().toUpperCase();
+        }
+
+        // light attack
+        if (move.equals("LIGHT")) {
+            int value = p.lightAttack(e.getDodge());
+            // miss
+            if (value == 0) {
+                CombatText damageText = new CombatText(0, e.getName());
+                damageText.playerMissTextDisplay();
+            }
+            // hit
+            else {
+                CombatText damageText = new CombatText(e.takeDamage(value), e.getName());
+                damageText.playerLightTextDisplay();
+            }
+            return 1;
+        }
+
+        // heavy attack
+        else if (move.equals("HEAVY")) {
+            int value = p.heavyAttack(e.getDodge());
+            // miss
+            if (value == 0) {
+                CombatText damageText = new CombatText(0, e.getName());
+                damageText.playerMissTextDisplay();
+            }
+            // hit
+            else {
+                CombatText damageText = new CombatText(e.takeDamage(value), e.getName());
+                damageText.playerHeavyTextDisplay();
+            }
+            return 1;
+        }
+
+        // flee
+        else {
+            int flee = p.flee();
+            if (flee == 1) {
+                return 2;
+            }
+            return 1;
+        }
+    }
+
+    public static int enemyTurn(Player p, Enemies e) {
+
+    }
+
+    /**
+     * checks if enemy health is gone
+     *
+     * @param e enemy
+     * @return true if dead, false if alive
+     */
+    public static boolean enemyChecker(Enemies e) {
+        if (e.getCurHealth() <= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * checks if player health is gone
+     *
+     * @param p player
+     * @return true if dead, false if alive
+     */
+    public static boolean playerChecker(Player p) {
+        if (p.getCurHealth() <= 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * simulates combat until either party dies
+     *
      * @param p player
      * @param e enemy
      * @return 0 if enemy wins, 1 if player wins, 2 for flee
@@ -98,56 +189,38 @@ public class Main {
         playerGenText.playerStatTextDisplay();
         promptEnterKey();
 
-        CombatText combatText = new CombatText();
+        // initiates turn
+        int turn = 0;
 
-        // starts player turn
-        combatText.combatMoveTextDisplay();
-        Scanner scanner = new Scanner(System.in);
-        String move = scanner.nextLine().toUpperCase();
-        while ( (!move.equals("LIGHT")) && (!move.equals("HEAVY")) && (!move.equals("FLEE")) ) {
-            combatText.moveInvalidTextDisplay();
-            move = scanner.nextLine().toUpperCase();
+        // player turn
+        if (turn == 0) {
+            turn = playerTurn(p, e);
         }
 
-        // light attack
-        if (move.equals("LIGHT")) {
-            int value = p.lightAttack(e.getDodge());
-            // miss
-            if (value == 0) {
-
-            }
-            // hit
-            else {
-
-            }
+        // checks enemy health
+        if (enemyChecker(e)) {
+            return 1;
+        }
+        if (turn == 2) {
+            return 2;
         }
 
-        // heavy attack
-        else if (move.equals("HEAVY")) {
-            int value = p.heavyAttack(e.getDodge());
-            // miss
-            if (value == 0) {
-
-            }
-            // hit
-            else {
-
-            }
+        // enemy turn
+        if (turn == 1) {
+            turn = enemyTurn(p, e);
         }
 
-        // flee
-        else {
-            int flee = p.flee();
-            if (flee == 1) {
-                return 2;
-            }
+        // checks player health
+        if (playerChecker(p)) {
+            return 0;
         }
 
-        return -1;
+        // checks
     }
 
     /**
      * main method
+     *
      * @param args
      */
     public static void main(String[] args) {
@@ -199,8 +272,7 @@ public class Main {
         int result = combat(p, e);
         if (result == 0) {
             enemyText.enemyLoseTextDisplay();
-        }
-        else if (result == 1) {
+        } else if (result == 1) {
             EnemyCombatText winner = new EnemyCombatText(e.getName(), e.getExp(), e.getGold());
             winner.enemyWinTextDisplay();
         }

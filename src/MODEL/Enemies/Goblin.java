@@ -1,6 +1,6 @@
 package MODEL.Enemies;
 
-public class Goblin implements Enemies{
+public class Goblin implements Enemies {
 
     String name;
     int curHealth;
@@ -13,6 +13,7 @@ public class Goblin implements Enemies{
 
     /**
      * constructor that creates a goblin
+     *
      * @param scale how the goblin should scale accordingly to the player's level
      */
     public Goblin(int scale) {
@@ -33,19 +34,12 @@ public class Goblin implements Enemies{
      */
     @Override
     public int takeDamage(int damage) {
-        int value = 0;
-        int hitChance = (int) ((Math.random() * 100) + 1);
-        hitChance -= this.dodge;
-        if (hitChance <= 0) {
-            return -1;
+        damage -= this.defense;
+        if (damage < 1) {
+            damage = 1;
         }
-        else {
-            damage -= this.defense;
-            if (damage < 1) {
-                damage = 1;
-            }
-            return damage;
-        }
+        this.curHealth -= damage;
+        return damage;
     }
 
     /**
@@ -82,19 +76,25 @@ public class Goblin implements Enemies{
 
     /**
      * getter method for enemy max health
+     *
      * @return max health
      */
     public int getMaxHealth() {
         return maxHealth;
-    };
+    }
+
+    ;
 
     /**
      * getter method for enemy cur health
+     *
      * @return cur health
      */
-    public int getCurHealth(){
+    public int getCurHealth() {
         return curHealth;
-    };
+    }
+
+    ;
 
     /**
      * getter method for enemy defense

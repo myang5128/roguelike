@@ -1,6 +1,6 @@
 package MODEL.Enemies;
 
-public class Orc implements Enemies{
+public class Orc implements Enemies {
 
     String name;
     int curHealth;
@@ -13,6 +13,7 @@ public class Orc implements Enemies{
 
     /**
      * constructor that creates an orc
+     *
      * @param scale how the orc should scale accordingly to the player's level
      */
     public Orc(int scale) {
@@ -33,19 +34,12 @@ public class Orc implements Enemies{
      */
     @Override
     public int takeDamage(int damage) {
-        int value = 0;
-        int hitChance = (int) ((Math.random() * 100) + 1);
-        hitChance -= this.dodge;
-        if (hitChance <= 0) {
-            return -1;
+        damage -= this.defense;
+        if (damage < 1) {
+            damage = 1;
         }
-        else {
-            damage -= this.defense;
-            if (damage < 1) {
-                damage = 1;
-            }
-            return damage;
-        }
+        this.curHealth -= damage;
+        return damage;
     }
 
     /**
@@ -82,19 +76,25 @@ public class Orc implements Enemies{
 
     /**
      * getter method for enemy max health
+     *
      * @return max health
      */
     public int getMaxHealth() {
         return maxHealth;
-    };
+    }
+
+    ;
 
     /**
      * getter method for enemy cur health
+     *
      * @return cur health
      */
-    public int getCurHealth(){
+    public int getCurHealth() {
         return curHealth;
-    };
+    }
+
+    ;
 
     /**
      * getter method for enemy defense
