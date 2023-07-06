@@ -13,13 +13,13 @@ public class EnemyCombatText {
 
     public EnemyCombatText(String name, int expGain, int goldGain) {
         dialText.put("ENEMYWIN", "THE " + name + " HAS BEEN KILLED! YOUR BODY BEGINS TO ABSORB THE ENEMY'S ESSENSE, MAKING YOU STRONGER.\n" +
-                "YOU GAIN " + expGain + "EXPERIENCE AND " + goldGain + " GOLD!");
+                "YOU GAIN " + expGain + " EXPERIENCE AND " + goldGain + " GOLD!\n");
     }
 
     public EnemyCombatText(String name, int curHealth, int maxHealth, int defense, int dodge, int damage) {
         dialText.put("ENEMYSTAT", "ENEMY: " + name + "\n" +
                 "HP: " + curHealth + "/" + maxHealth + "     DODGE: " + dodge + "\n" +
-                "DEFENSE: " + defense + "     DAMAGE: " + damage + "\n");
+                "DEFENSE: " + defense + "     DAMAGE: " + damage + "\n\n");
     }
 
     /**

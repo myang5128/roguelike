@@ -86,7 +86,7 @@ public class Main {
      *
      * @param p player
      * @param e enemy
-     * @return 1 if player turn is done, 2 if successful flee
+     * @return 1 if successful flee
      */
     public static int playerTurn(Player p, Enemies e) {
         CombatText combatText = new CombatText();
@@ -111,7 +111,6 @@ public class Main {
                 CombatText damageText = new CombatText(e.takeDamage(value), e.getName());
                 damageText.playerLightTextDisplay();
             }
-            return 1;
         }
 
         // heavy attack
@@ -127,21 +126,22 @@ public class Main {
                 CombatText damageText = new CombatText(e.takeDamage(value), e.getName());
                 damageText.playerHeavyTextDisplay();
             }
-            return 1;
         }
 
         // flee
         else {
             int flee = p.flee();
             if (flee == 1) {
-                return 2;
+                return 1;
             }
-            return 1;
+            CombatText fleeText = new CombatText(0, e.getName());
+            fleeText.fleeFailTextDisplay();
         }
+        return 0;
     }
 
     public static int enemyTurn(Player p, Enemies e) {
-
+        return 1;
     }
 
     /**
@@ -182,40 +182,42 @@ public class Main {
 
         // shows enemy stats
         combat.enemyStatTextDisplay();
-        promptEnterKey();
 
         // shows player stats
-        PlayerCreateText playerGenText = new PlayerCreateText(p.getName(), p.getCurHealth(), p.getMaxHealth(), p.getCurMana(), p.getMaxMana(), p.getDefense(), p.getDodge(), p.getDamage(), p.getCurExp(), p.getExpReq(), p.getGold(), p.getLevel());
-        playerGenText.playerStatTextDisplay();
-        promptEnterKey();
+        PlayerCreateText playerGenText = new PlayerCreateText(p.getName(), p.getDamage(), p.getCurHealth(), p.getMaxHealth(), p.getCurMana(), p.getMaxMana(), p.getDefense(), p.getDodge());
+        playerGenText.playercomStatTextDisplay();
 
-        // initiates turn
-        int turn = 0;
+        // combat variables
+        int flee = 0;
+        int con = -1;
 
-        // player turn
-        if (turn == 0) {
-            turn = playerTurn(p, e);
+        while (con == -1) {
+            // player turn
+            flee = playerTurn(p, e);
+
+            // if flee is successful, end combat
+            if (flee == 1) {
+                con = 2;
+            }
+
+            // checks enemy health
+            if (enemyChecker(e)) {
+               con = 1;
+            }
+            // enemy turn
+            enemyTurn(p, e);
+
+            // checks player health
+            if (playerChecker(p)) {
+                con = 0;
+            }
+
+            // show stats
+            combat = new EnemyCombatText(e.getName(), e.getCurHealth(), e.getMaxHealth(), e.getDefense(), e.getDodge(), e.getDamage());
+            playerGenText = new PlayerCreateText(p.getName(), p.getDamage(), p.getCurHealth(), p.getMaxHealth(), p.getCurMana(), p.getMaxMana(), p.getDefense(), p.getDodge());            combat.enemyStatTextDisplay();
+            playerGenText.playercomStatTextDisplay();
         }
-
-        // checks enemy health
-        if (enemyChecker(e)) {
-            return 1;
-        }
-        if (turn == 2) {
-            return 2;
-        }
-
-        // enemy turn
-        if (turn == 1) {
-            turn = enemyTurn(p, e);
-        }
-
-        // checks player health
-        if (playerChecker(p)) {
-            return 0;
-        }
-
-        // checks
+        return con;
     }
 
     /**
@@ -272,9 +274,17 @@ public class Main {
         int result = combat(p, e);
         if (result == 0) {
             enemyText.enemyLoseTextDisplay();
+            promptEnterKey();
         } else if (result == 1) {
             EnemyCombatText winner = new EnemyCombatText(e.getName(), e.getExp(), e.getGold());
             winner.enemyWinTextDisplay();
+            promptEnterKey();
+        }
+        else {
+            CombatText fleeText = new CombatText(0, e.getName());
+            fleeText.fleeSecTextDisplay();
+            promptEnterKey();
+
         }
 
     }

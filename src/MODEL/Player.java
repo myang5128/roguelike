@@ -237,7 +237,7 @@ public class Player {
      * @return 0 if doesn't hit, > 0 for raw damage
      */
     public int lightAttack(int eDodge) {
-        int hitChance = ( (int) Math.random() * 100) + 30;
+        int hitChance = ((int) (Math.random() * 100)) + 30;
         if (hitChance >= eDodge) {
             return this.damage;
         }
@@ -252,7 +252,7 @@ public class Player {
      * @return 0 if doesn't hit, > 0 for raw damage
      */
     public int heavyAttack(int eDodge) {
-        int hitChance = ( (int) Math.random() * 100) + 15;
+        int hitChance = ( (int)(Math.random() * 100)) + 15;
         if (hitChance >= eDodge) {
             return (int) (this.damage * 1.7);
         }
@@ -266,7 +266,7 @@ public class Player {
      * @return 1 if successful, 0 if not
      */
     public int flee() {
-        int flee = ( (int) Math.random() * 100) + 1;
+        int flee = ( (int) (Math.random() * 100)) + 1;
         if (flee >= 70) {
             flee = 1;
         }

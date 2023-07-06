@@ -16,12 +16,14 @@ public class CombatText {
     }
 
     public CombatText(int value, String name) {
-        dialText.put("PLAYERMISS", "THE " + name + " DODGES OUT OF YOUR ATTACK!");
-        dialText.put("PLAYERLIGHTHIT", "YOU STRUCK THE " + name + " WITH A LIGHT ATTACK FOR " + value + " DAMAGE!");
-        dialText.put("PLAYERHEAVYHIT", "YOU CHARGE A POWERFUL ATTACK AND DAMAGED THE " + name + "  FOR " + value + " DAMAGE!");
-        dialText.put("ENEMYLIGHTHIT", "THE " + name + " ATTACKS YOU WITH A LIGHT ATTACK FOR " + value + " DAMAGE!");
-        dialText.put("ENEMYRHEAVYHIT", "YOU GET HIT BY A FORCEFUL ATTACK BY THE  " + name + "  FOR " + value + " DAMAGE!");
-        dialText.put("ENEMYMISS", "YOU JUMP OUT OF THE " + name + " 'S ATTACK!");
+        dialText.put("PLAYERMISS", "THE " + name + " DODGES OUT OF YOUR ATTACK!\n");
+        dialText.put("PLAYERLIGHTHIT", "YOU STRUCK THE " + name + " WITH A LIGHT ATTACK FOR " + value + " DAMAGE!\n");
+        dialText.put("PLAYERHEAVYHIT", "YOU CHARGE A POWERFUL ATTACK AND DAMAGED THE " + name + " FOR " + value + " DAMAGE!\n");
+        dialText.put("ENEMYLIGHTHIT", "THE " + name + " ATTACKS YOU WITH A LIGHT ATTACK FOR " + value + " DAMAGE!\n");
+        dialText.put("ENEMYRHEAVYHIT", "YOU GET HIT BY A FORCEFUL ATTACK BY THE  " + name + "  FOR " + value + " DAMAGE!\n");
+        dialText.put("ENEMYMISS", "YOU JUMP OUT OF THE " + name + " 'S ATTACK!\n");
+        dialText.put("FLEESUCCESS", "YOU QUICKLY RAN AWAY FROM THE " + name + " AND MANAGED TO HIDE FROM IT!\n");
+        dialText.put("FLEEFAIL", "YOU TRY TO RUN AWAY FROM THE " + name + " BUT YOU TRIP AND ATE SHIT!\n");
     }
 
     /**
@@ -126,6 +128,32 @@ public class CombatText {
 
     public void enemyHeavyTextDisplay() {
         System.out.print(dialText.get("ENEMYHEAVYHIT"));
+    }
+
+    /**
+     * return flee success
+     *
+     * @return flee success
+     */
+    public String fleeSucText() {
+        return dialText.get("FLEESUCCESS");
+    }
+
+    public void fleeSecTextDisplay() {
+        System.out.print(dialText.get("FLEESUCCESS"));
+    }
+
+    /**
+     * return flee fail
+     *
+     * @return flee fail
+     */
+    public String fleeFailText() {
+        return dialText.get("FLEEFAIL");
+    }
+
+    public void fleeFailTextDisplay() {
+        System.out.print(dialText.get("FLEEFAIL"));
     }
 }
 
