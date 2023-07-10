@@ -68,6 +68,12 @@ public interface Enemies {
     public int getDamage();
 
     /**
+     * enemy attack
+     * @return 0 for miss, >0 for raw damage value
+     */
+    public int attack(int pDodge);
+
+    /**
      * getter method for enemy gold
      * @return gold
      */

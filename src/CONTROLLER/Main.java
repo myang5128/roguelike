@@ -140,8 +140,18 @@ public class Main {
         return 0;
     }
 
-    public static int enemyTurn(Player p, Enemies e) {
-        return 1;
+    public static void enemyTurn(Player p, Enemies e) {
+        int value = e.attack(p.getDodge());
+        // miss
+        if (value == 0) {
+            CombatText damageText = new CombatText(0, e.getName());
+            damageText.enemyMissTextDisplay();
+        }
+        // hit
+        else {
+            CombatText damageText = new CombatText(p.takeDamage(value), e.getName());
+            damageText.enemyLightTextDisplay();
+        }
     }
 
     /**

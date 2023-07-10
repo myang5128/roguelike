@@ -131,6 +131,21 @@ public class Skeleton implements Enemies {
     }
 
     /**
+     * runs an attack for the enemy
+     * @param pDodge player dodge chance
+     * @return 0 if miss, >0 for raw damage value
+     */
+    public int attack(int pDodge) {
+        int hitChance = ( (int)(Math.random() * 100)) + 12;
+        if (hitChance >= pDodge) {
+            return this.damage;
+        }
+        else {
+            return 0;
+        }
+    }
+
+    /**
      * getter method for enemy gold
      *
      * @return gold
