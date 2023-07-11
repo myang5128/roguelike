@@ -15,15 +15,19 @@ public class PlayerCreateText {
                 "HP: " + curHealth + "/" + maxHealth + "     MANA: " + curMana + "/" + maxMana + "\n"+
                 "DEFENSE: " + defense + "     DODGE: " + dodge + "\n" +
                 "DAMAGE: " + damage + "     GOLD: " + gold + "\n" +
-                "EXP: " + curExp + "/" + reqExp + "\n"
+                "EXP: " + curExp + "/" + reqExp + "\n\n"
         );
     }
 
     public PlayerCreateText(String name, int damage, int curHealth, int maxHealth, int curMana, int maxMana, int defense, int dodge) {
         dialText.put("COMBATSTAT", "NAME: " + name + "     DAMAGE: " + damage + "\n" +
                 "HP: " + curHealth + "/" + maxHealth + "     MANA: " + curMana + "/" + maxMana + "\n"+
-                "DEFENSE: " + defense + "     DODGE: " + dodge + "\n"
+                "DEFENSE: " + defense + "     DODGE: " + dodge + "\n\n"
         );
+    }
+
+    public PlayerCreateText() {
+        dialText.put("LEVELUP", "YOU ABSORBED ENOUGH MONSTER ESSENCE! YOU FEEL A BIT STRONGER NOW, YET YOU CRAVE MORE...\n");
     }
 
     /**
@@ -57,5 +61,16 @@ public class PlayerCreateText {
     }
     public void playercomStatTextDisplay() {
         System.out.print(dialText.get("COMBATSTAT"));
+    }
+
+    /**
+     * return player level up
+     * @return player level up
+     */
+    public String playerLevelText() {
+        return dialText.get("LEVELUP");
+    }
+    public void playerLevelTextDisplay() {
+        System.out.print(dialText.get("LEVELUP"));
     }
 }

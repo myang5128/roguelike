@@ -19,7 +19,7 @@ public class CombatText {
         dialText.put("PLAYERMISS", "THE " + name + " DODGES OUT OF YOUR ATTACK!\n");
         dialText.put("PLAYERLIGHTHIT", "YOU STRUCK THE " + name + " WITH A LIGHT ATTACK FOR " + value + " DAMAGE!\n");
         dialText.put("PLAYERHEAVYHIT", "YOU CHARGE A POWERFUL ATTACK AND DAMAGED THE " + name + " FOR " + value + " DAMAGE!\n");
-        dialText.put("ENEMYATTACK", "THE " + name + " PREPARES TO ATTACK YOU!");
+        dialText.put("ENEMYATTACK", "THE " + name + " PREPARES TO ATTACK YOU!\n");
         dialText.put("ENEMYLIGHTHIT", "THE " + name + " ATTACKS YOU WITH A LIGHT ATTACK FOR " + value + " DAMAGE!\n");
         dialText.put("ENEMYRHEAVYHIT", "YOU GET HIT BY A FORCEFUL ATTACK BY THE  " + name + "  FOR " + value + " DAMAGE!\n");
         dialText.put("ENEMYMISS", "YOU JUMP OUT OF THE " + name + "'S ATTACK!\n");

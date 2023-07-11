@@ -309,6 +309,7 @@ public class Main {
             EnemyCombatText enemyText = new EnemyCombatText(e.getName());
             enemyText.enemyStartTextDisplay();
             promptEnterKey();
+            boolean isLevelUp = false;
 
             // combat
             int result = combatSim(p, e);
@@ -317,7 +318,7 @@ public class Main {
                 promptEnterKey();
             } else if (result == 1) {
                 EnemyCombatText winner = new EnemyCombatText(e.getName(), e.getExp(), e.getGold());
-                p.addExpGold(e.getExp(), e.getGold());
+                isLevelUp = p.addExpGold(e.getExp(), e.getGold());
                 winner.enemyWinTextDisplay();
                 promptEnterKey();
             } else {
@@ -327,6 +328,11 @@ public class Main {
             }
 
             // post combat
+            // checks for level up
+            if (isLevelUp) {
+                PlayerCreateText playerLevelUp = new PlayerCreateText();
+                playerLevelUp.playerLevelTextDisplay();
+            }
             playerGenText = new PlayerCreateText(p.getName(), p.getCurHealth(), p.getMaxHealth(), p.getCurMana(), p.getMaxMana(), p.getDefense(), p.getDodge(), p.getDamage(), p.getCurExp(), p.getExpReq(), p.getGold(), p.getLevel());
             playerGenText.playerStatTextDisplay();
             promptEnterKey();

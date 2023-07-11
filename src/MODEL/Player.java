@@ -85,13 +85,16 @@ public class Player {
     }
 
     /**
-     * levels up player if exp is enough
+     * checks if player has enough exp
+     * @return true if level up, false if not
      */
-    public void ExpLevelEnough() {
+    public boolean ExpLevelEnough() {
         if (this.curExp >= this.expReq) {
             this.curExp -= this.expReq;
             PlayerLevelUp();
+            return true;
         }
+        return false;
     }
 
     /**
@@ -292,10 +295,19 @@ public class Player {
         return dmgValue;
     }
 
-    public void addExpGold(int exp, int gold) {
+    /**
+     * adds exp and gold to player
+     * @param exp exp
+     * @param gold gold
+     * @return true if level up, false if not
+     */
+    public boolean addExpGold(int exp, int gold) {
         this.gold += gold;
         this.curExp += exp;
-        ExpLevelEnough();
+        if (ExpLevelEnough()) {
+            return true;
+        }
+        return false;
     }
 
 }
