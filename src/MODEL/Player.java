@@ -292,4 +292,10 @@ public class Player {
         return dmgValue;
     }
 
+    public void addExpGold(int exp, int gold) {
+        this.gold += gold;
+        this.curExp += exp;
+        ExpLevelEnough();
+    }
+
 }

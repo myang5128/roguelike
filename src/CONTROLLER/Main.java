@@ -141,16 +141,40 @@ public class Main {
     }
 
     public static void enemyTurn(Player p, Enemies e) {
-        int value = e.attack(p.getDodge());
-        // miss
-        if (value == 0) {
-            CombatText damageText = new CombatText(0, e.getName());
-            damageText.enemyMissTextDisplay();
+        int attackType = (int) (Math.random() * 1);
+
+        // heavy attack
+        if (attackType == 1) {
+            int value = e.heavyAttack(p.getDodge());
+            // miss
+            if (value == 0) {
+                CombatText damageText = new CombatText(0, e.getName());
+                damageText.enemyAttackTextDisplay();
+                damageText.enemyMissTextDisplay();
+            }
+            // hit
+            else {
+                CombatText damageText = new CombatText(p.takeDamage(value), e.getName());
+                damageText.enemyAttackTextDisplay();
+                damageText.enemyHeavyTextDisplay();
+            }
         }
-        // hit
+
+        // light attack
         else {
-            CombatText damageText = new CombatText(p.takeDamage(value), e.getName());
-            damageText.enemyLightTextDisplay();
+            int value = e.lightAttack(p.getDodge());
+            // miss
+            if (value == 0) {
+                CombatText damageText = new CombatText(0, e.getName());
+                damageText.enemyAttackTextDisplay();
+                damageText.enemyMissTextDisplay();
+            }
+            // hit
+            else {
+                CombatText damageText = new CombatText(p.takeDamage(value), e.getName());
+                damageText.enemyAttackTextDisplay();
+                damageText.enemyLightTextDisplay();
+            }
         }
     }
 
@@ -187,7 +211,7 @@ public class Main {
      * @param e enemy
      * @return 0 if enemy wins, 1 if player wins, 2 for flee
      */
-    public static int combat(Player p, Enemies e) {
+    public static int combatSim(Player p, Enemies e) {
         EnemyCombatText combat = new EnemyCombatText(e.getName(), e.getCurHealth(), e.getMaxHealth(), e.getDefense(), e.getDodge(), e.getDamage());
 
         // shows enemy stats
@@ -214,6 +238,9 @@ public class Main {
             if (enemyChecker(e)) {
                con = 1;
             }
+
+            promptEnterKey();
+
             // enemy turn
             enemyTurn(p, e);
 
@@ -274,27 +301,35 @@ public class Main {
         playerGenText.playerStatTextDisplay();
         promptEnterKey();
 
-        // pre-combat
-        e = enemyPicker(p.getScale());
-        EnemyCombatText enemyText = new EnemyCombatText(e.getName());
-        enemyText.enemyStartTextDisplay();
-        promptEnterKey();
+        // test purposes
+        while (true) {
 
-        // combat
-        int result = combat(p, e);
-        if (result == 0) {
-            enemyText.enemyLoseTextDisplay();
-            promptEnterKey();
-        } else if (result == 1) {
-            EnemyCombatText winner = new EnemyCombatText(e.getName(), e.getExp(), e.getGold());
-            winner.enemyWinTextDisplay();
-            promptEnterKey();
-        }
-        else {
-            CombatText fleeText = new CombatText(0, e.getName());
-            fleeText.fleeSecTextDisplay();
+            // pre-combat
+            e = enemyPicker(p.getScale());
+            EnemyCombatText enemyText = new EnemyCombatText(e.getName());
+            enemyText.enemyStartTextDisplay();
             promptEnterKey();
 
+            // combat
+            int result = combatSim(p, e);
+            if (result == 0) {
+                enemyText.enemyLoseTextDisplay();
+                promptEnterKey();
+            } else if (result == 1) {
+                EnemyCombatText winner = new EnemyCombatText(e.getName(), e.getExp(), e.getGold());
+                p.addExpGold(e.getExp(), e.getGold());
+                winner.enemyWinTextDisplay();
+                promptEnterKey();
+            } else {
+                CombatText fleeText = new CombatText(0, e.getName());
+                fleeText.fleeSecTextDisplay();
+                promptEnterKey();
+            }
+
+            // post combat
+            playerGenText = new PlayerCreateText(p.getName(), p.getCurHealth(), p.getMaxHealth(), p.getCurMana(), p.getMaxMana(), p.getDefense(), p.getDodge(), p.getDamage(), p.getCurExp(), p.getExpReq(), p.getGold(), p.getLevel());
+            playerGenText.playerStatTextDisplay();
+            promptEnterKey();
         }
 
     }

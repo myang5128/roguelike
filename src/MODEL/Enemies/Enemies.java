@@ -68,10 +68,18 @@ public interface Enemies {
     public int getDamage();
 
     /**
-     * enemy attack
+     * enemy light attack
+     * @param pDodge player dodge chance
      * @return 0 for miss, >0 for raw damage value
      */
-    public int attack(int pDodge);
+    public int lightAttack(int pDodge);
+
+    /**
+     * enemy heavy attack
+     * @param pDodge player dodge chance
+     * @return 0 for miss, >0 for raw damage value
+     */
+    public int heavyAttack(int pDodge);
 
     /**
      * getter method for enemy gold

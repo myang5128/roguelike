@@ -135,10 +135,26 @@ public class FallenMage implements Enemies {
      * @param pDodge player dodge chance
      * @return 0 if miss, >0 for raw damage value
      */
-    public int attack(int pDodge) {
+    public int lightAttack(int pDodge) {
         int hitChance = ( (int)(Math.random() * 100)) + 17;
         if (hitChance >= pDodge) {
             return this.damage;
+        }
+        else {
+            return 0;
+        }
+    }
+
+    /**
+     * enemy heavy attack
+     *
+     * @param pDodge player dodge chance
+     * @return 0 for miss, >0 for raw damage value
+     */
+    public int heavyAttack(int pDodge) {
+        int hitChance = ( (int)(Math.random() * 100)) + 9;
+        if (hitChance >= pDodge) {
+            return (int) (this.damage * 1.5);
         }
         else {
             return 0;

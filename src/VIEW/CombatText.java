@@ -19,9 +19,10 @@ public class CombatText {
         dialText.put("PLAYERMISS", "THE " + name + " DODGES OUT OF YOUR ATTACK!\n");
         dialText.put("PLAYERLIGHTHIT", "YOU STRUCK THE " + name + " WITH A LIGHT ATTACK FOR " + value + " DAMAGE!\n");
         dialText.put("PLAYERHEAVYHIT", "YOU CHARGE A POWERFUL ATTACK AND DAMAGED THE " + name + " FOR " + value + " DAMAGE!\n");
+        dialText.put("ENEMYATTACK", "THE " + name + " PREPARES TO ATTACK YOU!");
         dialText.put("ENEMYLIGHTHIT", "THE " + name + " ATTACKS YOU WITH A LIGHT ATTACK FOR " + value + " DAMAGE!\n");
         dialText.put("ENEMYRHEAVYHIT", "YOU GET HIT BY A FORCEFUL ATTACK BY THE  " + name + "  FOR " + value + " DAMAGE!\n");
-        dialText.put("ENEMYMISS", "YOU JUMP OUT OF THE " + name + " 'S ATTACK!\n");
+        dialText.put("ENEMYMISS", "YOU JUMP OUT OF THE " + name + "'S ATTACK!\n");
         dialText.put("FLEESUCCESS", "YOU QUICKLY RAN AWAY FROM THE " + name + " AND MANAGED TO HIDE FROM IT!\n");
         dialText.put("FLEEFAIL", "YOU TRY TO RUN AWAY FROM THE " + name + " BUT YOU TRIP AND ATE SHIT!\n");
     }
@@ -89,6 +90,19 @@ public class CombatText {
 
     public void playerHeavyTextDisplay() {
         System.out.print(dialText.get("PLAYERHEAVYHIT"));
+    }
+
+    /**
+     * return enemy attack
+     *
+     * @return enemy attack
+     */
+    public String enemyAttackText() {
+        return dialText.get("ENEMYATTACK");
+    }
+
+    public void enemyAttackTextDisplay() {
+        System.out.print(dialText.get("ENEMYATTACK"));
     }
 
     /**
