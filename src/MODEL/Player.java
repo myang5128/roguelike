@@ -1,5 +1,7 @@
 package MODEL;
 
+import MODEL.Spells.Offensive.OffensiveSpells;
+
 public class Player {
     /**
      * Player class
@@ -23,11 +25,12 @@ public class Player {
     int expReq;
     int gold;
     int level;
+    OffensiveSpells[] spellArray;
 
     /**
      * Constructor
      */
-    public Player(String name, String playerClass, int maxHealth, int maxMana, int defense, int dodge, int damage) {
+    public Player(String name, String playerClass, int maxHealth, int maxMana, int defense, int dodge, int damage, OffensiveSpells[] spellArray) {
         this.name = name;
         this.playerClass = playerClass;
         this.curHealth = maxHealth;
@@ -40,6 +43,7 @@ public class Player {
         this.curExp = 0;
         this.gold = 0;
         this.level = 1;
+        this.spellArray = spellArray;
     }
 
     /**
@@ -49,15 +53,13 @@ public class Player {
      */
     public int setExpReq(int level) {
         if (this.level < 5) {
-            this.expReq = (this.level * 25);
+            this.expReq = (this.level * 30);
             return this.expReq;
-        }
-        else if (this.level < 15) {
-            this.expReq = (this.level * 50);
-            return this.expReq;
-        }
-        else {
+        } else if (this.level < 15) {
             this.expReq = (this.level * 75);
+            return this.expReq;
+        } else {
+            this.expReq = (this.level * 125);
             return this.expReq;
         }
     }
@@ -69,14 +71,18 @@ public class Player {
         if (this.level < 10) {
             this.maxHealth += 1;
             this.curHealth += 1;
-        }
-        else if (this.level < 20) {
+            this.curMana += 2;
+            this.maxMana += 2;
+        } else if (this.level < 20) {
             this.maxHealth += 2;
             this.curHealth += 2;
-        }
-        else {
+            this.curMana += 3;
+            this.maxMana += 3;
+        } else {
             this.maxHealth += 3;
             this.curHealth += 3;
+            this.curMana += 4;
+            this.maxMana += 4;
         }
         this.dodge += 1;
         this.damage += 1;
@@ -86,6 +92,7 @@ public class Player {
 
     /**
      * checks if player has enough exp
+     *
      * @return true if level up, false if not
      */
     public boolean ExpLevelEnough() {
@@ -99,6 +106,7 @@ public class Player {
 
     /**
      * getter method for player name
+     *
      * @return name
      */
     public String getName() {
@@ -107,6 +115,7 @@ public class Player {
 
     /**
      * getter method for player class
+     *
      * @return class
      */
     public String getPlayerClass() {
@@ -115,6 +124,7 @@ public class Player {
 
     /**
      * getter method for current health
+     *
      * @return current health
      */
     public int getCurHealth() {
@@ -123,6 +133,7 @@ public class Player {
 
     /**
      * getter method for max health
+     *
      * @return max health
      */
     public int getMaxHealth() {
@@ -131,6 +142,7 @@ public class Player {
 
     /**
      * getter method for current mana
+     *
      * @return current health
      */
     public int getCurMana() {
@@ -139,6 +151,7 @@ public class Player {
 
     /**
      * getter method for max mana
+     *
      * @return max health
      */
     public int getMaxMana() {
@@ -147,6 +160,7 @@ public class Player {
 
     /**
      * getter method for defense
+     *
      * @return defense
      */
     public int getDefense() {
@@ -155,6 +169,7 @@ public class Player {
 
     /**
      * getter method for temp defense
+     *
      * @return temp defense
      */
     public int getTempDefense() {
@@ -163,6 +178,7 @@ public class Player {
 
     /**
      * getter method for dodge
+     *
      * @return dodge
      */
     public int getDodge() {
@@ -171,6 +187,7 @@ public class Player {
 
     /**
      * getter method for tempdodge
+     *
      * @return temp dodge
      */
     public int getTempDodge() {
@@ -179,6 +196,7 @@ public class Player {
 
     /**
      * getter method for damage
+     *
      * @return
      */
     public int getDamage() {
@@ -187,6 +205,7 @@ public class Player {
 
     /**
      * getter method for current exp
+     *
      * @return current exp
      */
     public int getCurExp() {
@@ -195,6 +214,7 @@ public class Player {
 
     /**
      * getter method for exp required
+     *
      * @return exp required
      */
     public int getExpReq() {
@@ -203,6 +223,7 @@ public class Player {
 
     /**
      * getter method for gold
+     *
      * @return gold
      */
     public int getGold() {
@@ -211,6 +232,7 @@ public class Player {
 
     /**
      * getter method for level
+     *
      * @return level
      */
     public int getLevel() {
@@ -219,16 +241,15 @@ public class Player {
 
     /**
      * gets a scale factor according to the level
+     *
      * @return scale factor
      */
     public int getScale() {
         if (this.level < 5) {
             return 1;
-        }
-        else if (this.level < 10) {
+        } else if (this.level < 10) {
             return 2;
-        }
-        else {
+        } else {
             int scale = (int) (this.level / 5);
             return scale;
         }
@@ -236,6 +257,7 @@ public class Player {
 
     /**
      * light attack function
+     *
      * @param eDodge enemy dodge chance
      * @return 0 if doesn't hit, > 0 for raw damage
      */
@@ -243,37 +265,36 @@ public class Player {
         int hitChance = ((int) (Math.random() * 100)) + 30 + this.level;
         if (hitChance >= eDodge) {
             return this.damage;
-        }
-        else {
+        } else {
             return 0;
         }
     }
 
     /**
      * heavy attack function
+     *
      * @param eDodge enemy dodge chance
      * @return 0 if doesn't hit, > 0 for raw damage
      */
     public int heavyAttack(int eDodge) {
-        int hitChance = ( (int)(Math.random() * 100)) + 15 + this.level;
+        int hitChance = ((int) (Math.random() * 100)) + 15 + this.level;
         if (hitChance >= eDodge) {
             return (int) (this.damage * 1.7);
-        }
-        else {
+        } else {
             return 0;
         }
     }
 
     /**
      * calculate flee chance
+     *
      * @return 1 if successful, 0 if not
      */
     public int flee() {
-        int flee = ( (int) (Math.random() * 100)) + 1;
+        int flee = ((int) (Math.random() * 100)) + 1;
         if (flee >= 70) {
             flee = 1;
-        }
-        else {
+        } else {
             flee = 0;
         }
         return flee;
@@ -281,6 +302,7 @@ public class Player {
 
     /**
      * calculates dmg done to player and changes player health accordingly
+     *
      * @param dmg enemy raw dmg value
      */
     public int takeDamage(int dmg) {
@@ -288,8 +310,7 @@ public class Player {
         if (dmgValue <= 0) {
             dmgValue = 1;
             this.curHealth--;
-        }
-        else {
+        } else {
             this.curHealth -= dmgValue;
         }
         return dmgValue;
@@ -297,7 +318,8 @@ public class Player {
 
     /**
      * adds exp and gold to player
-     * @param exp exp
+     *
+     * @param exp  exp
      * @param gold gold
      * @return true if level up, false if not
      */
@@ -310,4 +332,7 @@ public class Player {
         return false;
     }
 
+    public void setMana(int value) {
+        this.curMana = value;
+    }
 }
