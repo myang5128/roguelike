@@ -8,7 +8,7 @@ public class FalconSwoop implements OffensiveSpells {
     int manaCost = 4;
     int damage = 2;
     int misfire = 10;
-    int level = 1;
+    int level = 0;
     String target = "ENEMY";
     String desc = "ENLIST THE AID OF A TRUSTWORTHY FALCON TO HARASS YOUR FOE WITH VOLATILE RESULTS!";
 

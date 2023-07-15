@@ -8,7 +8,7 @@ public class WindSlash implements OffensiveSpells {
     int manaCost = 1;
     int damage = 2;
     int misfire = 8;
-    int level = 1;
+    int level = 0;
     String target = "ENEMY";
     String desc = "SUMMON A POWERFUL GUST OF WIND TO LACERATE YOUR TARGETS!";
 

@@ -8,7 +8,7 @@ public class RagingBoar implements OffensiveSpells {
     int manaCost = 3;
     int damage = 5;
     int misfire = 15;
-    int level = 1;
+    int level = 0;
     String target = "ENEMY";
     String desc = "CALL UPON A SPECTRAL BOAR TO MAIM YOUR ENEMIES!";
 

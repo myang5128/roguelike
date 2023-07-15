@@ -2,6 +2,8 @@ package CONTROLLER;
 
 import MODEL.Enemies.*;
 import MODEL.Player;
+import MODEL.Spells.Offensive.Druid.*;
+import MODEL.Spells.Offensive.OffensiveSpells;
 import MODEL.StartingClasses.*;
 import VIEW.CharCreateText;
 import VIEW.CombatText;
@@ -236,7 +238,7 @@ public class Main {
 
             // checks enemy health
             if (enemyChecker(e)) {
-               con = 1;
+                con = 1;
             }
 
             promptEnterKey();
@@ -251,7 +253,8 @@ public class Main {
 
             // show stats
             combat = new EnemyCombatText(e.getName(), e.getCurHealth(), e.getMaxHealth(), e.getDefense(), e.getDodge(), e.getDamage());
-            playerGenText = new PlayerCreateText(p.getName(), p.getDamage(), p.getCurHealth(), p.getMaxHealth(), p.getCurMana(), p.getMaxMana(), p.getDefense(), p.getDodge());            combat.enemyStatTextDisplay();
+            playerGenText = new PlayerCreateText(p.getName(), p.getDamage(), p.getCurHealth(), p.getMaxHealth(), p.getCurMana(), p.getMaxMana(), p.getDefense(), p.getDodge());
+            combat.enemyStatTextDisplay();
             playerGenText.playercomStatTextDisplay();
         }
         return con;
@@ -274,7 +277,13 @@ public class Main {
         // generate player based on response
         switch (playerClass) {
             case "DRUID":
-                p = new Player(playerName, playerClass, druid.getHealth(), druid.getMana(), druid.getDefense(), druid.getDodge(), druid.getDamage());
+                WindSlash windSlash = new WindSlash();
+                FalconSwoop falconSwoop = new FalconSwoop();
+                RootSnap rootSnap = new RootSnap();
+                RagingBoar ragingBoar = new RagingBoar();
+                ThornExplosion thornExplosion = new ThornExplosion();
+                OffensiveSpells[] spellArray = new OffensiveSpells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
+                p = new Player(playerName, playerClass, druid.getHealth(), druid.getMana(), druid.getDefense(), druid.getDodge(), druid.getDamage(), spellArray);
                 break;
             case "KNIGHT":
                 p = new Player(playerName, playerClass, knight.getHealth(), knight.getMana(), knight.getDefense(), knight.getDodge(), knight.getDamage());

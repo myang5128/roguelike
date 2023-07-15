@@ -8,7 +8,7 @@ public class RootSnap implements OffensiveSpells {
     int manaCost = 2;
     int damage = 4;
     int misfire = 12;
-    int level = 1;
+    int level = 0;
     String target = "ENEMY";
     String desc = "UNLEASH AN MIGHTY BRIONET TREE ROOT TO PUMMEL YOUR ENEMY!";
 

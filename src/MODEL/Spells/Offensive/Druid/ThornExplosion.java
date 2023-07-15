@@ -8,7 +8,7 @@ public class ThornExplosion implements OffensiveSpells {
     int manaCost = 5;
     int damage = 7;
     int misfire = 20;
-    int level = 1;
+    int level = 0;
     String target = "ENEMY";
     String desc = "CREATE A HAPHAZARD ASSORTMENT OF EXPLODER FLOWERS FOR YOUR UNGRATEFUL VISITORS!";
 
