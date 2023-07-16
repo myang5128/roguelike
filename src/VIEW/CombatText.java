@@ -11,8 +11,8 @@ public class CombatText {
         /**
          * Hashmap values
          */
-        dialText.put("COMBATMOVE", "PICK A MOVE, ADVENTURER." + " *LIGHT, HEAVY, FLEE*\n");
-        dialText.put("MOVEINVALID", "PLEASE FIGHT PROPERLY..." + " *LIGHT, HEAVY, FLEE*\n");
+        dialText.put("COMBATMOVE", "PICK A MOVE, ADVENTURER." + " *LIGHT, HEAVY, FLEE, SPELLS*\n");
+        dialText.put("MOVEINVALID", "PLEASE FIGHT PROPERLY..." + " *LIGHT, HEAVY, FLEE, SPELLS*\n");
     }
 
     public CombatText(int value, String name) {

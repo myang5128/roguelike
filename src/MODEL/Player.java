@@ -301,6 +301,28 @@ public class Player {
     }
 
     /**
+     * return spells
+     * @return spell list
+     */
+    public OffensiveSpells[] spells() {
+        int count = 0;
+        for (int i = 0; i < 5; i++) {
+            if (spellArray[i].updateLevel(this.level)) {
+                count++;
+            };
+        }
+        OffensiveSpells[] ret = new OffensiveSpells[count];
+        int j = 0;
+        for (int i = 0; i < 5; i++) {
+            if (spellArray[i].getLevel() > 0) {
+                ret[j] = spellArray[i];
+                j++;
+            }
+        }
+        return ret;
+    }
+
+    /**
      * calculates dmg done to player and changes player health accordingly
      *
      * @param dmg enemy raw dmg value

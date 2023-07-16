@@ -61,11 +61,10 @@ public class ThornExplosion implements OffensiveSpells {
     /**
      * getter method for spell level
      *
-     * @param pLevel player level
      * @return spell level
      */
     @Override
-    public int getLevel(int pLevel) {
+    public int getLevel() {
         return this.level;
     }
 

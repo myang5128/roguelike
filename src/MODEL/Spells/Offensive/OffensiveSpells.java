@@ -41,10 +41,9 @@ public interface OffensiveSpells {
     /**
      * getter method for spell level
      *
-     * @param pLevel player level
      * @return spell level
      */
-    public int getLevel(int pLevel);
+    public int getLevel();
 
     /**
      * getter method for spell target
