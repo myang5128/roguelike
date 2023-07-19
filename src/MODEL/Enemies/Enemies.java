@@ -18,6 +18,13 @@ public interface Enemies {
     public int takeDamage(int damage);
 
     /**
+     * enemy takes magic damage
+     * @param damage raw magicdamage value
+     * @return damage value
+     */
+    public int takeMagicDamage(int damage);
+
+    /**
      * enemy gets a debuff
      * @param stat stat getting debuffed
      * @param damage debuff strength

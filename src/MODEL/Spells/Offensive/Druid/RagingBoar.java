@@ -5,7 +5,7 @@ import MODEL.Spells.Offensive.OffensiveSpells;
 public class RagingBoar implements OffensiveSpells {
 
     String name = "RAGING BOAR";
-    int manaCost = 3;
+    int manaCost = 5;
     int damage = 5;
     int misfire = 15;
     int level = 0;
@@ -46,6 +46,14 @@ public class RagingBoar implements OffensiveSpells {
     @Override
     public int getDamage() {
         return (int) ((Math.random() * this.damage + 2) + level * 1.7);
+    }
+
+    /**
+     * getter method for raw spell damage
+     * @return raw spell damage
+     */
+    public int getRawDamage() {
+        return this.damage;
     }
 
     /**
@@ -112,22 +120,22 @@ public class RagingBoar implements OffensiveSpells {
     @Override
     public boolean updateLevel(int pLevel) {
         if (pLevel == 4) {
-            this.level += 1;
+            this.level =1;
             return true;
         } else if (pLevel == 7) {
-            this.level += 1;
+            this.level =2;
             return true;
         } else if (pLevel == 10) {
-            this.level += 1;
+            this.level =3;
             return true;
         } else if (pLevel == 16) {
-            this.level += 1;
+            this.level =4;
             return true;
         } else if (pLevel == 24) {
-            this.level += 1;
+            this.level =5;
             return true;
         } else if (pLevel == 28) {
-            this.level += 1;
+            this.level =6;
             return true;
         }
         return false;

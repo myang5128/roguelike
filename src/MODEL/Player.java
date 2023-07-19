@@ -53,7 +53,7 @@ public class Player {
      */
     public int setExpReq(int level) {
         if (this.level < 5) {
-            this.expReq = (this.level * 30);
+            this.expReq = (this.level * 5);
             return this.expReq;
         } else if (this.level < 15) {
             this.expReq = (this.level * 75);
@@ -307,9 +307,12 @@ public class Player {
     public OffensiveSpells[] spells() {
         int count = 0;
         for (int i = 0; i < 5; i++) {
-            if (spellArray[i].updateLevel(this.level)) {
+            spellArray[i].updateLevel(this.level);
+        }
+        for (int i = 0; i < 5; i++) {
+            if (spellArray[i].getLevel() > 0) {
                 count++;
-            };
+            }
         }
         OffensiveSpells[] ret = new OffensiveSpells[count];
         int j = 0;
@@ -355,6 +358,6 @@ public class Player {
     }
 
     public void setMana(int value) {
-        this.curMana = value;
+        this.curMana -= value;
     }
 }

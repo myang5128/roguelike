@@ -30,7 +30,8 @@ public class FallenMage implements Enemies {
     /**
      * enemy takes damage
      *
-     * @param damage damage value
+     * @param damage raw damage value
+     * @return damage value
      */
     @Override
     public int takeDamage(int damage) {
@@ -39,6 +40,22 @@ public class FallenMage implements Enemies {
             damage = 1;
         }
         this.curHealth -= damage;
+        if (curHealth < 0) {
+            this.curHealth = 0;
+        }
+        return damage;
+    }
+
+    /**
+     * enemy takes magic damage
+     * @param damage raw magic damage value
+     * @return damage value
+     */
+    public int takeMagicDamage(int damage) {
+        this.curHealth -= damage;
+        if (curHealth < 0) {
+            this.curHealth = 0;
+        }
         return damage;
     }
 

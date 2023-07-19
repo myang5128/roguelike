@@ -32,6 +32,12 @@ public interface OffensiveSpells {
     public int getDamage();
 
     /**
+     * getter method for raw spell damage
+     * @return raw spell damage
+     */
+    public int getRawDamage();
+
+    /**
      * getter method for misfire chance
      *
      * @return misfire chance

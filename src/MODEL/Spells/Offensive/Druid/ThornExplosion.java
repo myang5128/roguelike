@@ -5,7 +5,7 @@ import MODEL.Spells.Offensive.OffensiveSpells;
 public class ThornExplosion implements OffensiveSpells {
 
     String name = "THORN EXPLOSION";
-    int manaCost = 5;
+    int manaCost = 6;
     int damage = 7;
     int misfire = 20;
     int level = 0;
@@ -46,6 +46,14 @@ public class ThornExplosion implements OffensiveSpells {
     @Override
     public int getDamage() {
         return (int) ((Math.random() * this.damage) + level * 2.3);
+    }
+
+    /**
+     * getter method for raw spell damage
+     * @return raw spell damage
+     */
+    public int getRawDamage() {
+        return this.damage;
     }
 
     /**
@@ -112,22 +120,22 @@ public class ThornExplosion implements OffensiveSpells {
     @Override
     public boolean updateLevel(int pLevel) {
         if (pLevel == 5) {
-            this.level += 1;
+            this.level =1;
             return true;
         } else if (pLevel == 11) {
-            this.level += 1;
+            this.level =2;
             return true;
         } else if (pLevel == 17) {
-            this.level += 1;
+            this.level =3;
             return true;
         } else if (pLevel == 22) {
-            this.level += 1;
+            this.level =4;
             return true;
         } else if (pLevel == 26) {
-            this.level += 1;
+            this.level =5;
             return true;
         } else if (pLevel == 30) {
-            this.level += 1;
+            this.level =6;
             return true;
         }
         return false;

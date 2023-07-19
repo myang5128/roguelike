@@ -5,7 +5,7 @@ import MODEL.Spells.Offensive.OffensiveSpells;
 public class WindSlash implements OffensiveSpells {
 
     String name = "WIND SLASH";
-    int manaCost = 1;
+    int manaCost = 2;
     int damage = 2;
     int misfire = 8;
     int level = 0;
@@ -46,6 +46,14 @@ public class WindSlash implements OffensiveSpells {
     @Override
     public int getDamage() {
         return (int) ((Math.random() * 1 + this.damage) + level * 1.5);
+    }
+
+    /**
+     * getter method for raw spell damage
+     * @return raw spell damage
+     */
+    public int getRawDamage() {
+        return this.damage;
     }
 
     /**
@@ -112,22 +120,22 @@ public class WindSlash implements OffensiveSpells {
     @Override
     public boolean updateLevel(int pLevel) {
         if (pLevel == 1) {
-            this.level += 1;
+            this.level = 1;
             return true;
         } else if (pLevel == 5) {
-            this.level += 1;
+            this.level = 2;
             return true;
         } else if (pLevel == 9) {
-            this.level += 1;
+            this.level = 3;
             return true;
         } else if (pLevel == 14) {
-            this.level += 1;
+            this.level = 4;
             return true;
         } else if (pLevel == 19) {
-            this.level += 1;
+            this.level = 5;
             return true;
         } else if (pLevel == 25) {
-            this.level += 1;
+            this.level = 6;
             return true;
         }
         return false;

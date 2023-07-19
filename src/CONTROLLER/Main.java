@@ -132,9 +132,43 @@ public class Main {
             SpellsText startSpellText = new SpellsText();
             startSpellText.startTextDisplay();
             for (int i = 0; i < spellList.length; i++) {
-                SpellsText spellText = new SpellsText(spellList[i].getName(), spellList[i].getLevel(), spellList[i].getDamage(), spellList[i].getManaCost(), spellList[i].getDesc());
+                SpellsText spellText = new SpellsText(spellList[i].getName(), spellList[i].getLevel(), spellList[i].getRawDamage(), spellList[i].getManaCost(), spellList[i].getDesc());
                 spellText.spellTextDisplay();
             }
+            startSpellText.pickTextDisplay();
+            Scanner scanner1 = new Scanner(System.in);
+            String spellPicker = scanner1.nextLine().toUpperCase();
+            if (spellPicker.equals("BACK")) {
+                playerTurn(p, e);
+            }
+            int spellCount = 0;
+
+            while (!spellPicker.equals(spellList[spellCount].getName())){
+                boolean found = false;
+                for (int i = 0; i < spellList.length; i++) {
+                    if (spellPicker.equals(spellList[i].getName())) {
+                        spellCount = i;
+                        found = true;
+                    }
+                }
+                if (!found) {
+                    startSpellText.pickAgainTextDisplay();
+                    spellPicker = scanner1.nextLine().toUpperCase();
+                }
+            }
+
+            int damage = spellList[spellCount].runSpell();
+            p.setMana(spellList[spellCount].getManaCost());
+            if (damage == 0) {
+                SpellsText spellsDmgText = new SpellsText(spellList[spellCount].getName(), damage, spellList[spellCount].getManaCost(), e.getName());
+                spellsDmgText.missTextDisplay();
+            }
+            else {
+                SpellsText spellsDmgText = new SpellsText(spellList[spellCount].getName(), damage, spellList[spellCount].getManaCost(), e.getName());
+                spellsDmgText.damageTextDisplay();
+                e.takeMagicDamage(damage);
+            }
+
         }
 
         // flee
@@ -159,12 +193,14 @@ public class Main {
             if (value == 0) {
                 CombatText damageText = new CombatText(0, e.getName());
                 damageText.enemyAttackTextDisplay();
+                promptEnterKey();
                 damageText.enemyMissTextDisplay();
             }
             // hit
             else {
                 CombatText damageText = new CombatText(p.takeDamage(value), e.getName());
                 damageText.enemyAttackTextDisplay();
+                promptEnterKey();
                 damageText.enemyHeavyTextDisplay();
             }
         }
@@ -241,11 +277,13 @@ public class Main {
             // if flee is successful, end combat
             if (flee == 1) {
                 con = 2;
+                break;
             }
 
             // checks enemy health
             if (enemyChecker(e)) {
                 con = 1;
+                break;
             }
 
             promptEnterKey();
@@ -256,6 +294,7 @@ public class Main {
             // checks player health
             if (playerChecker(p)) {
                 con = 0;
+                break;
             }
 
             // show stats

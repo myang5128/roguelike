@@ -5,7 +5,7 @@ import MODEL.Spells.Offensive.OffensiveSpells;
 public class RootSnap implements OffensiveSpells {
 
     String name = "ROOT SNAP";
-    int manaCost = 2;
+    int manaCost = 3;
     int damage = 4;
     int misfire = 12;
     int level = 0;
@@ -46,6 +46,14 @@ public class RootSnap implements OffensiveSpells {
     @Override
     public int getDamage() {
         return (int) ((Math.random() * this.damage + 1) + level * 2);
+    }
+
+    /**
+     * getter method for raw spell damage
+     * @return raw spell damage
+     */
+    public int getRawDamage() {
+        return this.damage;
     }
 
     /**
@@ -112,22 +120,22 @@ public class RootSnap implements OffensiveSpells {
     @Override
     public boolean updateLevel(int pLevel) {
         if (pLevel == 3) {
-            this.level += 1;
+            this.level =1;
             return true;
         } else if (pLevel == 7) {
-            this.level += 1;
+            this.level =2;
             return true;
         } else if (pLevel == 12) {
-            this.level += 1;
+            this.level =3;
             return true;
         } else if (pLevel == 18) {
-            this.level += 1;
+            this.level =4;
             return true;
         } else if (pLevel == 23) {
-            this.level += 1;
+            this.level =5;
             return true;
         } else if (pLevel == 29) {
-            this.level += 1;
+            this.level =6;
             return true;
         }
         return false;
