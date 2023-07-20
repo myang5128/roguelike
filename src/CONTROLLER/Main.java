@@ -38,6 +38,7 @@ public class Main {
     public static String askForName() {
         charGenText.nameTextDisplay();
         Scanner scanner = new Scanner(System.in);
+        String text = scanner.nextLine().toUpperCase();
         playerName = scanner.nextLine().toUpperCase();
         return playerName;
     }
@@ -188,7 +189,7 @@ public class Main {
 
         // heavy attack
         if (attackType == 1) {
-            int value = e.heavyAttack(p.getDodge());
+            int value = e.heavyAttack(p.getTempDodge());
             // miss
             if (value == 0) {
                 CombatText damageText = new CombatText(0, e.getName());
@@ -207,7 +208,7 @@ public class Main {
 
         // light attack
         else {
-            int value = e.lightAttack(p.getDodge());
+            int value = e.lightAttack(p.getTempDodge());
             // miss
             if (value == 0) {
                 CombatText damageText = new CombatText(0, e.getName());
@@ -299,7 +300,7 @@ public class Main {
 
             // show stats
             combat = new EnemyCombatText(e.getName(), e.getCurHealth(), e.getMaxHealth(), e.getDefense(), e.getDodge(), e.getDamage());
-            playerGenText = new PlayerCreateText(p.getName(), p.getDamage(), p.getCurHealth(), p.getMaxHealth(), p.getCurMana(), p.getMaxMana(), p.getDefense(), p.getDodge());
+            playerGenText = new PlayerCreateText(p.getName(), p.getTempDamage(), p.getCurHealth(), p.getMaxHealth(), p.getCurMana(), p.getMaxMana(), p.getTempDefense(), p.getTempDodge());
             combat.enemyStatTextDisplay();
             playerGenText.playercomStatTextDisplay();
         }
@@ -329,62 +330,52 @@ public class Main {
                 RagingBoar ragingBoar = new RagingBoar();
                 ThornExplosion thornExplosion = new ThornExplosion();
                 OffensiveSpells[] spellArray = new OffensiveSpells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
-                p = new Player(playerName, playerClass, druid.getHealth(), druid.getMana(), druid.getDefense(), druid.getDodge(), druid.getDamage(), spellArray);
+                p = new Player(playerName, druid, druid.getHealth(), druid.getMana(), druid.getDefense(), druid.getDodge(), druid.getDamage(), spellArray);
                 break;
             case "KNIGHT":
-
                 windSlash = new WindSlash();
                 falconSwoop = new FalconSwoop();
                 rootSnap = new RootSnap();
                 ragingBoar = new RagingBoar();
                 thornExplosion = new ThornExplosion();
                 spellArray = new OffensiveSpells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
-
-                p = new Player(playerName, playerClass, knight.getHealth(), knight.getMana(), knight.getDefense(), knight.getDodge(), knight.getDamage(), spellArray);
+                p = new Player(playerName, knight, knight.getHealth(), knight.getMana(), knight.getDefense(), knight.getDodge(), knight.getDamage(), spellArray);
                 break;
             case "MAGE":
-
                 windSlash = new WindSlash();
                 falconSwoop = new FalconSwoop();
                 rootSnap = new RootSnap();
                 ragingBoar = new RagingBoar();
                 thornExplosion = new ThornExplosion();
                 spellArray = new OffensiveSpells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
-
-                p = new Player(playerName, playerClass, mage.getHealth(), mage.getMana(), mage.getDefense(), mage.getDodge(), mage.getDamage(), spellArray);
+                p = new Player(playerName, mage, mage.getHealth(), mage.getMana(), mage.getDefense(), mage.getDodge(), mage.getDamage(), spellArray);
                 break;
             case "PALADIN":
-
                 windSlash = new WindSlash();
                 falconSwoop = new FalconSwoop();
                 rootSnap = new RootSnap();
                 ragingBoar = new RagingBoar();
                 thornExplosion = new ThornExplosion();
                 spellArray = new OffensiveSpells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
-
-                p = new Player(playerName, playerClass, paladin.getHealth(), paladin.getMana(), paladin.getDefense(), paladin.getDodge(), paladin.getDamage(), spellArray);
+                p = new Player(playerName, paladin, paladin.getHealth(), paladin.getMana(), paladin.getDefense(), paladin.getDodge(), paladin.getDamage(), spellArray);
                 break;
             case "RANGER":
-
                 windSlash = new WindSlash();
                 falconSwoop = new FalconSwoop();
                 rootSnap = new RootSnap();
                 ragingBoar = new RagingBoar();
                 thornExplosion = new ThornExplosion();
                 spellArray = new OffensiveSpells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
-
-                p = new Player(playerName, playerClass, ranger.getHealth(), ranger.getMana(), ranger.getDefense(), ranger.getDodge(), ranger.getDamage(), spellArray);
+                p = new Player(playerName, ranger, ranger.getHealth(), ranger.getMana(), ranger.getDefense(), ranger.getDodge(), ranger.getDamage(), spellArray);
                 break;
             default:
-
                 windSlash = new WindSlash();
                 falconSwoop = new FalconSwoop();
                 rootSnap = new RootSnap();
                 ragingBoar = new RagingBoar();
                 thornExplosion = new ThornExplosion();
                 spellArray = new OffensiveSpells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
-
-                p = new Player(playerName, playerClass, rogue.getHealth(), rogue.getMana(), rogue.getDefense(), rogue.getDodge(), rogue.getDamage(), spellArray);
+                p = new Player(playerName, rogue, rogue.getHealth(), rogue.getMana(), rogue.getDefense(), rogue.getDodge(), rogue.getDamage(), spellArray);
         }
 
         // post player-gen text
@@ -428,6 +419,7 @@ public class Main {
                 PlayerCreateText playerLevelUp = new PlayerCreateText();
                 playerLevelUp.playerLevelTextDisplay();
             }
+            p.resetStat();
             playerGenText = new PlayerCreateText(p.getName(), p.getCurHealth(), p.getMaxHealth(), p.getCurMana(), p.getMaxMana(), p.getDefense(), p.getDodge(), p.getDamage(), p.getCurExp(), p.getExpReq(), p.getGold(), p.getLevel());
             playerGenText.playerStatTextDisplay();
             promptEnterKey();
