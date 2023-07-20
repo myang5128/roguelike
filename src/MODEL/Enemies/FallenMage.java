@@ -18,7 +18,7 @@ public class FallenMage implements Enemies {
      */
     public FallenMage(int scale) {
         this.name = "FALLEN MAGE";
-        this.maxHealth = (int) ((Math.random() * 6) * scale + 2);
+        this.maxHealth = (int) ((Math.random() * 6) * scale + 3);
         this.curHealth = this.maxHealth;
         this.defense = (int) ((Math.random() * scale) + 3);
         this.dodge = (int) (35 + (scale * 4));

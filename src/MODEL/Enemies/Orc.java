@@ -18,7 +18,7 @@ public class Orc implements Enemies {
      */
     public Orc(int scale) {
         this.name = "ORC";
-        this.maxHealth = (int) ((Math.random() * 11) * scale + 3);
+        this.maxHealth = (int) ((Math.random() * 11) * scale + 5);
         this.curHealth = this.maxHealth;
         this.defense = (int) ((Math.random() * scale) + 3);
         this.dodge = (int) (20 + (scale * 4));

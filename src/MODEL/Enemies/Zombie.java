@@ -18,7 +18,7 @@ public class Zombie implements Enemies {
      */
     public Zombie(int scale) {
         this.name = "ZOMBIE";
-        this.maxHealth = (int) ((Math.random() * 13) * scale + 2);
+        this.maxHealth = (int) ((Math.random() * 13) * scale + 3);
         this.curHealth = this.maxHealth;
         this.defense = (int) ((Math.random() * scale) + 2);
         this.dodge = (int) (10 + (scale * 4));

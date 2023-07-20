@@ -18,7 +18,7 @@ public class Goblin implements Enemies {
      */
     public Goblin(int scale) {
         this.name = "GOBLIN";
-        this.maxHealth = (int) ((Math.random() * 6) * scale + 2);
+        this.maxHealth = (int) ((Math.random() * 6) * scale + 3);
         this.curHealth = this.maxHealth;
         this.defense = (int) ((Math.random() * scale) + 2);
         this.dodge = (int) (40 + (scale * 2));

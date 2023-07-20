@@ -18,7 +18,7 @@ public class BatSwarm implements Enemies {
      */
     public BatSwarm(int scale) {
         this.name = "SWARM OF BATS";
-        this.maxHealth = (int) ((Math.random() * 2) * scale + 2);
+        this.maxHealth = (int) ((Math.random() * 4) * scale + 2);
         this.curHealth = this.maxHealth;
         this.defense = scale;
         this.dodge = (int) (55 + (scale * 3));

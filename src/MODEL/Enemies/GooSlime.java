@@ -18,7 +18,7 @@ public class GooSlime implements Enemies {
      */
     public GooSlime(int scale) {
         this.name = "GOO SLIME";
-        this.maxHealth = (int) ((Math.random() * 10) + scale);
+        this.maxHealth = (int) ((Math.random() * 12) + scale);
         this.curHealth = this.maxHealth;
         this.defense = scale;
         this.dodge = 65 + scale;

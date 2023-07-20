@@ -18,7 +18,7 @@ public class FallenKnight implements Enemies {
      */
     public FallenKnight(int scale) {
         this.name = "FALLEN KNIGHT";
-        this.maxHealth = (int) ((Math.random() * 15) * scale + 4);
+        this.maxHealth = (int) ((Math.random() * 15) * scale + 5);
         this.curHealth = this.maxHealth;
         this.defense = (int) ((Math.random() * 3) * scale + 2);
         this.dodge = (int) (25 + (scale * 3));

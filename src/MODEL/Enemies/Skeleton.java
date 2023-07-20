@@ -18,7 +18,7 @@ public class Skeleton implements Enemies {
      */
     public Skeleton(int scale) {
         this.name = "SKELETON";
-        this.maxHealth = (int) ((Math.random() * 10) * scale + 2);
+        this.maxHealth = (int) ((Math.random() * 10) * scale + 3);
         this.curHealth = this.maxHealth;
         this.defense = (int) ((Math.random() * scale) + 1);
         this.dodge = (int) (30 + (scale * 2.5));
