@@ -1,21 +1,22 @@
-package MODEL.Spells.Offensive.Druid;
+package MODEL.SpellsList.Druid;
 
-import MODEL.Spells.Offensive.OffensiveSpells;
+import MODEL.SpellsList.Spells;
 
-public class RootSnap implements OffensiveSpells {
+public class ThornExplosion implements Spells {
 
-    String name = "ROOT SNAP";
-    int manaCost = 3;
-    int damage = 4;
-    int misfire = 12;
+    String name = "THORN EXPLOSION";
+    int manaCost = 6;
+    int damage = 7;
+    int misfire = 20;
     int level = 0;
     String target = "ENEMY";
-    String desc = "UNLEASH AN MIGHTY BRIONET TREE ROOT TO PUMMEL YOUR ENEMY!";
+    String desc = "CREATE A HAPHAZARD ASSORTMENT OF EXPLODER FLOWERS FOR YOUR UNGRATEFUL VISITORS!";
+    String spellType = "OFFENSIVE";
 
     /**
      * constructor
      */
-    public RootSnap() {
+    public ThornExplosion() {
     }
 
     /**
@@ -35,7 +36,7 @@ public class RootSnap implements OffensiveSpells {
      */
     @Override
     public int getManaCost() {
-        return manaCost + level;
+        return manaCost * this.level - 1;
     }
 
     /**
@@ -45,7 +46,7 @@ public class RootSnap implements OffensiveSpells {
      */
     @Override
     public int getDamage() {
-        return (int) ((Math.random() * this.damage + 1) + level * 2);
+        return (int) ((Math.random() * this.damage) + level * 2.3);
     }
 
     /**
@@ -97,6 +98,16 @@ public class RootSnap implements OffensiveSpells {
     }
 
     /**
+     * getter method for spell type
+     *
+     * @return ATTACK for offensive spells, SUPPORT for support spells, WEAKEN for enemy debuff spells
+     */
+    @Override
+    public String getSpellType() {
+        return spellType;
+    }
+
+    /**
      * run spell
      *
      * @return 0 if miss, >0 for damage
@@ -119,22 +130,22 @@ public class RootSnap implements OffensiveSpells {
      */
     @Override
     public boolean updateLevel(int pLevel) {
-        if (pLevel == 3) {
+        if (pLevel == 5) {
             this.level =1;
             return true;
-        } else if (pLevel == 7) {
+        } else if (pLevel == 11) {
             this.level =2;
             return true;
-        } else if (pLevel == 12) {
+        } else if (pLevel == 17) {
             this.level =3;
             return true;
-        } else if (pLevel == 18) {
+        } else if (pLevel == 22) {
             this.level =4;
             return true;
-        } else if (pLevel == 23) {
+        } else if (pLevel == 26) {
             this.level =5;
             return true;
-        } else if (pLevel == 29) {
+        } else if (pLevel == 30) {
             this.level =6;
             return true;
         }

@@ -1,14 +1,18 @@
-package MODEL.Spells.Offensive;
+package MODEL.SpellsList;
 
-public interface OffensiveSpells {
+public interface Spells {
 
     String name = null;
     int manaCost = 0;
     int damage = 0;
+    int heal = 0;
+    int defense = 0;
+    int dodge = 0;
     int misfire = 0;
     int level = 0;
     String target = null;
     String desc = null;
+    String spellType = null;
 
     /**
      * getter method for spell name
@@ -64,6 +68,12 @@ public interface OffensiveSpells {
      * @return desc
      */
     public String getDesc();
+
+    /**
+     * getter method for spell type
+     * @return ATTACK for offensive spells, SUPPORT for support spells, WEAKEN for enemy debuff spells
+     */
+    public String getSpellType();
 
     /**
      * run spell

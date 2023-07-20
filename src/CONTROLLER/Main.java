@@ -2,8 +2,8 @@ package CONTROLLER;
 
 import MODEL.Enemies.*;
 import MODEL.Player;
-import MODEL.Spells.Offensive.Druid.*;
-import MODEL.Spells.Offensive.OffensiveSpells;
+import MODEL.SpellsList.Druid.*;
+import MODEL.SpellsList.Spells;
 import MODEL.StartingClasses.*;
 import VIEW.*;
 
@@ -33,22 +33,18 @@ public class Main {
     /**
      * gets name
      *
-     * @return playerName
      */
-    public static String askForName() {
+    public static void askForName() {
         charGenText.nameTextDisplay();
         Scanner scanner = new Scanner(System.in);
-        String text = scanner.nextLine().toUpperCase();
         playerName = scanner.nextLine().toUpperCase();
-        return playerName;
     }
 
     /**
      * gets class
      *
-     * @return playerClass
      */
-    public static String askForClass() {
+    public static void askForClass() {
         charGenText.classTextDisplay();
         Scanner scanner = new Scanner(System.in);
         playerClass = scanner.nextLine().toUpperCase();
@@ -57,7 +53,6 @@ public class Main {
             charGenText.classAgainTextDisplay();
             playerClass = scanner.nextLine().toUpperCase();
         }
-        return playerClass;
     }
 
     /**
@@ -129,7 +124,7 @@ public class Main {
         }
 
         else if (move.equals("SPELLS")) {
-            OffensiveSpells[] spellList = p.spells();
+            Spells[] spellList = p.spells();
             SpellsText startSpellText = new SpellsText();
             startSpellText.startTextDisplay();
             for (int i = 0; i < spellList.length; i++) {
@@ -160,12 +155,11 @@ public class Main {
 
             int damage = spellList[spellCount].runSpell();
             p.setMana(spellList[spellCount].getManaCost());
+            SpellsText spellsDmgText = new SpellsText(spellList[spellCount].getName(), damage, spellList[spellCount].getManaCost(), e.getName());
             if (damage == 0) {
-                SpellsText spellsDmgText = new SpellsText(spellList[spellCount].getName(), damage, spellList[spellCount].getManaCost(), e.getName());
                 spellsDmgText.missTextDisplay();
             }
             else {
-                SpellsText spellsDmgText = new SpellsText(spellList[spellCount].getName(), damage, spellList[spellCount].getManaCost(), e.getName());
                 spellsDmgText.damageTextDisplay();
                 e.takeMagicDamage(damage);
             }
@@ -268,7 +262,7 @@ public class Main {
         playerGenText.playercomStatTextDisplay();
 
         // combat variables
-        int flee = 0;
+        int flee;
         int con = -1;
 
         while (con == -1) {
@@ -310,7 +304,7 @@ public class Main {
     /**
      * main method
      *
-     * @param args
+     * @param args args
      */
     public static void main(String[] args) {
         Enemies e;
@@ -329,7 +323,7 @@ public class Main {
                 RootSnap rootSnap = new RootSnap();
                 RagingBoar ragingBoar = new RagingBoar();
                 ThornExplosion thornExplosion = new ThornExplosion();
-                OffensiveSpells[] spellArray = new OffensiveSpells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
+                Spells[] spellArray = new Spells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
                 p = new Player(playerName, druid, druid.getHealth(), druid.getMana(), druid.getDefense(), druid.getDodge(), druid.getDamage(), spellArray);
                 break;
             case "KNIGHT":
@@ -338,7 +332,7 @@ public class Main {
                 rootSnap = new RootSnap();
                 ragingBoar = new RagingBoar();
                 thornExplosion = new ThornExplosion();
-                spellArray = new OffensiveSpells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
+                spellArray = new Spells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
                 p = new Player(playerName, knight, knight.getHealth(), knight.getMana(), knight.getDefense(), knight.getDodge(), knight.getDamage(), spellArray);
                 break;
             case "MAGE":
@@ -347,7 +341,7 @@ public class Main {
                 rootSnap = new RootSnap();
                 ragingBoar = new RagingBoar();
                 thornExplosion = new ThornExplosion();
-                spellArray = new OffensiveSpells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
+                spellArray = new Spells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
                 p = new Player(playerName, mage, mage.getHealth(), mage.getMana(), mage.getDefense(), mage.getDodge(), mage.getDamage(), spellArray);
                 break;
             case "PALADIN":
@@ -356,7 +350,7 @@ public class Main {
                 rootSnap = new RootSnap();
                 ragingBoar = new RagingBoar();
                 thornExplosion = new ThornExplosion();
-                spellArray = new OffensiveSpells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
+                spellArray = new Spells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
                 p = new Player(playerName, paladin, paladin.getHealth(), paladin.getMana(), paladin.getDefense(), paladin.getDodge(), paladin.getDamage(), spellArray);
                 break;
             case "RANGER":
@@ -365,7 +359,7 @@ public class Main {
                 rootSnap = new RootSnap();
                 ragingBoar = new RagingBoar();
                 thornExplosion = new ThornExplosion();
-                spellArray = new OffensiveSpells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
+                spellArray = new Spells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
                 p = new Player(playerName, ranger, ranger.getHealth(), ranger.getMana(), ranger.getDefense(), ranger.getDodge(), ranger.getDamage(), spellArray);
                 break;
             default:
@@ -374,7 +368,7 @@ public class Main {
                 rootSnap = new RootSnap();
                 ragingBoar = new RagingBoar();
                 thornExplosion = new ThornExplosion();
-                spellArray = new OffensiveSpells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
+                spellArray = new Spells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
                 p = new Player(playerName, rogue, rogue.getHealth(), rogue.getMana(), rogue.getDefense(), rogue.getDodge(), rogue.getDamage(), spellArray);
         }
 

@@ -1,21 +1,22 @@
-package MODEL.Spells.Offensive.Druid;
+package MODEL.SpellsList.Druid;
 
-import MODEL.Spells.Offensive.OffensiveSpells;
+import MODEL.SpellsList.Spells;
 
-public class WindSlash implements OffensiveSpells {
+public class RagingBoar implements Spells {
 
-    String name = "WIND SLASH";
-    int manaCost = 2;
-    int damage = 2;
-    int misfire = 8;
+    String name = "RAGING BOAR";
+    int manaCost = 5;
+    int damage = 5;
+    int misfire = 15;
     int level = 0;
     String target = "ENEMY";
-    String desc = "SUMMON A POWERFUL GUST OF WIND TO LACERATE YOUR TARGETS!";
+    String desc = "CALL UPON A SPECTRAL BOAR TO MAIM YOUR ENEMIES!";
+    String spellType = "OFFENSIVE";
 
     /**
      * constructor
      */
-    public WindSlash() {
+    public RagingBoar() {
     }
 
     /**
@@ -45,7 +46,7 @@ public class WindSlash implements OffensiveSpells {
      */
     @Override
     public int getDamage() {
-        return (int) ((Math.random() * 1 + this.damage) + level * 1.5);
+        return (int) ((Math.random() * this.damage + 2) + level * 1.7);
     }
 
     /**
@@ -97,6 +98,16 @@ public class WindSlash implements OffensiveSpells {
     }
 
     /**
+     * getter method for spell type
+     *
+     * @return ATTACK for offensive spells, SUPPORT for support spells, WEAKEN for enemy debuff spells
+     */
+    @Override
+    public String getSpellType() {
+        return spellType;
+    }
+
+    /**
      * run spell
      *
      * @return 0 if miss, >0 for damage
@@ -119,23 +130,23 @@ public class WindSlash implements OffensiveSpells {
      */
     @Override
     public boolean updateLevel(int pLevel) {
-        if (pLevel == 1) {
-            this.level = 1;
+        if (pLevel == 4) {
+            this.level =1;
             return true;
-        } else if (pLevel == 5) {
-            this.level = 2;
+        } else if (pLevel == 7) {
+            this.level =2;
             return true;
-        } else if (pLevel == 9) {
-            this.level = 3;
+        } else if (pLevel == 10) {
+            this.level =3;
             return true;
-        } else if (pLevel == 14) {
-            this.level = 4;
+        } else if (pLevel == 16) {
+            this.level =4;
             return true;
-        } else if (pLevel == 19) {
-            this.level = 5;
+        } else if (pLevel == 24) {
+            this.level =5;
             return true;
-        } else if (pLevel == 25) {
-            this.level = 6;
+        } else if (pLevel == 28) {
+            this.level =6;
             return true;
         }
         return false;

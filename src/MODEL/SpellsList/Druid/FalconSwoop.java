@@ -1,8 +1,8 @@
-package MODEL.Spells.Offensive.Druid;
+package MODEL.SpellsList.Druid;
 
-import MODEL.Spells.Offensive.OffensiveSpells;
+import MODEL.SpellsList.Spells;
 
-public class FalconSwoop implements OffensiveSpells {
+public class FalconSwoop implements Spells {
 
     String name = "FALCON SWOOP";
     int manaCost = 4;
@@ -11,6 +11,7 @@ public class FalconSwoop implements OffensiveSpells {
     int level = 0;
     String target = "ENEMY";
     String desc = "ENLIST THE AID OF A TRUSTWORTHY FALCON TO HARASS YOUR FOE WITH VOLATILE RESULTS!";
+    String spellType = "OFFENSIVE";
 
     /**
      * constructor
@@ -94,6 +95,16 @@ public class FalconSwoop implements OffensiveSpells {
     @Override
     public String getDesc() {
         return this.desc;
+    }
+
+    /**
+     * getter method for spell type
+     *
+     * @return ATTACK for offensive spells, SUPPORT for support spells, WEAKEN for enemy debuff spells
+     */
+    @Override
+    public String getSpellType() {
+        return spellType;
     }
 
     /**

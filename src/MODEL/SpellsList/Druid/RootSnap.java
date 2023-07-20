@@ -1,21 +1,22 @@
-package MODEL.Spells.Offensive.Druid;
+package MODEL.SpellsList.Druid;
 
-import MODEL.Spells.Offensive.OffensiveSpells;
+import MODEL.SpellsList.Spells;
 
-public class ThornExplosion implements OffensiveSpells {
+public class RootSnap implements Spells {
 
-    String name = "THORN EXPLOSION";
-    int manaCost = 6;
-    int damage = 7;
-    int misfire = 20;
+    String name = "ROOT SNAP";
+    int manaCost = 3;
+    int damage = 4;
+    int misfire = 12;
     int level = 0;
     String target = "ENEMY";
-    String desc = "CREATE A HAPHAZARD ASSORTMENT OF EXPLODER FLOWERS FOR YOUR UNGRATEFUL VISITORS!";
+    String desc = "UNLEASH AN MIGHTY BRIONET TREE ROOT TO PUMMEL YOUR ENEMY!";
+    String spellType = "OFFENSIVE";
 
     /**
      * constructor
      */
-    public ThornExplosion() {
+    public RootSnap() {
     }
 
     /**
@@ -35,7 +36,7 @@ public class ThornExplosion implements OffensiveSpells {
      */
     @Override
     public int getManaCost() {
-        return manaCost * this.level - 1;
+        return manaCost + level;
     }
 
     /**
@@ -45,7 +46,7 @@ public class ThornExplosion implements OffensiveSpells {
      */
     @Override
     public int getDamage() {
-        return (int) ((Math.random() * this.damage) + level * 2.3);
+        return (int) ((Math.random() * this.damage + 1) + level * 2);
     }
 
     /**
@@ -97,6 +98,16 @@ public class ThornExplosion implements OffensiveSpells {
     }
 
     /**
+     * getter method for spell type
+     *
+     * @return ATTACK for offensive spells, SUPPORT for support spells, WEAKEN for enemy debuff spells
+     */
+    @Override
+    public String getSpellType() {
+        return spellType;
+    }
+
+    /**
      * run spell
      *
      * @return 0 if miss, >0 for damage
@@ -119,22 +130,22 @@ public class ThornExplosion implements OffensiveSpells {
      */
     @Override
     public boolean updateLevel(int pLevel) {
-        if (pLevel == 5) {
+        if (pLevel == 3) {
             this.level =1;
             return true;
-        } else if (pLevel == 11) {
+        } else if (pLevel == 7) {
             this.level =2;
             return true;
-        } else if (pLevel == 17) {
+        } else if (pLevel == 12) {
             this.level =3;
             return true;
-        } else if (pLevel == 22) {
+        } else if (pLevel == 18) {
             this.level =4;
             return true;
-        } else if (pLevel == 26) {
+        } else if (pLevel == 23) {
             this.level =5;
             return true;
-        } else if (pLevel == 30) {
+        } else if (pLevel == 29) {
             this.level =6;
             return true;
         }

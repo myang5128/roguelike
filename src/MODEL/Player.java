@@ -1,6 +1,6 @@
 package MODEL;
 
-import MODEL.Spells.Offensive.OffensiveSpells;
+import MODEL.SpellsList.Spells;
 import MODEL.StartingClasses.Classes;
 
 public class Player {
@@ -27,12 +27,12 @@ public class Player {
     int expReq;
     int gold;
     int level;
-    OffensiveSpells[] spellArray;
+    Spells[] spellArray;
 
     /**
      * Constructor
      */
-    public Player(String name, Classes playerClass, int maxHealth, int maxMana, int defense, int dodge, int damage, OffensiveSpells[] spellArray) {
+    public Player(String name, Classes playerClass, int maxHealth, int maxMana, int defense, int dodge, int damage, Spells[] spellArray) {
         this.name = name;
         this.playerClass = playerClass;
         this.curHealth = maxHealth;
@@ -426,7 +426,7 @@ public class Player {
      * return spells
      * @return spell list
      */
-    public OffensiveSpells[] spells() {
+    public Spells[] spells() {
         int count = 0;
         for (int i = 0; i < 5; i++) {
             spellArray[i].updateLevel(this.level);
@@ -436,7 +436,7 @@ public class Player {
                 count++;
             }
         }
-        OffensiveSpells[] ret = new OffensiveSpells[count];
+        Spells[] ret = new Spells[count];
         int j = 0;
         for (int i = 0; i < 5; i++) {
             if (spellArray[i].getLevel() > 0) {
