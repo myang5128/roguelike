@@ -1,24 +1,17 @@
-package MODEL.SpellsList.Druid;
+package MODEL.SpellsList.Knight;
 
 import MODEL.SpellsList.Spells;
 
-public class FalconSwoop implements Spells {
-
-    String name = "FALCON SWOOP";
-    int manaCost = 4;
-    int damage = 2;
-    int misfire = 10;
+public class BladeSlash implements Spells {
+    String name = "BLADE SLASH";
+    int manaCost = 3;
+    int damage = 3;
+    int misfire = 8;
     int level = 0;
     String target = "ENEMY";
-    String desc = "ENLIST THE AID OF A TRUSTWORTHY FALCON TO HARASS YOUR FOE WITH VOLATILE RESULTS!";
-    String spellType = "OFFENSIVE";
+    String desc = "UNLEASH A TORRENT OF PRECISE BLADE STRIKES AGAINST YOUR ENEMY!";
+    String spellType = "ATTACK";
     String statChange = null;
-
-    /**
-     * constructor
-     */
-    public FalconSwoop() {
-    }
 
     /**
      * getter method for spell name
@@ -27,7 +20,7 @@ public class FalconSwoop implements Spells {
      */
     @Override
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -37,7 +30,7 @@ public class FalconSwoop implements Spells {
      */
     @Override
     public int getManaCost() {
-        return manaCost + level;
+        return this.manaCost + this.level;
     }
 
     /**
@@ -47,13 +40,15 @@ public class FalconSwoop implements Spells {
      */
     @Override
     public int getDamage() {
-        return (int) ((Math.random() * 5) + this.damage + level * 1.5);
+        return (int) ((Math.random() * this.damage + this.level) * this.level);
     }
 
     /**
      * getter method for raw spell damage
+     *
      * @return raw spell damage
      */
+    @Override
     public int getRawDamage() {
         return this.damage;
     }
@@ -120,7 +115,6 @@ public class FalconSwoop implements Spells {
 
     /**
      * getter method for stat change value
-     *
      * @return stat change value
      */
     @Override
@@ -131,7 +125,7 @@ public class FalconSwoop implements Spells {
     /**
      * run spell
      *
-     * @return 0 if miss, >0 for damage
+     * @return value for stat change
      */
     @Override
     public int runSpell() {
@@ -151,23 +145,23 @@ public class FalconSwoop implements Spells {
      */
     @Override
     public boolean updateLevel(int pLevel) {
-        if (pLevel == 2) {
+        if (pLevel == 5) {
             this.level = 1;
             return true;
         } else if (pLevel == 8) {
             this.level = 2;
             return true;
-        } else if (pLevel == 13) {
-            this.level += 3;
+        } else if (pLevel == 11) {
+            this.level = 3;
             return true;
         } else if (pLevel == 15) {
-            this.level =4;
+            this.level = 4;
             return true;
-        } else if (pLevel == 21) {
-            this.level =5;
+        } else if (pLevel == 22) {
+            this.level = 5;
             return true;
-        } else if (pLevel == 27) {
-            this.level =6;
+        } else if (pLevel == 30) {
+            this.level = 6;
             return true;
         }
         return false;

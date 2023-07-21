@@ -8,11 +8,13 @@ public interface Spells {
     int heal = 0;
     int defense = 0;
     int dodge = 0;
+    int attack = 0;
     int misfire = 0;
     int level = 0;
     String target = null;
     String desc = null;
     String spellType = null;
+    String statChange = null;
 
     /**
      * getter method for spell name
@@ -74,6 +76,18 @@ public interface Spells {
      * @return ATTACK for offensive spells, SUPPORT for support spells, WEAKEN for enemy debuff spells
      */
     public String getSpellType();
+
+    /**
+     * getter method for stat change
+     * @return HEALTH for health changing, DEFENSE for defense changing, DODGE for dodge changing, DAMAGE for damage changing
+     */
+    public String getStatChange();
+
+    /**
+     * getter method for stat change value
+     * @return stat change value
+     */
+    public int getStatValue();
 
     /**
      * run spell

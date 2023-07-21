@@ -12,6 +12,7 @@ public class WindSlash implements Spells {
     String target = "ENEMY";
     String desc = "SUMMON A POWERFUL GUST OF WIND TO LACERATE YOUR TARGETS!";
     String spellType = "OFFENSIVE";
+    String statChange = null;
 
     /**
      * constructor
@@ -104,7 +105,27 @@ public class WindSlash implements Spells {
      */
     @Override
     public String getSpellType() {
-        return spellType;
+        return this.spellType;
+    }
+
+    /**
+     * getter method for stat change
+     *
+     * @return HEALTH for health changing, DEFENSE for defense changing, DODGE for dodge changing, DAMAGE for damage changing
+     */
+    @Override
+    public String getStatChange() {
+        return this.statChange;
+    }
+
+    /**
+     * getter method for stat change value
+     *
+     * @return stat change value
+     */
+    @Override
+    public int getStatValue() {
+        return 0;
     }
 
     /**

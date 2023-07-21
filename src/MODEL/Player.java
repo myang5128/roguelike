@@ -58,13 +58,17 @@ public class Player {
      */
     public int setExpReq(int level) {
         if (this.level < 5) {
-            this.expReq = (this.level * 5);
+            this.expReq = (this.level * 15);
             return this.expReq;
-        } else if (this.level < 15) {
-            this.expReq = (this.level * 75);
+        } else if (this.level < 10) {
+            this.expReq = (this.level * 50);
             return this.expReq;
-        } else {
+        } else if (this.level < 20) {
             this.expReq = (this.level * 125);
+            return this.expReq;
+        }
+        else {
+            this.expReq = (this.level * 200);
             return this.expReq;
         }
     }
@@ -494,5 +498,25 @@ public class Player {
         this.tempDefense = this.defense;
         this.tempDamage = this.damage;
         this.tempDodge = this.dodge;
+    }
+
+    /**
+     * change player stats
+     * @param stat stat to be changed
+     * @param value stat change modifier
+     */
+    public void changeStat(String stat, int value) {
+        if (stat.equals("ATTACK")) {
+            this.tempDamage+= value;
+        }
+        else if (stat.equals("DEFENSE")) {
+            this.tempDefense+= value;
+        }
+        else if (stat.equals("HEALTH")) {
+            this.curHealth += value;
+            if (this.curHealth >= this.maxHealth) {
+                this.curHealth = this.maxHealth;
+            }
+        }
     }
 }

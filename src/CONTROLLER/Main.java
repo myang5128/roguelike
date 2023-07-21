@@ -3,6 +3,7 @@ package CONTROLLER;
 import MODEL.Enemies.*;
 import MODEL.Player;
 import MODEL.SpellsList.Druid.*;
+import MODEL.SpellsList.Knight.*;
 import MODEL.SpellsList.Spells;
 import MODEL.StartingClasses.*;
 import VIEW.*;
@@ -153,15 +154,49 @@ public class Main {
                 }
             }
 
-            int damage = spellList[spellCount].runSpell();
-            p.setMana(spellList[spellCount].getManaCost());
-            SpellsText spellsDmgText = new SpellsText(spellList[spellCount].getName(), damage, spellList[spellCount].getManaCost(), e.getName());
-            if (damage == 0) {
-                spellsDmgText.missTextDisplay();
+            // if spell is valid, check for sufficient mana
+            if (p.getCurMana() - spellList[spellCount].getManaCost() < 0) {
+                SpellsText noManaText = new SpellsText();
+                noManaText.manaGoneTextDisplay();
+                playerTurn(p, e);
             }
-            else {
-                spellsDmgText.damageTextDisplay();
-                e.takeMagicDamage(damage);
+
+            // when spell is valid, react accordingly based on spellType - ATTACK, SUPPORT, WEAKEN
+            if (spellList[spellCount].getSpellType().equals("ATTACK")) {
+                int damage = spellList[spellCount].runSpell();
+                p.setMana(spellList[spellCount].getManaCost());
+                SpellsText spellsDmgText = new SpellsText(spellList[spellCount].getName(), damage, spellList[spellCount].getManaCost(), e.getName());
+                if (damage == 0) {
+                    spellsDmgText.missTextDisplay();
+                } else {
+                    spellsDmgText.damageTextDisplay();
+                    e.takeMagicDamage(damage);
+                }
+            }
+            else if (spellList[spellCount].getSpellType().equals("SUPPORT")) {
+                if (spellList[spellCount].getStatChange().equals("ATTACK")) {
+                    int attack = spellList[spellCount].runSpell();
+                    p.changeStat("ATTACK", attack);
+                    SpellsText supportText = new SpellsText(spellList[spellCount].getName(), attack);
+                    supportText.attackTextDisplay();
+                }
+                else if (spellList[spellCount].getStatChange().equals("DEFENSE")) {
+                    int defense = spellList[spellCount].runSpell();
+                    p.changeStat("DEFENSE", defense);
+                    SpellsText supportText = new SpellsText(spellList[spellCount].getName(), defense);
+                    supportText.defenseTextDisplay();
+
+                }
+                else if (spellList[spellCount].getStatChange().equals("HEALTH")) {
+                    int health = spellList[spellCount].runSpell();
+                    p.changeStat("DEFENSE", health);
+                    SpellsText supportText = new SpellsText(spellList[spellCount].getName(), health);
+                    supportText.healthTextDisplay();
+                }
+                p.setMana(spellList[spellCount].getManaCost());
+            }
+            else if (spellList[spellCount].getSpellType().equals("WEAKEN")) {
+
             }
 
         }
@@ -327,12 +362,12 @@ public class Main {
                 p = new Player(playerName, druid, druid.getHealth(), druid.getMana(), druid.getDefense(), druid.getDodge(), druid.getDamage(), spellArray);
                 break;
             case "KNIGHT":
-                windSlash = new WindSlash();
-                falconSwoop = new FalconSwoop();
-                rootSnap = new RootSnap();
-                ragingBoar = new RagingBoar();
-                thornExplosion = new ThornExplosion();
-                spellArray = new Spells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
+                BlackSteel blackSteel = new BlackSteel();
+                BladeSlash bladeSlash = new BladeSlash();
+                Heal heal = new Heal();
+                Pummel pummel = new Pummel();
+                ShieldBulwark shieldBulwark = new ShieldBulwark();
+                spellArray = new Spells[]{blackSteel, bladeSlash, heal, pummel, shieldBulwark};
                 p = new Player(playerName, knight, knight.getHealth(), knight.getMana(), knight.getDefense(), knight.getDodge(), knight.getDamage(), spellArray);
                 break;
             case "MAGE":
