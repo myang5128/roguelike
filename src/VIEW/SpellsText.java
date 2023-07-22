@@ -13,7 +13,11 @@ public class SpellsText {
         dialText.put("MANAGONE", "YOU TRIED TO CAST A SPELL BUT YOU DON'T HAVE ENOUGH MANA!\n\n");
     }
     public SpellsText(String spellName, int level, int dmg, int manaCost, String desc) {
-        dialText.put("SPELL", spellName + " -   TIER: " + level + "  RAW DMG: " + dmg + "  MANA COST: " + manaCost + "\n   DESCRIPTION: " + desc + "\n");
+        dialText.put("SPELLATK", spellName + " -   TIER: " + level + "  RAW DMG: " + dmg + "  MANA COST: " + manaCost + "\n   DESCRIPTION: " + desc + "\n");
+        dialText.put("SPELLDMG", spellName + " -   TIER: " + level + "  DAMAGE BOOST: " + dmg + "  MANA COST: " + manaCost + "\n   DESCRIPTION: " + desc + "\n");
+        dialText.put("SPELLDEF", spellName + " -   TIER: " + level + "  DEFENSE BOOST: " + dmg + "  MANA COST: " + manaCost + "\n   DESCRIPTION: " + desc + "\n");
+        dialText.put("SPELLHP", spellName + " -   TIER: " + level + "  HEAL: " + dmg + "  MANA COST: " + manaCost + "\n   DESCRIPTION: " + desc + "\n");
+        dialText.put("SPELLDODGE", spellName + " -   TIER: " + level + "  DODGE BOOST: " + dmg + "  MANA COST: " + manaCost + "\n   DESCRIPTION: " + desc + "\n");
     }
     public SpellsText(String spellName, int dmg, int manaCost, String enemyName) {
         dialText.put("DAMAGE", spellName + " HIT THE " + enemyName + " FOR " + dmg + " DAMAGE AT THE COST OF " + manaCost + " MANA!\n\n");
@@ -26,14 +30,58 @@ public class SpellsText {
     }
 
     /**
-     * return spell info
-     * @return spell info
+     * return spell ATK info
+     * @return spell ATK info
      */
-    public String spellText() {
-        return dialText.get("SPELL");
+    public String spellATKText() {
+        return dialText.get("SPELLATK");
     }
-    public void spellTextDisplay() {
-        System.out.print(dialText.get("SPELL"));
+    public void spellATKTextDisplay() {
+        System.out.print(dialText.get("SPELLATK"));
+    }
+
+    /**
+     * return spell DMG info
+     * @return spell DMG info
+     */
+    public String spellDMGText() {
+        return dialText.get("SPELLDMG");
+    }
+    public void spellDMGTextDisplay() {
+        System.out.print(dialText.get("SPELLDMG"));
+    }
+
+    /**
+     * return spell DEF info
+     * @return spell DEF info
+     */
+    public String spellDEFText() {
+        return dialText.get("SPELLDEF");
+    }
+    public void spellDEFTextDisplay() {
+        System.out.print(dialText.get("SPELLDEF"));
+    }
+
+    /**
+     * return spell HP info
+     * @return spell HP info
+     */
+    public String spellHPText() {
+        return dialText.get("SPELLHP");
+    }
+    public void spellHPTextDisplay() {
+        System.out.print(dialText.get("SPELLHP"));
+    }
+
+    /**
+     * return spell DODGE info
+     * @return spell DODGE info
+     */
+    public String spellDODGEText() {
+        return dialText.get("SPELLDODGE");
+    }
+    public void spellDODGETextDisplay() {
+        System.out.print(dialText.get("SPELLDODGE"));
     }
 
     /**

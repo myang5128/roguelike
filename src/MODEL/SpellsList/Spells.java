@@ -90,6 +90,12 @@ public interface Spells {
     public int getStatValue();
 
     /**
+     * getter method for raw stat change value
+     * @return raw stat change value
+     */
+    public int getRawStatValue();
+
+    /**
      * run spell
      *
      * @return 0 if miss, >0 for damage

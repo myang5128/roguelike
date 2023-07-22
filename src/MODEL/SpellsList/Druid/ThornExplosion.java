@@ -47,7 +47,7 @@ public class ThornExplosion implements Spells {
      */
     @Override
     public int getDamage() {
-        return (int) ((Math.random() * this.damage) + level * 2.3);
+        return (int) ((Math.random() * getRawDamage()) + 1 * 2.3);
     }
 
     /**
@@ -55,7 +55,7 @@ public class ThornExplosion implements Spells {
      * @return raw spell damage
      */
     public int getRawDamage() {
-        return this.damage;
+        return this.damage + this.level;
     }
 
     /**
@@ -125,6 +125,14 @@ public class ThornExplosion implements Spells {
      */
     @Override
     public int getStatValue() {
+        return 0;
+    }
+
+    /**
+     * getter method for raw stat change value
+     * @return raw stat change value
+     */
+    public int getRawStatValue() {
         return 0;
     }
 

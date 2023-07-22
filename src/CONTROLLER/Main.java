@@ -4,6 +4,7 @@ import MODEL.Enemies.*;
 import MODEL.Player;
 import MODEL.SpellsList.Druid.*;
 import MODEL.SpellsList.Knight.*;
+import MODEL.SpellsList.Mage.*;
 import MODEL.SpellsList.Spells;
 import MODEL.StartingClasses.*;
 import VIEW.*;
@@ -129,8 +130,30 @@ public class Main {
             SpellsText startSpellText = new SpellsText();
             startSpellText.startTextDisplay();
             for (int i = 0; i < spellList.length; i++) {
-                SpellsText spellText = new SpellsText(spellList[i].getName(), spellList[i].getLevel(), spellList[i].getRawDamage(), spellList[i].getManaCost(), spellList[i].getDesc());
-                spellText.spellTextDisplay();
+                if (spellList[i].getSpellType().equals("ATTACK")) {
+                    SpellsText spellText = new SpellsText(spellList[i].getName(), spellList[i].getLevel(), spellList[i].getRawDamage(), spellList[i].getManaCost(), spellList[i].getDesc());
+                    spellText.spellATKTextDisplay();
+                }
+                else if (spellList[i].getSpellType().equals("SUPPORT")){
+                    String statChange = spellList[i].getStatChange();
+                    switch (statChange) {
+                        case "DAMAGE":
+                            SpellsText spellText = new SpellsText(spellList[i].getName(), spellList[i].getLevel(), spellList[i].getStatValue(), spellList[i].getManaCost(), spellList[i].getDesc());
+                            spellText.spellDMGTextDisplay();
+                            break;
+                        case "DEFENSE":
+                            spellText = new SpellsText(spellList[i].getName(), spellList[i].getLevel(), spellList[i].getStatValue(), spellList[i].getManaCost(), spellList[i].getDesc());
+                            spellText.spellDEFTextDisplay();
+                            break;
+                        case "HEALTH":
+                            spellText = new SpellsText(spellList[i].getName(), spellList[i].getLevel(), spellList[i].getStatValue(), spellList[i].getManaCost(), spellList[i].getDesc());
+                            spellText.spellHPTextDisplay();
+                            break;
+                        default:
+                            spellText = new SpellsText(spellList[i].getName(), spellList[i].getLevel(), spellList[i].getStatValue(), spellList[i].getManaCost(), spellList[i].getDesc());
+                            spellText.spellDODGETextDisplay();
+                    }
+                }
             }
             startSpellText.pickTextDisplay();
             Scanner scanner1 = new Scanner(System.in);
@@ -355,10 +378,10 @@ public class Main {
             case "DRUID":
                 WindSlash windSlash = new WindSlash();
                 FalconSwoop falconSwoop = new FalconSwoop();
-                RootSnap rootSnap = new RootSnap();
+                HealingFruit healingFruit = new HealingFruit();
                 RagingBoar ragingBoar = new RagingBoar();
                 ThornExplosion thornExplosion = new ThornExplosion();
-                Spells[] spellArray = new Spells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
+                Spells[] spellArray = new Spells[]{windSlash, falconSwoop, healingFruit, ragingBoar, thornExplosion};
                 p = new Player(playerName, druid, druid.getHealth(), druid.getMana(), druid.getDefense(), druid.getDodge(), druid.getDamage(), spellArray);
                 break;
             case "KNIGHT":
@@ -371,39 +394,36 @@ public class Main {
                 p = new Player(playerName, knight, knight.getHealth(), knight.getMana(), knight.getDefense(), knight.getDodge(), knight.getDamage(), spellArray);
                 break;
             case "MAGE":
-                windSlash = new WindSlash();
-                falconSwoop = new FalconSwoop();
-                rootSnap = new RootSnap();
-                ragingBoar = new RagingBoar();
-                thornExplosion = new ThornExplosion();
-                spellArray = new Spells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
+                DemonWisp demonWisp = new DemonWisp();
+                Firebolt fireBolt = new Firebolt();
+                Rockfall rockFall = new Rockfall();
+                Thundercrack thunderCrack = new Thundercrack();
+                Waterblade waterBlade = new Waterblade();
+                spellArray = new Spells[]{demonWisp, fireBolt, rockFall, thunderCrack, waterBlade};
                 p = new Player(playerName, mage, mage.getHealth(), mage.getMana(), mage.getDefense(), mage.getDodge(), mage.getDamage(), spellArray);
                 break;
             case "PALADIN":
                 windSlash = new WindSlash();
                 falconSwoop = new FalconSwoop();
-                rootSnap = new RootSnap();
                 ragingBoar = new RagingBoar();
                 thornExplosion = new ThornExplosion();
-                spellArray = new Spells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
+                spellArray = new Spells[]{windSlash, falconSwoop, windSlash, ragingBoar, thornExplosion};
                 p = new Player(playerName, paladin, paladin.getHealth(), paladin.getMana(), paladin.getDefense(), paladin.getDodge(), paladin.getDamage(), spellArray);
                 break;
             case "RANGER":
                 windSlash = new WindSlash();
                 falconSwoop = new FalconSwoop();
-                rootSnap = new RootSnap();
                 ragingBoar = new RagingBoar();
                 thornExplosion = new ThornExplosion();
-                spellArray = new Spells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
+                spellArray = new Spells[]{windSlash, falconSwoop, windSlash, ragingBoar, thornExplosion};
                 p = new Player(playerName, ranger, ranger.getHealth(), ranger.getMana(), ranger.getDefense(), ranger.getDodge(), ranger.getDamage(), spellArray);
                 break;
             default:
                 windSlash = new WindSlash();
                 falconSwoop = new FalconSwoop();
-                rootSnap = new RootSnap();
                 ragingBoar = new RagingBoar();
                 thornExplosion = new ThornExplosion();
-                spellArray = new Spells[]{windSlash, falconSwoop, rootSnap, ragingBoar, thornExplosion};
+                spellArray = new Spells[]{windSlash, falconSwoop, windSlash, ragingBoar, thornExplosion};
                 p = new Player(playerName, rogue, rogue.getHealth(), rogue.getMana(), rogue.getDefense(), rogue.getDodge(), rogue.getDamage(), spellArray);
         }
 

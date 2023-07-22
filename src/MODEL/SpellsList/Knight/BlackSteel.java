@@ -119,7 +119,15 @@ public class BlackSteel implements Spells {
      */
     @Override
     public int getStatValue() {
-        return (int) ((Math.random() * 3) + level + this.attack);
+        return (int) ((Math.random() * 3) + getRawStatValue());
+    }
+
+    /**
+     * getter method for raw stat change value
+     * @return raw stat change value
+     */
+    public int getRawStatValue() {
+        return this.attack + this.level;
     }
 
     /**

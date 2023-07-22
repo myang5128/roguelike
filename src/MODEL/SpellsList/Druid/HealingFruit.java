@@ -1,16 +1,25 @@
-package MODEL.SpellsList.Knight;
+package MODEL.SpellsList.Druid;
 
 import MODEL.SpellsList.Spells;
 
-public class Heal implements Spells {
-    String name = "HEAL";
-    int manaCost = 1;
-    int health = 3;
+public class HealingFruit implements Spells {
+
+    String name = "HEALING FRUIT";
+    int manaCost = 2;
+    int damage = 4;
+    int misfire = 12;
     int level = 0;
+    int health = 4;
     String target = "SELF";
-    String desc = "SUMMON A TEMPORARY AURA OF HEALING!";
+    String desc = "CONSUME A DELICIOUS HEALING FRUIT TO SOOTH YOUR PAIN!";
     String spellType = "SUPPORT";
     String statChange = "HEALTH";
+
+    /**
+     * constructor
+     */
+    public HealingFruit() {
+    }
 
     /**
      * getter method for spell name
@@ -19,7 +28,7 @@ public class Heal implements Spells {
      */
     @Override
     public String getName() {
-        return this.name;
+        return name;
     }
 
     /**
@@ -29,7 +38,7 @@ public class Heal implements Spells {
      */
     @Override
     public int getManaCost() {
-        return this.manaCost + this.level;
+        return manaCost + level;
     }
 
     /**
@@ -44,10 +53,8 @@ public class Heal implements Spells {
 
     /**
      * getter method for raw spell damage
-     *
      * @return raw spell damage
      */
-    @Override
     public int getRawDamage() {
         return 0;
     }
@@ -114,6 +121,7 @@ public class Heal implements Spells {
 
     /**
      * getter method for stat change value
+     *
      * @return stat change value
      */
     @Override
@@ -132,7 +140,7 @@ public class Heal implements Spells {
     /**
      * run spell
      *
-     * @return value for stat change
+     * @return 0 if miss, >0 for damage
      */
     @Override
     public int runSpell() {
@@ -147,23 +155,23 @@ public class Heal implements Spells {
      */
     @Override
     public boolean updateLevel(int pLevel) {
-        if (pLevel == 4) {
-            this.level = 1;
+        if (pLevel == 3) {
+            this.level =1;
             return true;
         } else if (pLevel == 7) {
-            this.level = 2;
+            this.level =2;
             return true;
-        } else if (pLevel == 10) {
-            this.level = 3;
+        } else if (pLevel == 12) {
+            this.level =3;
             return true;
-        } else if (pLevel == 16) {
-            this.level = 4;
+        } else if (pLevel == 18) {
+            this.level =4;
             return true;
-        } else if (pLevel == 20) {
-            this.level = 5;
+        } else if (pLevel == 23) {
+            this.level =5;
             return true;
-        } else if (pLevel == 27) {
-            this.level = 6;
+        } else if (pLevel == 29) {
+            this.level =6;
             return true;
         }
         return false;

@@ -1,24 +1,18 @@
-package MODEL.SpellsList.Druid;
+package MODEL.SpellsList.Mage;
 
 import MODEL.SpellsList.Spells;
 
-public class RootSnap implements Spells {
+public class Firebolt implements Spells {
 
-    String name = "ROOT SNAP";
-    int manaCost = 3;
-    int damage = 4;
-    int misfire = 12;
+    String name = "FIREBOLT";
+    int manaCost = 2;
+    int damage = 3;
+    int misfire = 10;
     int level = 0;
     String target = "ENEMY";
-    String desc = "UNLEASH AN MIGHTY BRIONET TREE ROOT TO PUMMEL YOUR ENEMY!";
-    String spellType = "OFFENSIVE";
+    String desc = "UNLEASH A FIERY BOLT TO INCINERATE YOUR ENEMIES!";
+    String spellType = "ATTACK";
     String statChange = null;
-
-    /**
-     * constructor
-     */
-    public RootSnap() {
-    }
 
     /**
      * getter method for spell name
@@ -27,7 +21,7 @@ public class RootSnap implements Spells {
      */
     @Override
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -37,7 +31,7 @@ public class RootSnap implements Spells {
      */
     @Override
     public int getManaCost() {
-        return manaCost + level;
+        return this.manaCost + this.level;
     }
 
     /**
@@ -47,15 +41,17 @@ public class RootSnap implements Spells {
      */
     @Override
     public int getDamage() {
-        return (int) ((Math.random() * this.damage + 1) + level * 2);
+        return (int) ((Math.random() * getRawDamage()) + this.level * 2);
     }
 
     /**
      * getter method for raw spell damage
+     *
      * @return raw spell damage
      */
+    @Override
     public int getRawDamage() {
-        return this.damage;
+        return this.damage + this.level;
     }
 
     /**
@@ -115,7 +111,7 @@ public class RootSnap implements Spells {
      */
     @Override
     public String getStatChange() {
-        return this.statChange;
+        return null;
     }
 
     /**
@@ -125,6 +121,14 @@ public class RootSnap implements Spells {
      */
     @Override
     public int getStatValue() {
+        return 0;
+    }
+
+    /**
+     * getter method for raw stat change value
+     * @return raw stat change value
+     */
+    public int getRawStatValue() {
         return 0;
     }
 
@@ -152,22 +156,22 @@ public class RootSnap implements Spells {
     @Override
     public boolean updateLevel(int pLevel) {
         if (pLevel == 3) {
-            this.level =1;
+            this.level = 2;
             return true;
         } else if (pLevel == 7) {
-            this.level =2;
+            this.level = 2;
             return true;
-        } else if (pLevel == 12) {
-            this.level =3;
+        } else if (pLevel == 11) {
+            this.level = 3;
             return true;
-        } else if (pLevel == 18) {
-            this.level =4;
+        } else if (pLevel == 16) {
+            this.level = 4;
             return true;
-        } else if (pLevel == 23) {
-            this.level =5;
+        } else if (pLevel == 21) {
+            this.level = 5;
             return true;
-        } else if (pLevel == 29) {
-            this.level =6;
+        } else if (pLevel == 26) {
+            this.level = 6;
             return true;
         }
         return false;

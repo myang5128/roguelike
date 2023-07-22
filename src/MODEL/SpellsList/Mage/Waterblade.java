@@ -1,16 +1,18 @@
-package MODEL.SpellsList.Knight;
+package MODEL.SpellsList.Mage;
 
 import MODEL.SpellsList.Spells;
 
-public class Heal implements Spells {
-    String name = "HEAL";
-    int manaCost = 1;
-    int health = 3;
+public class Waterblade implements Spells {
+
+    String name = "WATERBLADE";
+    int manaCost = 5;
+    int damage = 4;
+    int misfire = 12;
     int level = 0;
-    String target = "SELF";
-    String desc = "SUMMON A TEMPORARY AURA OF HEALING!";
-    String spellType = "SUPPORT";
-    String statChange = "HEALTH";
+    String target = "ENEMY";
+    String desc = "CREATE A TORRENT OF WATER TO SLICE YOUR TARGETS!";
+    String spellType = "ATTACK";
+    String statChange = null;
 
     /**
      * getter method for spell name
@@ -39,7 +41,7 @@ public class Heal implements Spells {
      */
     @Override
     public int getDamage() {
-        return 0;
+        return (int) (Math.random() * getRawDamage() + 1 * 1.8);
     }
 
     /**
@@ -49,7 +51,7 @@ public class Heal implements Spells {
      */
     @Override
     public int getRawDamage() {
-        return 0;
+        return this.damage + this.level;
     }
 
     /**
@@ -109,16 +111,17 @@ public class Heal implements Spells {
      */
     @Override
     public String getStatChange() {
-        return this.statChange;
+        return null;
     }
 
     /**
      * getter method for stat change value
+     *
      * @return stat change value
      */
     @Override
     public int getStatValue() {
-        return (int) ((Math.random() * this.level) + getRawStatValue());
+        return 0;
     }
 
     /**
@@ -126,17 +129,22 @@ public class Heal implements Spells {
      * @return raw stat change value
      */
     public int getRawStatValue() {
-        return this.health + this.level;
+        return 0;
     }
 
     /**
      * run spell
      *
-     * @return value for stat change
+     * @return 0 if miss, >0 for damage
      */
     @Override
     public int runSpell() {
-        return getStatValue();
+        int chance = (int) (Math.random() * 100 + this.level);
+        if (chance <= this.misfire) {
+            return 0;
+        } else {
+            return getDamage();
+        }
     }
 
     /**
@@ -147,22 +155,22 @@ public class Heal implements Spells {
      */
     @Override
     public boolean updateLevel(int pLevel) {
-        if (pLevel == 4) {
-            this.level = 1;
-            return true;
-        } else if (pLevel == 7) {
-            this.level = 2;
-            return true;
-        } else if (pLevel == 10) {
+        if (pLevel == 3) {
             this.level = 3;
             return true;
-        } else if (pLevel == 16) {
+        } else if (pLevel == 8) {
+            this.level = 2;
+            return true;
+        } else if (pLevel == 13) {
+            this.level = 3;
+            return true;
+        } else if (pLevel == 17) {
             this.level = 4;
             return true;
-        } else if (pLevel == 20) {
+        } else if (pLevel == 22) {
             this.level = 5;
             return true;
-        } else if (pLevel == 27) {
+        } else if (pLevel == 29) {
             this.level = 6;
             return true;
         }

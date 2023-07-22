@@ -40,7 +40,7 @@ public class Pummel implements Spells {
      */
     @Override
     public int getDamage() {
-        return this.damage * this.level;
+        return (int) (getRawDamage() + (Math.random() * level));
     }
 
     /**
@@ -50,7 +50,7 @@ public class Pummel implements Spells {
      */
     @Override
     public int getRawDamage() {
-        return this.damage;
+        return this.damage + this.level;
     }
 
     /**
@@ -119,6 +119,14 @@ public class Pummel implements Spells {
      */
     @Override
     public int getStatValue() {
+        return 0;
+    }
+
+    /**
+     * getter method for raw stat change value
+     * @return raw stat change value
+     */
+    public int getRawStatValue() {
         return 0;
     }
 

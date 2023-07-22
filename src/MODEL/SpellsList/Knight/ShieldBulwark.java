@@ -118,6 +118,14 @@ public class ShieldBulwark implements Spells {
      */
     @Override
     public int getStatValue() {
+        return getRawStatValue();
+    }
+
+    /**
+     * getter method for raw stat change value
+     * @return raw stat change value
+     */
+    public int getRawStatValue() {
         return this.defense + this.level;
     }
 
