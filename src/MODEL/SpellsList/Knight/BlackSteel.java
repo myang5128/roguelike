@@ -30,7 +30,28 @@ public class BlackSteel implements Spells {
      */
     @Override
     public int getManaCost() {
-        return this.manaCost + this.level;
+        int val = this.manaCost;
+        switch (this.level) {
+            case 1:
+                val = 2;
+                break;
+            case 2:
+                val = 3;
+                break;
+            case 3:
+                val = 4;
+                break;
+            case 4:
+                val = 6;
+                break;
+            case 5:
+                val = 8;
+                break;
+            case 6:
+                val = 10;
+                break;
+        }
+        return val;
     }
 
     /**
@@ -127,7 +148,28 @@ public class BlackSteel implements Spells {
      * @return raw stat change value
      */
     public int getRawStatValue() {
-        return this.attack + this.level;
+        int val = this.attack;
+        switch (this.level) {
+            case 1:
+                val = 2;
+                break;
+            case 2:
+                val = 4;
+                break;
+            case 3:
+                val = 8;
+                break;
+            case 4:
+                val = 14;
+                break;
+            case 5:
+                val = 19;
+                break;
+            case 6:
+                val = 25;
+                break;
+        }
+        return val;
     }
 
     /**

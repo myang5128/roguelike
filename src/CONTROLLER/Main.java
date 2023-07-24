@@ -5,6 +5,7 @@ import MODEL.Player;
 import MODEL.SpellsList.Druid.*;
 import MODEL.SpellsList.Knight.*;
 import MODEL.SpellsList.Mage.*;
+import MODEL.SpellsList.Paladin.*;
 import MODEL.SpellsList.Spells;
 import MODEL.StartingClasses.*;
 import VIEW.*;
@@ -403,11 +404,12 @@ public class Main {
                 p = new Player(playerName, mage, mage.getHealth(), mage.getMana(), mage.getDefense(), mage.getDodge(), mage.getDamage(), spellArray);
                 break;
             case "PALADIN":
-                windSlash = new WindSlash();
-                falconSwoop = new FalconSwoop();
-                ragingBoar = new RagingBoar();
-                thornExplosion = new ThornExplosion();
-                spellArray = new Spells[]{windSlash, falconSwoop, windSlash, ragingBoar, thornExplosion};
+                HolyProtection holyProtection = new HolyProtection();
+                HolyWords holyWords = new HolyWords();
+                Justice justice = new Justice();
+                ShieldBash shieldBash = new ShieldBash();
+                Smite smite = new Smite();
+                spellArray = new Spells[]{holyProtection, holyWords, justice, shieldBash, smite};
                 p = new Player(playerName, paladin, paladin.getHealth(), paladin.getMana(), paladin.getDefense(), paladin.getDodge(), paladin.getDamage(), spellArray);
                 break;
             case "RANGER":

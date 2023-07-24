@@ -30,7 +30,28 @@ public class BladeSlash implements Spells {
      */
     @Override
     public int getManaCost() {
-        return this.manaCost + this.level;
+        int val = this.manaCost;
+        switch (this.level) {
+            case 1:
+                val = 3;
+                break;
+            case 2:
+                val = 5;
+                break;
+            case 3:
+                val = 7;
+                break;
+            case 4:
+                val = 10;
+                break;
+            case 5:
+                val = 12;
+                break;
+            case 6:
+                val = 15;
+                break;
+        }
+        return val;
     }
 
     /**
@@ -50,7 +71,28 @@ public class BladeSlash implements Spells {
      */
     @Override
     public int getRawDamage() {
-        return this.damage + this.level;
+        int val = this.damage;
+        switch (this.level) {
+            case 1:
+                val = 3;
+                break;
+            case 2:
+                val = 6;
+                break;
+            case 3:
+                val = 10;
+                break;
+            case 4:
+                val = 16;
+                break;
+            case 5:
+                val = 21;
+                break;
+            case 6:
+                val = 27;
+                break;
+        }
+        return val;
     }
 
     /**

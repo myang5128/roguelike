@@ -37,7 +37,28 @@ public class ThornExplosion implements Spells {
      */
     @Override
     public int getManaCost() {
-        return manaCost * this.level - 1;
+        int val = this.manaCost;
+        switch (this.level) {
+            case 1:
+                val = 6;
+                break;
+            case 2:
+                val = 8;
+                break;
+            case 3:
+                val = 12;
+                break;
+            case 4:
+                val = 15;
+                break;
+            case 5:
+                val = 19;
+                break;
+            case 6:
+                val = 25;
+                break;
+        }
+        return val;
     }
 
     /**
@@ -55,7 +76,28 @@ public class ThornExplosion implements Spells {
      * @return raw spell damage
      */
     public int getRawDamage() {
-        return this.damage + this.level;
+        int val = this.damage;
+        switch (this.level) {
+            case 1:
+                val = 7;
+                break;
+            case 2:
+                val = 15;
+                break;
+            case 3:
+                val = 24;
+                break;
+            case 4:
+                val = 36;
+                break;
+            case 5:
+                val = 45;
+                break;
+            case 6:
+                val = 54;
+                break;
+        }
+        return val;
     }
 
     /**

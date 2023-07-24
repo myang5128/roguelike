@@ -1,24 +1,16 @@
-package MODEL.SpellsList.Druid;
+package MODEL.SpellsList.Paladin;
 
 import MODEL.SpellsList.Spells;
 
-public class RagingBoar implements Spells {
-
-    String name = "RAGING BOAR";
-    int manaCost = 5;
-    int damage = 5;
-    int misfire = 15;
+public class ShieldBash implements Spells {
+    String name = "SHIELD BASH";
+    int manaCost = 2;
+    int damage = 4;
     int level = 0;
     String target = "ENEMY";
-    String desc = "CALL UPON A SPECTRAL BOAR TO MAIM YOUR ENEMIES!";
-    String spellType = "OFFENSIVE";
+    String desc = "BASH YOUR ENEMIES WITH YOUR MIGHTY SHIELD!";
+    String spellType = "ATTACK";
     String statChange = null;
-
-    /**
-     * constructor
-     */
-    public RagingBoar() {
-    }
 
     /**
      * getter method for spell name
@@ -27,7 +19,7 @@ public class RagingBoar implements Spells {
      */
     @Override
     public String getName() {
-        return name;
+        return this.name;
     }
 
     /**
@@ -37,28 +29,7 @@ public class RagingBoar implements Spells {
      */
     @Override
     public int getManaCost() {
-        int val = this.manaCost;
-        switch (this.level) {
-            case 1:
-                val = 5;
-                break;
-            case 2:
-                val = 7;
-                break;
-            case 3:
-                val = 10;
-                break;
-            case 4:
-                val = 14;
-                break;
-            case 5:
-                val = 16;
-                break;
-            case 6:
-                val = 22;
-                break;
-        }
-        return val;
+        return this.manaCost + this.level;
     }
 
     /**
@@ -68,36 +39,17 @@ public class RagingBoar implements Spells {
      */
     @Override
     public int getDamage() {
-        return (int) ((Math.random() * getRawDamage() + 1) + level * 1.5);
+        return (int) (Math.random() * getRawDamage()) + this.level;
     }
 
     /**
      * getter method for raw spell damage
+     *
      * @return raw spell damage
      */
+    @Override
     public int getRawDamage() {
-        int val = this.damage;
-        switch (this.level) {
-            case 1:
-                val = 5;
-                break;
-            case 2:
-                val = 10;
-                break;
-            case 3:
-                val = 17;
-                break;
-            case 4:
-                val = 26;
-                break;
-            case 5:
-                val = 34;
-                break;
-            case 6:
-                val = 40;
-                break;
-        }
-        return val;
+        return this.damage + this.level;
     }
 
     /**
@@ -157,7 +109,7 @@ public class RagingBoar implements Spells {
      */
     @Override
     public String getStatChange() {
-        return this.statChange;
+        return null;
     }
 
     /**
@@ -202,22 +154,22 @@ public class RagingBoar implements Spells {
     @Override
     public boolean updateLevel(int pLevel) {
         if (pLevel == 4) {
-            this.level =1;
-            return true;
-        } else if (pLevel == 7) {
-            this.level =2;
+            this.level = 1;
             return true;
         } else if (pLevel == 10) {
-            this.level =3;
+            this.level = 2;
             return true;
-        } else if (pLevel == 16) {
-            this.level =4;
+        } else if (pLevel == 12) {
+            this.level = 3;
             return true;
-        } else if (pLevel == 24) {
-            this.level =5;
+        } else if (pLevel == 18) {
+            this.level = 4;
             return true;
-        } else if (pLevel == 28) {
-            this.level =6;
+        } else if (pLevel == 23) {
+            this.level = 5;
+            return true;
+        } else if (pLevel == 29) {
+            this.level = 6;
             return true;
         }
         return false;

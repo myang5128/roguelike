@@ -37,7 +37,28 @@ public class FalconSwoop implements Spells {
      */
     @Override
     public int getManaCost() {
-        return manaCost + level;
+        int val = this.manaCost;
+        switch (this.level) {
+            case 1:
+                val = 3;
+                break;
+            case 2:
+                val = 5;
+                break;
+            case 3:
+                val = 8;
+                break;
+            case 4:
+                val = 12;
+                break;
+            case 5:
+                val = 16;
+                break;
+            case 6:
+                val = 21;
+                break;
+        }
+        return val;
     }
 
     /**
@@ -55,7 +76,28 @@ public class FalconSwoop implements Spells {
      * @return raw spell damage
      */
     public int getRawDamage() {
-        return this.damage + this.level;
+        int val = this.damage;
+        switch (this.level) {
+            case 1:
+                val = 2;
+                break;
+            case 2:
+                val = 5;
+                break;
+            case 3:
+                val = 10;
+                break;
+            case 4:
+                val = 18;
+                break;
+            case 5:
+                val = 25;
+                break;
+            case 6:
+                val = 32;
+                break;
+        }
+        return val;
     }
 
     /**
@@ -166,7 +208,7 @@ public class FalconSwoop implements Spells {
             this.level = 2;
             return true;
         } else if (pLevel == 13) {
-            this.level += 3;
+            this.level = 3;
             return true;
         } else if (pLevel == 15) {
             this.level =4;

@@ -6,10 +6,9 @@ public class HealingFruit implements Spells {
 
     String name = "HEALING FRUIT";
     int manaCost = 2;
-    int damage = 4;
     int misfire = 12;
     int level = 0;
-    int health = 4;
+    int heal = 4;
     String target = "SELF";
     String desc = "CONSUME A DELICIOUS HEALING FRUIT TO SOOTH YOUR PAIN!";
     String spellType = "SUPPORT";
@@ -38,7 +37,28 @@ public class HealingFruit implements Spells {
      */
     @Override
     public int getManaCost() {
-        return manaCost + level;
+        int val = this.manaCost;
+        switch (this.level) {
+            case 1:
+                val = 2;
+                break;
+            case 2:
+                val = 3;
+                break;
+            case 3:
+                val = 6;
+                break;
+            case 4:
+                val = 9;
+                break;
+            case 5:
+                val = 13;
+                break;
+            case 6:
+                val = 16;
+                break;
+        }
+        return val;
     }
 
     /**
@@ -134,7 +154,28 @@ public class HealingFruit implements Spells {
      * @return raw stat change value
      */
     public int getRawStatValue() {
-        return this.health + this.level;
+        int val = this.heal;
+        switch (this.level) {
+            case 1:
+                val = 4;
+                break;
+            case 2:
+                val = 6;
+                break;
+            case 3:
+                val = 10;
+                break;
+            case 4:
+                val = 16;
+                break;
+            case 5:
+                val = 24;
+                break;
+            case 6:
+                val = 32;
+                break;
+        }
+        return val;
     }
 
     /**

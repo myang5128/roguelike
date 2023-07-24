@@ -5,7 +5,7 @@ import MODEL.SpellsList.Spells;
 public class Heal implements Spells {
     String name = "HEAL";
     int manaCost = 1;
-    int health = 3;
+    int heal = 3;
     int level = 0;
     String target = "SELF";
     String desc = "SUMMON A TEMPORARY AURA OF HEALING!";
@@ -29,7 +29,28 @@ public class Heal implements Spells {
      */
     @Override
     public int getManaCost() {
-        return this.manaCost + this.level;
+        int val = this.manaCost;
+        switch (this.level) {
+            case 1:
+                val = 1;
+                break;
+            case 2:
+                val = 3;
+                break;
+            case 3:
+                val = 6;
+                break;
+            case 4:
+                val = 11;
+                break;
+            case 5:
+                val = 15;
+                break;
+            case 6:
+                val = 21;
+                break;
+        }
+        return val;
     }
 
     /**
@@ -126,7 +147,28 @@ public class Heal implements Spells {
      * @return raw stat change value
      */
     public int getRawStatValue() {
-        return this.health + this.level;
+        int val = this.heal;
+        switch (this.level) {
+            case 1:
+                val = 3;
+                break;
+            case 2:
+                val = 6;
+                break;
+            case 3:
+                val = 10;
+                break;
+            case 4:
+                val = 15;
+                break;
+            case 5:
+                val = 23;
+                break;
+            case 6:
+                val = 30;
+                break;
+        }
+        return val;
     }
 
     /**

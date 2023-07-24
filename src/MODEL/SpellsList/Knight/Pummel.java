@@ -30,7 +30,28 @@ public class Pummel implements Spells {
      */
     @Override
     public int getManaCost() {
-        return this.manaCost + this.level;
+        int val = this.manaCost;
+        switch (this.level) {
+            case 1:
+                val = 1;
+                break;
+            case 2:
+                val = 2;
+                break;
+            case 3:
+                val = 4;
+                break;
+            case 4:
+                val = 5;
+                break;
+            case 5:
+                val = 7;
+                break;
+            case 6:
+                val = 10;
+                break;
+        }
+        return val;
     }
 
     /**
@@ -50,7 +71,28 @@ public class Pummel implements Spells {
      */
     @Override
     public int getRawDamage() {
-        return this.damage + this.level;
+        int val = this.damage;
+        switch (this.level) {
+            case 1:
+                val = 2;
+                break;
+            case 2:
+                val = 4;
+                break;
+            case 3:
+                val = 7;
+                break;
+            case 4:
+                val = 11;
+                break;
+            case 5:
+                val = 16;
+                break;
+            case 6:
+                val = 23;
+                break;
+        }
+        return val;
     }
 
     /**
