@@ -1,17 +1,16 @@
-package MODEL.SpellsList.Knight;
+package MODEL.SpellsList.Ranger;
 
 import MODEL.SpellsList.Spells;
 
-public class BlackSteel implements Spells {
-
-    String name = "BLACK STEEL";
-    int manaCost = 2;
+public class CriticalSenses implements Spells {
+    String name = "Critical SENSES";
+    int manaCost = 1;
     int attack = 2;
     int level = 0;
     String target = "SELF";
-    String desc = "CALL UPON DELMAT, THE GOD OF SMITHING, TO ENHANCE YOUR STEEL FOR THIS ENGAGEMENT!";
+    String desc = "USE YOUR EMPOWERED SENSES TO AIM AT FATAL SPOTS!";
     String spellType = "SUPPORT";
-    String statChange = "ATTACK";
+    String statChange = "DAMAGE";
 
     /**
      * getter method for spell name
@@ -32,22 +31,22 @@ public class BlackSteel implements Spells {
     public int getManaCost() {
         switch (this.level) {
             case 1:
-                this.manaCost = 2;
+                this.manaCost = 1;
                 break;
             case 2:
-                this.manaCost = 3;
+                this.manaCost = 2;
                 break;
             case 3:
-                this.manaCost = 4;
+                this.manaCost = 3;
                 break;
             case 4:
-                this.manaCost = 6;
+                this.manaCost = 4;
                 break;
             case 5:
-                this.manaCost = 8;
+                this.manaCost = 5;
                 break;
             case 6:
-                this.manaCost = 10;
+                this.manaCost = 6;
                 break;
         }
         return this.manaCost;
@@ -60,7 +59,7 @@ public class BlackSteel implements Spells {
      */
     @Override
     public int getDamage() {
-        return 0;
+        return getRawDamage();
     }
 
     /**
@@ -70,7 +69,7 @@ public class BlackSteel implements Spells {
      */
     @Override
     public int getRawDamage() {
-        return 0;
+        return this.damage + this.level;
     }
 
     /**
@@ -80,7 +79,7 @@ public class BlackSteel implements Spells {
      */
     @Override
     public int getMisfire() {
-        return 0;
+        return this.misfire;
     }
 
     /**
@@ -140,7 +139,7 @@ public class BlackSteel implements Spells {
      */
     @Override
     public int getStatValue() {
-        return (int) ((Math.random() * 3) + getRawStatValue());
+        return getRawStatValue() + (int) (Math.random() * this.level);
     }
 
     /**
@@ -154,19 +153,19 @@ public class BlackSteel implements Spells {
                 this.attack = 2;
                 break;
             case 2:
-                this.attack = 4;
+                this.attack = 3;
                 break;
             case 3:
-                this.attack = 8;
+                this.attack = 5;
                 break;
             case 4:
-                this.attack = 14;
+                this.attack = 7;
                 break;
             case 5:
-                this.attack = 19;
+                this.attack = 10;
                 break;
             case 6:
-                this.attack = 25;
+                this.attack = 14;
                 break;
         }
         return this.attack;
@@ -175,7 +174,7 @@ public class BlackSteel implements Spells {
     /**
      * run spell
      *
-     * @return value for stat change
+     * @return 0 if miss, >0 for damage
      */
     @Override
     public int runSpell() {
@@ -190,22 +189,22 @@ public class BlackSteel implements Spells {
      */
     @Override
     public boolean updateLevel(int pLevel) {
-        if (pLevel == 3) {
+        if (pLevel == 2) {
             this.level = 1;
             return true;
-        } else if (pLevel == 5) {
+        } else if (pLevel == 7) {
             this.level = 2;
             return true;
-        } else if (pLevel == 14) {
+        } else if (pLevel == 11) {
             this.level = 3;
             return true;
-        } else if (pLevel == 17) {
+        } else if (pLevel == 16) {
             this.level = 4;
             return true;
         } else if (pLevel == 21) {
             this.level = 5;
             return true;
-        } else if (pLevel == 28) {
+        } else if (pLevel == 27) {
             this.level = 6;
             return true;
         }

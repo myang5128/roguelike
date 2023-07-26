@@ -37,28 +37,27 @@ public class HealingFruit implements Spells {
      */
     @Override
     public int getManaCost() {
-        int val = this.manaCost;
         switch (this.level) {
             case 1:
-                val = 2;
+                this.manaCost = 2;
                 break;
             case 2:
-                val = 3;
+                this.manaCost = 3;
                 break;
             case 3:
-                val = 6;
+                this.manaCost = 6;
                 break;
             case 4:
-                val = 9;
+                this.manaCost = 9;
                 break;
             case 5:
-                val = 13;
+                this.manaCost = 13;
                 break;
             case 6:
-                val = 16;
+                this.manaCost = 16;
                 break;
         }
-        return val;
+        return this.manaCost;
     }
 
     /**
@@ -73,6 +72,7 @@ public class HealingFruit implements Spells {
 
     /**
      * getter method for raw spell damage
+     *
      * @return raw spell damage
      */
     public int getRawDamage() {
@@ -151,6 +151,7 @@ public class HealingFruit implements Spells {
 
     /**
      * getter method for raw stat change value
+     *
      * @return raw stat change value
      */
     public int getRawStatValue() {
@@ -197,22 +198,22 @@ public class HealingFruit implements Spells {
     @Override
     public boolean updateLevel(int pLevel) {
         if (pLevel == 3) {
-            this.level =1;
+            this.level = 1;
             return true;
         } else if (pLevel == 7) {
-            this.level =2;
+            this.level = 2;
             return true;
         } else if (pLevel == 12) {
-            this.level =3;
+            this.level = 3;
             return true;
         } else if (pLevel == 18) {
-            this.level =4;
+            this.level = 4;
             return true;
         } else if (pLevel == 23) {
-            this.level =5;
+            this.level = 5;
             return true;
         } else if (pLevel == 29) {
-            this.level =6;
+            this.level = 6;
             return true;
         }
         return false;

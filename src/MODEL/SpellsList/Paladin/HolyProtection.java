@@ -29,7 +29,27 @@ public class HolyProtection implements Spells {
      */
     @Override
     public int getManaCost() {
-        return this.manaCost + this.level;
+        switch (this.level) {
+            case 1:
+                this.manaCost = 2;
+                break;
+            case 2:
+                this.manaCost = 3;
+                break;
+            case 3:
+                this.manaCost = 4;
+                break;
+            case 4:
+                this.manaCost = 5;
+                break;
+            case 5:
+                this.manaCost = 6;
+                break;
+            case 6:
+                this.manaCost = 7;
+                break;
+        }
+        return this.manaCost;
     }
 
     /**
@@ -119,15 +139,36 @@ public class HolyProtection implements Spells {
      */
     @Override
     public int getStatValue() {
-        return (int) ((Math.random() * getRawStatValue()) * 1.4);
+        return getRawStatValue();
     }
 
     /**
      * getter method for raw stat change value
+     *
      * @return raw stat change value
      */
     public int getRawStatValue() {
-        return this.defense + this.level;
+        switch (this.level) {
+            case 1:
+                this.defense = 3;
+                break;
+            case 2:
+                this.defense = 5;
+                break;
+            case 3:
+                this.defense = 8;
+                break;
+            case 4:
+                this.defense = 12;
+                break;
+            case 5:
+                this.defense = 17;
+                break;
+            case 6:
+                this.defense = 23;
+                break;
+        }
+        return this.attack;
     }
 
     /**

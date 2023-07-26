@@ -30,28 +30,27 @@ public class Pummel implements Spells {
      */
     @Override
     public int getManaCost() {
-        int val = this.manaCost;
         switch (this.level) {
             case 1:
-                val = 1;
+                this.manaCost = 1;
                 break;
             case 2:
-                val = 2;
+                this.manaCost = 2;
                 break;
             case 3:
-                val = 4;
+                this.manaCost = 4;
                 break;
             case 4:
-                val = 5;
+                this.manaCost = 5;
                 break;
             case 5:
-                val = 7;
+                this.manaCost = 7;
                 break;
             case 6:
-                val = 10;
+                this.manaCost = 10;
                 break;
         }
-        return val;
+        return this.manaCost;
     }
 
     /**
@@ -157,6 +156,7 @@ public class Pummel implements Spells {
 
     /**
      * getter method for stat change value
+     *
      * @return stat change value
      */
     @Override
@@ -166,6 +166,7 @@ public class Pummel implements Spells {
 
     /**
      * getter method for raw stat change value
+     *
      * @return raw stat change value
      */
     public int getRawStatValue() {

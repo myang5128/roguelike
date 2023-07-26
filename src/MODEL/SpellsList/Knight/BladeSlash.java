@@ -30,28 +30,27 @@ public class BladeSlash implements Spells {
      */
     @Override
     public int getManaCost() {
-        int val = this.manaCost;
         switch (this.level) {
             case 1:
-                val = 3;
+                this.manaCost = 3;
                 break;
             case 2:
-                val = 5;
+                this.manaCost = 5;
                 break;
             case 3:
-                val = 7;
+                this.manaCost = 7;
                 break;
             case 4:
-                val = 10;
+                this.manaCost = 10;
                 break;
             case 5:
-                val = 12;
+                this.manaCost = 12;
                 break;
             case 6:
-                val = 15;
+                this.manaCost = 15;
                 break;
         }
-        return val;
+        return this.manaCost;
     }
 
     /**
@@ -71,28 +70,27 @@ public class BladeSlash implements Spells {
      */
     @Override
     public int getRawDamage() {
-        int val = this.damage;
         switch (this.level) {
             case 1:
-                val = 3;
+                this.damage = 3;
                 break;
             case 2:
-                val = 6;
+                this.damage = 6;
                 break;
             case 3:
-                val = 10;
+                this.damage = 10;
                 break;
             case 4:
-                val = 16;
+                this.damage = 16;
                 break;
             case 5:
-                val = 21;
+                this.damage = 21;
                 break;
             case 6:
-                val = 27;
+                this.damage = 27;
                 break;
         }
-        return val;
+        return this.damage;
     }
 
     /**
@@ -157,6 +155,7 @@ public class BladeSlash implements Spells {
 
     /**
      * getter method for stat change value
+     *
      * @return stat change value
      */
     @Override
@@ -166,6 +165,7 @@ public class BladeSlash implements Spells {
 
     /**
      * getter method for raw stat change value
+     *
      * @return raw stat change value
      */
     public int getRawStatValue() {

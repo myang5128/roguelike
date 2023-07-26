@@ -30,7 +30,27 @@ public class Smite implements Spells {
      */
     @Override
     public int getManaCost() {
-        return this.manaCost + this.level;
+        switch (this.level) {
+            case 1:
+                this.manaCost = 1;
+                break;
+            case 2:
+                this.manaCost = 2;
+                break;
+            case 3:
+                this.manaCost = 3;
+                break;
+            case 4:
+                this.manaCost = 4;
+                break;
+            case 5:
+                this.manaCost = 5;
+                break;
+            case 6:
+                this.manaCost = 6;
+                break;
+        }
+        return this.manaCost;
     }
 
     /**
@@ -40,7 +60,7 @@ public class Smite implements Spells {
      */
     @Override
     public int getDamage() {
-        return (int) (Math.random() * level) + getRawDamage();
+        return (int) ((Math.random() * level) + getRawDamage() * 1.8);
     }
 
     /**
@@ -50,7 +70,27 @@ public class Smite implements Spells {
      */
     @Override
     public int getRawDamage() {
-        return this.damage + this.level;
+        switch (this.level) {
+            case 1:
+                this.damage = 3;
+                break;
+            case 2:
+                this.damage = 6;
+                break;
+            case 3:
+                this.damage = 10;
+                break;
+            case 4:
+                this.damage = 16;
+                break;
+            case 5:
+                this.damage = 24;
+                break;
+            case 6:
+                this.damage = 32;
+                break;
+        }
+        return this.damage;
     }
 
     /**
@@ -110,7 +150,7 @@ public class Smite implements Spells {
      */
     @Override
     public String getStatChange() {
-        return null;
+        return this.statChange;
     }
 
     /**
@@ -125,6 +165,7 @@ public class Smite implements Spells {
 
     /**
      * getter method for raw stat change value
+     *
      * @return raw stat change value
      */
     public int getRawStatValue() {

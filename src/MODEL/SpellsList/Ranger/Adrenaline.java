@@ -1,17 +1,17 @@
-package MODEL.SpellsList.Knight;
+package MODEL.SpellsList.Ranger;
 
 import MODEL.SpellsList.Spells;
 
-public class BlackSteel implements Spells {
-
-    String name = "BLACK STEEL";
+public class Adrenaline implements Spells {
+    String name = "ADRENALINE";
     int manaCost = 2;
-    int attack = 2;
+    int dodge = 5;
+    int misfire = 0;
     int level = 0;
     String target = "SELF";
-    String desc = "CALL UPON DELMAT, THE GOD OF SMITHING, TO ENHANCE YOUR STEEL FOR THIS ENGAGEMENT!";
+    String desc = "GAIN A BURST OF ADRENALINE, MAKING YOUR REFLEX AND MOVEMENT FASTER AND HARDER TO HIT!";
     String spellType = "SUPPORT";
-    String statChange = "ATTACK";
+    String statChange = "DODGE";
 
     /**
      * getter method for spell name
@@ -38,16 +38,16 @@ public class BlackSteel implements Spells {
                 this.manaCost = 3;
                 break;
             case 3:
-                this.manaCost = 4;
+                this.manaCost = 5;
                 break;
             case 4:
-                this.manaCost = 6;
+                this.manaCost = 7;
                 break;
             case 5:
-                this.manaCost = 8;
+                this.manaCost = 9;
                 break;
             case 6:
-                this.manaCost = 10;
+                this.manaCost = 12;
                 break;
         }
         return this.manaCost;
@@ -60,7 +60,7 @@ public class BlackSteel implements Spells {
      */
     @Override
     public int getDamage() {
-        return 0;
+        return getRawDamage();
     }
 
     /**
@@ -70,7 +70,7 @@ public class BlackSteel implements Spells {
      */
     @Override
     public int getRawDamage() {
-        return 0;
+        return this.damage + this.level;
     }
 
     /**
@@ -80,7 +80,7 @@ public class BlackSteel implements Spells {
      */
     @Override
     public int getMisfire() {
-        return 0;
+        return this.misfire;
     }
 
     /**
@@ -140,7 +140,7 @@ public class BlackSteel implements Spells {
      */
     @Override
     public int getStatValue() {
-        return (int) ((Math.random() * 3) + getRawStatValue());
+        return getRawStatValue();
     }
 
     /**
@@ -151,31 +151,31 @@ public class BlackSteel implements Spells {
     public int getRawStatValue() {
         switch (this.level) {
             case 1:
-                this.attack = 2;
+                this.dodge = 5;
                 break;
             case 2:
-                this.attack = 4;
+                this.dodge = 7;
                 break;
             case 3:
-                this.attack = 8;
+                this.dodge = 10;
                 break;
             case 4:
-                this.attack = 14;
+                this.dodge = 14;
                 break;
             case 5:
-                this.attack = 19;
+                this.dodge = 19;
                 break;
             case 6:
-                this.attack = 25;
+                this.dodge = 25;
                 break;
         }
-        return this.attack;
+        return this.damage;
     }
 
     /**
      * run spell
      *
-     * @return value for stat change
+     * @return 0 if miss, >0 for damage
      */
     @Override
     public int runSpell() {
@@ -190,22 +190,22 @@ public class BlackSteel implements Spells {
      */
     @Override
     public boolean updateLevel(int pLevel) {
-        if (pLevel == 3) {
+        if (pLevel == 2) {
             this.level = 1;
             return true;
-        } else if (pLevel == 5) {
+        } else if (pLevel == 7) {
             this.level = 2;
             return true;
-        } else if (pLevel == 14) {
+        } else if (pLevel == 11) {
             this.level = 3;
             return true;
-        } else if (pLevel == 17) {
+        } else if (pLevel == 16) {
             this.level = 4;
             return true;
         } else if (pLevel == 21) {
             this.level = 5;
             return true;
-        } else if (pLevel == 28) {
+        } else if (pLevel == 27) {
             this.level = 6;
             return true;
         }

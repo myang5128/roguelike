@@ -4,8 +4,8 @@ import MODEL.SpellsList.Spells;
 
 public class DemonWisp implements Spells {
 
-    String name = "THUNDERCRACK";
-    int manaCost = 7;
+    String name = "DEMON WISP";
+    int manaCost = 6;
     int damage = 10;
     int misfire = 20;
     int level = 0;
@@ -31,7 +31,27 @@ public class DemonWisp implements Spells {
      */
     @Override
     public int getManaCost() {
-        return this.manaCost + this.level;
+        switch (this.level) {
+            case 1:
+                this.manaCost = 6;
+                break;
+            case 2:
+                this.manaCost = 7;
+                break;
+            case 3:
+                this.manaCost = 9;
+                break;
+            case 4:
+                this.manaCost = 11;
+                break;
+            case 5:
+                this.manaCost = 13;
+                break;
+            case 6:
+                this.manaCost = 15;
+                break;
+        }
+        return this.manaCost;
     }
 
     /**
@@ -51,7 +71,27 @@ public class DemonWisp implements Spells {
      */
     @Override
     public int getRawDamage() {
-        return this.damage + this.level;
+        switch (this.level) {
+            case 1:
+                this.damage = 10;
+                break;
+            case 2:
+                this.damage = 15;
+                break;
+            case 3:
+                this.damage = 21;
+                break;
+            case 4:
+                this.damage = 28;
+                break;
+            case 5:
+                this.damage = 34;
+                break;
+            case 6:
+                this.damage = 46;
+                break;
+        }
+        return this.damage;
     }
 
     /**
@@ -111,7 +151,8 @@ public class DemonWisp implements Spells {
      */
     @Override
     public String getStatChange() {
-        return null;
+        return this.statChange;
+
     }
 
     /**
@@ -126,6 +167,7 @@ public class DemonWisp implements Spells {
 
     /**
      * getter method for raw stat change value
+     *
      * @return raw stat change value
      */
     public int getRawStatValue() {

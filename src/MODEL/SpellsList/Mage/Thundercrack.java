@@ -30,7 +30,27 @@ public class Thundercrack implements Spells {
      */
     @Override
     public int getManaCost() {
-        return this.manaCost + this.level;
+        switch (this.level) {
+            case 1:
+                this.manaCost = 3;
+                break;
+            case 2:
+                this.manaCost = 4;
+                break;
+            case 3:
+                this.manaCost = 5;
+                break;
+            case 4:
+                this.manaCost = 7;
+                break;
+            case 5:
+                this.manaCost = 8;
+                break;
+            case 6:
+                this.manaCost = 11;
+                break;
+        }
+        return this.manaCost;
     }
 
     /**
@@ -50,7 +70,27 @@ public class Thundercrack implements Spells {
      */
     @Override
     public int getRawDamage() {
-        return this.damage + this.level;
+        switch (this.level) {
+            case 1:
+                this.damage = 5;
+                break;
+            case 2:
+                this.damage = 8;
+                break;
+            case 3:
+                this.damage = 13;
+                break;
+            case 4:
+                this.damage = 18;
+                break;
+            case 5:
+                this.damage = 24;
+                break;
+            case 6:
+                this.damage = 31;
+                break;
+        }
+        return this.damage;
     }
 
     /**
@@ -110,7 +150,8 @@ public class Thundercrack implements Spells {
      */
     @Override
     public String getStatChange() {
-        return null;
+        return this.statChange;
+
     }
 
     /**
@@ -125,6 +166,7 @@ public class Thundercrack implements Spells {
 
     /**
      * getter method for raw stat change value
+     *
      * @return raw stat change value
      */
     public int getRawStatValue() {

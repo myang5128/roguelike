@@ -29,28 +29,27 @@ public class Heal implements Spells {
      */
     @Override
     public int getManaCost() {
-        int val = this.manaCost;
         switch (this.level) {
             case 1:
-                val = 1;
+                this.manaCost = 1;
                 break;
             case 2:
-                val = 3;
+                this.manaCost = 3;
                 break;
             case 3:
-                val = 6;
+                this.manaCost = 6;
                 break;
             case 4:
-                val = 11;
+                this.manaCost = 11;
                 break;
             case 5:
-                val = 15;
+                this.manaCost = 15;
                 break;
             case 6:
-                val = 21;
+                this.manaCost = 21;
                 break;
         }
-        return val;
+        return this.manaCost;
     }
 
     /**
@@ -135,6 +134,7 @@ public class Heal implements Spells {
 
     /**
      * getter method for stat change value
+     *
      * @return stat change value
      */
     @Override
@@ -144,6 +144,7 @@ public class Heal implements Spells {
 
     /**
      * getter method for raw stat change value
+     *
      * @return raw stat change value
      */
     public int getRawStatValue() {

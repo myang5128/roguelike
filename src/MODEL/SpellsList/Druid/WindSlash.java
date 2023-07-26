@@ -37,28 +37,27 @@ public class WindSlash implements Spells {
      */
     @Override
     public int getManaCost() {
-        int val = this.manaCost;
         switch (this.level) {
             case 1:
-                val = 2;
+                this.manaCost = 2;
                 break;
             case 2:
-                val = 3;
+                this.manaCost = 3;
                 break;
             case 3:
-                val = 5;
+                this.manaCost = 5;
                 break;
             case 4:
-                val = 7;
+                this.manaCost = 7;
                 break;
             case 5:
-                val = 10;
+                this.manaCost = 10;
                 break;
             case 6:
-                val = 14;
+                this.manaCost = 14;
                 break;
         }
-        return val;
+        return this.manaCost;
     }
 
     /**
@@ -73,6 +72,7 @@ public class WindSlash implements Spells {
 
     /**
      * getter method for raw spell damage
+     *
      * @return raw spell damage
      */
     public int getRawDamage() {
@@ -172,6 +172,7 @@ public class WindSlash implements Spells {
 
     /**
      * getter method for raw stat change value
+     *
      * @return raw stat change value
      */
     public int getRawStatValue() {

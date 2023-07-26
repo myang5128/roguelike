@@ -31,7 +31,27 @@ public class Waterblade implements Spells {
      */
     @Override
     public int getManaCost() {
-        return this.manaCost + this.level;
+        switch (this.level) {
+            case 1:
+                this.manaCost = 5;
+                break;
+            case 2:
+                this.manaCost = 6;
+                break;
+            case 3:
+                this.manaCost = 8;
+                break;
+            case 4:
+                this.manaCost = 10;
+                break;
+            case 5:
+                this.manaCost = 12;
+                break;
+            case 6:
+                this.manaCost = 14;
+                break;
+        }
+        return this.manaCost;
     }
 
     /**
@@ -51,7 +71,27 @@ public class Waterblade implements Spells {
      */
     @Override
     public int getRawDamage() {
-        return this.damage + this.level;
+        switch (this.level) {
+            case 1:
+                this.damage = 4;
+                break;
+            case 2:
+                this.damage = 7;
+                break;
+            case 3:
+                this.damage = 12;
+                break;
+            case 4:
+                this.damage = 18;
+                break;
+            case 5:
+                this.damage = 25;
+                break;
+            case 6:
+                this.damage = 32;
+                break;
+        }
+        return this.damage;
     }
 
     /**
@@ -111,7 +151,7 @@ public class Waterblade implements Spells {
      */
     @Override
     public String getStatChange() {
-        return null;
+        return this.statChange;
     }
 
     /**
@@ -126,6 +166,7 @@ public class Waterblade implements Spells {
 
     /**
      * getter method for raw stat change value
+     *
      * @return raw stat change value
      */
     public int getRawStatValue() {

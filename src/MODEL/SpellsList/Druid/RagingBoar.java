@@ -37,28 +37,27 @@ public class RagingBoar implements Spells {
      */
     @Override
     public int getManaCost() {
-        int val = this.manaCost;
         switch (this.level) {
             case 1:
-                val = 5;
+                this.manaCost = 5;
                 break;
             case 2:
-                val = 7;
+                this.manaCost = 7;
                 break;
             case 3:
-                val = 10;
+                this.manaCost = 10;
                 break;
             case 4:
-                val = 14;
+                this.manaCost = 14;
                 break;
             case 5:
-                val = 16;
+                this.manaCost = 16;
                 break;
             case 6:
-                val = 22;
+                this.manaCost = 22;
                 break;
         }
-        return val;
+        return this.manaCost;
     }
 
     /**
@@ -73,6 +72,7 @@ public class RagingBoar implements Spells {
 
     /**
      * getter method for raw spell damage
+     *
      * @return raw spell damage
      */
     public int getRawDamage() {
@@ -172,6 +172,7 @@ public class RagingBoar implements Spells {
 
     /**
      * getter method for raw stat change value
+     *
      * @return raw stat change value
      */
     public int getRawStatValue() {
@@ -202,22 +203,22 @@ public class RagingBoar implements Spells {
     @Override
     public boolean updateLevel(int pLevel) {
         if (pLevel == 4) {
-            this.level =1;
+            this.level = 1;
             return true;
         } else if (pLevel == 7) {
-            this.level =2;
+            this.level = 2;
             return true;
         } else if (pLevel == 10) {
-            this.level =3;
+            this.level = 3;
             return true;
         } else if (pLevel == 16) {
-            this.level =4;
+            this.level = 4;
             return true;
         } else if (pLevel == 24) {
-            this.level =5;
+            this.level = 5;
             return true;
         } else if (pLevel == 28) {
-            this.level =6;
+            this.level = 6;
             return true;
         }
         return false;

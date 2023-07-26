@@ -37,28 +37,27 @@ public class ThornExplosion implements Spells {
      */
     @Override
     public int getManaCost() {
-        int val = this.manaCost;
         switch (this.level) {
             case 1:
-                val = 6;
+                this.manaCost = 6;
                 break;
             case 2:
-                val = 8;
+                this.manaCost = 8;
                 break;
             case 3:
-                val = 12;
+                this.manaCost = 12;
                 break;
             case 4:
-                val = 15;
+                this.manaCost = 15;
                 break;
             case 5:
-                val = 19;
+                this.manaCost = 19;
                 break;
             case 6:
-                val = 25;
+                this.manaCost = 25;
                 break;
         }
-        return val;
+        return this.manaCost;
     }
 
     /**
@@ -73,6 +72,7 @@ public class ThornExplosion implements Spells {
 
     /**
      * getter method for raw spell damage
+     *
      * @return raw spell damage
      */
     public int getRawDamage() {
@@ -172,6 +172,7 @@ public class ThornExplosion implements Spells {
 
     /**
      * getter method for raw stat change value
+     *
      * @return raw stat change value
      */
     public int getRawStatValue() {
@@ -202,22 +203,22 @@ public class ThornExplosion implements Spells {
     @Override
     public boolean updateLevel(int pLevel) {
         if (pLevel == 5) {
-            this.level =1;
+            this.level = 1;
             return true;
         } else if (pLevel == 11) {
-            this.level =2;
+            this.level = 2;
             return true;
         } else if (pLevel == 17) {
-            this.level =3;
+            this.level = 3;
             return true;
         } else if (pLevel == 22) {
-            this.level =4;
+            this.level = 4;
             return true;
         } else if (pLevel == 26) {
-            this.level =5;
+            this.level = 5;
             return true;
         } else if (pLevel == 30) {
-            this.level =6;
+            this.level = 6;
             return true;
         }
         return false;

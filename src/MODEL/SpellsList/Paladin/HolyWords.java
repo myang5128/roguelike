@@ -30,7 +30,27 @@ public class HolyWords implements Spells {
      */
     @Override
     public int getManaCost() {
-        return this.manaCost + this.level;
+        switch (this.level) {
+            case 1:
+                this.manaCost = 1;
+                break;
+            case 2:
+                this.manaCost = 2;
+                break;
+            case 3:
+                this.manaCost = 3;
+                break;
+            case 4:
+                this.manaCost = 4;
+                break;
+            case 5:
+                this.manaCost = 5;
+                break;
+            case 6:
+                this.manaCost = 6;
+                break;
+        }
+        return this.manaCost;
     }
 
     /**
@@ -120,15 +140,36 @@ public class HolyWords implements Spells {
      */
     @Override
     public int getStatValue() {
-        return (int) (getRawStatValue() * (Math.random() * 4 + 1));
+        return (int) (getRawStatValue() + (Math.random() * this.level + 1));
     }
 
     /**
      * getter method for raw stat change value
+     *
      * @return raw stat change value
      */
     public int getRawStatValue() {
-        return this.heal + this.level;
+        switch (this.level) {
+            case 1:
+                this.heal = 3;
+                break;
+            case 2:
+                this.heal = 5;
+                break;
+            case 3:
+                this.heal = 9;
+                break;
+            case 4:
+                this.heal = 14;
+                break;
+            case 5:
+                this.heal = 18;
+                break;
+            case 6:
+                this.heal = 24;
+                break;
+        }
+        return this.heal;
     }
 
     /**
@@ -138,12 +179,7 @@ public class HolyWords implements Spells {
      */
     @Override
     public int runSpell() {
-        int chance = (int) (Math.random() * 100 + this.level);
-        if (chance <= this.misfire) {
-            return 0;
-        } else {
-            return getDamage();
-        }
+        return getStatValue();
     }
 
     /**
