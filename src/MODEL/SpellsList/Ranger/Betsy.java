@@ -1,4 +1,6 @@
 package MODEL.SpellsList.Ranger;
 
-public class Betsy {
+import MODEL.SpellsList.Spells;
+
+public class Betsy implements Spells {
 }

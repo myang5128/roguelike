@@ -6,6 +6,7 @@ import MODEL.SpellsList.Druid.*;
 import MODEL.SpellsList.Knight.*;
 import MODEL.SpellsList.Mage.*;
 import MODEL.SpellsList.Paladin.*;
+import MODEL.SpellsList.Ranger.*;
 import MODEL.SpellsList.Spells;
 import MODEL.StartingClasses.*;
 import VIEW.*;
@@ -35,7 +36,6 @@ public class Main {
 
     /**
      * gets name
-     *
      */
     public static void askForName() {
         charGenText.nameTextDisplay();
@@ -45,7 +45,6 @@ public class Main {
 
     /**
      * gets class
-     *
      */
     public static void askForClass() {
         charGenText.classTextDisplay();
@@ -124,9 +123,7 @@ public class Main {
                 CombatText damageText = new CombatText(e.takeDamage(value), e.getName());
                 damageText.playerHeavyTextDisplay();
             }
-        }
-
-        else if (move.equals("SPELLS")) {
+        } else if (move.equals("SPELLS")) {
             Spells[] spellList = p.spells();
             SpellsText startSpellText = new SpellsText();
             startSpellText.startTextDisplay();
@@ -134,8 +131,7 @@ public class Main {
                 if (spellList[i].getSpellType().equals("ATTACK")) {
                     SpellsText spellText = new SpellsText(spellList[i].getName(), spellList[i].getLevel(), spellList[i].getRawDamage(), spellList[i].getManaCost(), spellList[i].getDesc());
                     spellText.spellATKTextDisplay();
-                }
-                else if (spellList[i].getSpellType().equals("SUPPORT")){
+                } else if (spellList[i].getSpellType().equals("SUPPORT")) {
                     String statChange = spellList[i].getStatChange();
                     switch (statChange) {
                         case "DAMAGE":
@@ -164,7 +160,7 @@ public class Main {
             }
             int spellCount = 0;
 
-            while (!spellPicker.equals(spellList[spellCount].getName())){
+            while (!spellPicker.equals(spellList[spellCount].getName())) {
                 boolean found = false;
                 for (int i = 0; i < spellList.length; i++) {
                     if (spellPicker.equals(spellList[i].getName())) {
@@ -196,30 +192,26 @@ public class Main {
                     spellsDmgText.damageTextDisplay();
                     e.takeMagicDamage(damage);
                 }
-            }
-            else if (spellList[spellCount].getSpellType().equals("SUPPORT")) {
+            } else if (spellList[spellCount].getSpellType().equals("SUPPORT")) {
                 if (spellList[spellCount].getStatChange().equals("ATTACK")) {
                     int attack = spellList[spellCount].runSpell();
                     p.changeStat("ATTACK", attack);
                     SpellsText supportText = new SpellsText(spellList[spellCount].getName(), attack);
                     supportText.attackTextDisplay();
-                }
-                else if (spellList[spellCount].getStatChange().equals("DEFENSE")) {
+                } else if (spellList[spellCount].getStatChange().equals("DEFENSE")) {
                     int defense = spellList[spellCount].runSpell();
                     p.changeStat("DEFENSE", defense);
                     SpellsText supportText = new SpellsText(spellList[spellCount].getName(), defense);
                     supportText.defenseTextDisplay();
 
-                }
-                else if (spellList[spellCount].getStatChange().equals("HEALTH")) {
+                } else if (spellList[spellCount].getStatChange().equals("HEALTH")) {
                     int health = spellList[spellCount].runSpell();
                     p.changeStat("DEFENSE", health);
                     SpellsText supportText = new SpellsText(spellList[spellCount].getName(), health);
                     supportText.healthTextDisplay();
                 }
                 p.setMana(spellList[spellCount].getManaCost());
-            }
-            else if (spellList[spellCount].getSpellType().equals("WEAKEN")) {
+            } else if (spellList[spellCount].getSpellType().equals("WEAKEN")) {
 
             }
 
@@ -413,11 +405,12 @@ public class Main {
                 p = new Player(playerName, paladin, paladin.getHealth(), paladin.getMana(), paladin.getDefense(), paladin.getDodge(), paladin.getDamage(), spellArray);
                 break;
             case "RANGER":
-                windSlash = new WindSlash();
-                falconSwoop = new FalconSwoop();
-                ragingBoar = new RagingBoar();
-                thornExplosion = new ThornExplosion();
-                spellArray = new Spells[]{windSlash, falconSwoop, windSlash, ragingBoar, thornExplosion};
+                Adrenaline adrenaline = new Adrenaline();
+                Betsy betsy = new Betsy();
+                CriticalSenses criticalSenses = new CriticalSenses();
+                Ruckus ruckus = new Ruckus();
+                SnipeShot snipeShot = new SnipeShot();
+                spellArray = new Spells[]{adrenaline, betsy, criticalSenses, ruckus, snipeShot};
                 p = new Player(playerName, ranger, ranger.getHealth(), ranger.getMana(), ranger.getDefense(), ranger.getDodge(), ranger.getDamage(), spellArray);
                 break;
             default:

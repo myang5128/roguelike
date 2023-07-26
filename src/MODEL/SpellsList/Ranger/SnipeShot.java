@@ -1,4 +1,6 @@
 package MODEL.SpellsList.Ranger;
 
-public class SnipeShot {
+import MODEL.SpellsList.Spells;
+
+public class SnipeShot implements Spells {
 }

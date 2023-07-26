@@ -1,4 +1,6 @@
 package MODEL.SpellsList.Ranger;
 
-public class Ruckus {
+import MODEL.SpellsList.Spells;
+
+public class Ruckus implements Spells {
 }
