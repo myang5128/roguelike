@@ -32,24 +32,12 @@ public class DemonWisp implements Spells {
     @Override
     public int getManaCost() {
         switch (this.level) {
-            case 1:
-                this.manaCost = 6;
-                break;
-            case 2:
-                this.manaCost = 7;
-                break;
-            case 3:
-                this.manaCost = 9;
-                break;
-            case 4:
-                this.manaCost = 11;
-                break;
-            case 5:
-                this.manaCost = 13;
-                break;
-            case 6:
-                this.manaCost = 15;
-                break;
+            case 1 -> this.manaCost = 6;
+            case 2 -> this.manaCost = 7;
+            case 3 -> this.manaCost = 9;
+            case 4 -> this.manaCost = 11;
+            case 5 -> this.manaCost = 13;
+            case 6 -> this.manaCost = 15;
         }
         return this.manaCost;
     }
@@ -72,24 +60,12 @@ public class DemonWisp implements Spells {
     @Override
     public int getRawDamage() {
         switch (this.level) {
-            case 1:
-                this.damage = 10;
-                break;
-            case 2:
-                this.damage = 15;
-                break;
-            case 3:
-                this.damage = 21;
-                break;
-            case 4:
-                this.damage = 28;
-                break;
-            case 5:
-                this.damage = 34;
-                break;
-            case 6:
-                this.damage = 46;
-                break;
+            case 1 -> this.damage = 10;
+            case 2 -> this.damage = 15;
+            case 3 -> this.damage = 21;
+            case 4 -> this.damage = 28;
+            case 5 -> this.damage = 34;
+            case 6 -> this.damage = 46;
         }
         return this.damage;
     }

@@ -30,24 +30,12 @@ public class HolyProtection implements Spells {
     @Override
     public int getManaCost() {
         switch (this.level) {
-            case 1:
-                this.manaCost = 2;
-                break;
-            case 2:
-                this.manaCost = 3;
-                break;
-            case 3:
-                this.manaCost = 4;
-                break;
-            case 4:
-                this.manaCost = 5;
-                break;
-            case 5:
-                this.manaCost = 6;
-                break;
-            case 6:
-                this.manaCost = 7;
-                break;
+            case 1 -> this.manaCost = 2;
+            case 2 -> this.manaCost = 3;
+            case 3 -> this.manaCost = 4;
+            case 4 -> this.manaCost = 5;
+            case 5 -> this.manaCost = 6;
+            case 6 -> this.manaCost = 7;
         }
         return this.manaCost;
     }
@@ -149,26 +137,14 @@ public class HolyProtection implements Spells {
      */
     public int getRawStatValue() {
         switch (this.level) {
-            case 1:
-                this.defense = 3;
-                break;
-            case 2:
-                this.defense = 5;
-                break;
-            case 3:
-                this.defense = 8;
-                break;
-            case 4:
-                this.defense = 12;
-                break;
-            case 5:
-                this.defense = 17;
-                break;
-            case 6:
-                this.defense = 23;
-                break;
+            case 1 -> this.defense = 3;
+            case 2 -> this.defense = 5;
+            case 3 -> this.defense = 8;
+            case 4 -> this.defense = 12;
+            case 5 -> this.defense = 17;
+            case 6 -> this.defense = 23;
         }
-        return this.attack;
+        return this.defense;
     }
 
     /**

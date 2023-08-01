@@ -32,24 +32,12 @@ public class Rockfall implements Spells {
     @Override
     public int getManaCost() {
         switch (this.level) {
-            case 1:
-                this.manaCost = 2;
-                break;
-            case 2:
-                this.manaCost = 3;
-                break;
-            case 3:
-                this.manaCost = 4;
-                break;
-            case 4:
-                this.manaCost = 6;
-                break;
-            case 5:
-                this.manaCost = 8;
-                break;
-            case 6:
-                this.manaCost = 10;
-                break;
+            case 1 -> this.manaCost = 2;
+            case 2 -> this.manaCost = 3;
+            case 3 -> this.manaCost = 4;
+            case 4 -> this.manaCost = 6;
+            case 5 -> this.manaCost = 8;
+            case 6 -> this.manaCost = 10;
         }
         return this.manaCost;
     }
@@ -72,24 +60,12 @@ public class Rockfall implements Spells {
     @Override
     public int getRawDamage() {
         switch (this.level) {
-            case 1:
-                this.damage = 2;
-                break;
-            case 2:
-                this.damage = 4;
-                break;
-            case 3:
-                this.damage = 7;
-                break;
-            case 4:
-                this.damage = 13;
-                break;
-            case 5:
-                this.damage = 19;
-                break;
-            case 6:
-                this.damage = 25;
-                break;
+            case 1 -> this.damage = 2;
+            case 2 -> this.damage = 4;
+            case 3 -> this.damage = 7;
+            case 4 -> this.damage = 13;
+            case 5 -> this.damage = 19;
+            case 6 -> this.damage = 25;
         }
         return this.damage;
     }

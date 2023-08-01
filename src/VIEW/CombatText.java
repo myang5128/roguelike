@@ -4,13 +4,10 @@ import java.util.HashMap;
 
 public class CombatText {
 
-    HashMap<String, String> dialText = new HashMap<String, String>();
+    HashMap<String, String> dialText = new HashMap<>();
 
     public CombatText() {
         // format for adding to hashmap: text.put(KEY, VALUE);
-        /**
-         * Hashmap values
-         */
         dialText.put("COMBATMOVE", "PICK A MOVE, ADVENTURER." + " *LIGHT, HEAVY, FLEE, SPELLS*\n");
         dialText.put("MOVEINVALID", "PLEASE FIGHT PROPERLY..." + " *LIGHT, HEAVY, FLEE, SPELLS*\n");
     }

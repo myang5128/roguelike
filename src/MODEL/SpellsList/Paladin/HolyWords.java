@@ -31,24 +31,12 @@ public class HolyWords implements Spells {
     @Override
     public int getManaCost() {
         switch (this.level) {
-            case 1:
-                this.manaCost = 1;
-                break;
-            case 2:
-                this.manaCost = 2;
-                break;
-            case 3:
-                this.manaCost = 3;
-                break;
-            case 4:
-                this.manaCost = 4;
-                break;
-            case 5:
-                this.manaCost = 5;
-                break;
-            case 6:
-                this.manaCost = 6;
-                break;
+            case 1 -> this.manaCost = 1;
+            case 2 -> this.manaCost = 2;
+            case 3 -> this.manaCost = 3;
+            case 4 -> this.manaCost = 4;
+            case 5 -> this.manaCost = 5;
+            case 6 -> this.manaCost = 6;
         }
         return this.manaCost;
     }
@@ -150,24 +138,12 @@ public class HolyWords implements Spells {
      */
     public int getRawStatValue() {
         switch (this.level) {
-            case 1:
-                this.heal = 3;
-                break;
-            case 2:
-                this.heal = 5;
-                break;
-            case 3:
-                this.heal = 9;
-                break;
-            case 4:
-                this.heal = 14;
-                break;
-            case 5:
-                this.heal = 18;
-                break;
-            case 6:
-                this.heal = 24;
-                break;
+            case 1 -> this.heal = 3;
+            case 2 -> this.heal = 5;
+            case 3 -> this.heal = 9;
+            case 4 -> this.heal = 14;
+            case 5 -> this.heal = 18;
+            case 6 -> this.heal = 24;
         }
         return this.heal;
     }

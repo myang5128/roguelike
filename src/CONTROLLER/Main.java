@@ -96,137 +96,160 @@ public class Main {
         }
 
         // light attack
-        if (move.equals("LIGHT")) {
-            int value = p.lightAttack(e.getDodge());
-            // miss
-            if (value == 0) {
-                CombatText damageText = new CombatText(0, e.getName());
-                damageText.playerMissTextDisplay();
+        switch (move) {
+            case "LIGHT" -> {
+                int value = p.lightAttack(e.getDodge());
+                // miss
+                if (value == 0) {
+                    CombatText damageText = new CombatText(0, e.getName());
+                    damageText.playerMissTextDisplay();
+                }
+                // hit
+                else {
+                    CombatText damageText = new CombatText(e.takeDamage(value), e.getName());
+                    damageText.playerLightTextDisplay();
+                }
             }
-            // hit
-            else {
-                CombatText damageText = new CombatText(e.takeDamage(value), e.getName());
-                damageText.playerLightTextDisplay();
-            }
-        }
 
-        // heavy attack
-        else if (move.equals("HEAVY")) {
-            int value = p.heavyAttack(e.getDodge());
-            // miss
-            if (value == 0) {
-                CombatText damageText = new CombatText(0, e.getName());
-                damageText.playerMissTextDisplay();
+
+            // heavy attack
+            case "HEAVY" -> {
+                int value = p.heavyAttack(e.getDodge());
+                // miss
+                if (value == 0) {
+                    CombatText damageText = new CombatText(0, e.getName());
+                    damageText.playerMissTextDisplay();
+                }
+                // hit
+                else {
+                    CombatText damageText = new CombatText(e.takeDamage(value), e.getName());
+                    damageText.playerHeavyTextDisplay();
+                }
             }
-            // hit
-            else {
-                CombatText damageText = new CombatText(e.takeDamage(value), e.getName());
-                damageText.playerHeavyTextDisplay();
-            }
-        } else if (move.equals("SPELLS")) {
-            Spells[] spellList = p.spells();
-            SpellsText startSpellText = new SpellsText();
-            startSpellText.startTextDisplay();
-            for (int i = 0; i < spellList.length; i++) {
-                if (spellList[i].getSpellType().equals("ATTACK")) {
-                    SpellsText spellText = new SpellsText(spellList[i].getName(), spellList[i].getLevel(), spellList[i].getRawDamage(), spellList[i].getManaCost(), spellList[i].getDesc());
-                    spellText.spellATKTextDisplay();
-                } else if (spellList[i].getSpellType().equals("SUPPORT")) {
-                    String statChange = spellList[i].getStatChange();
-                    switch (statChange) {
-                        case "DAMAGE":
-                            SpellsText spellText = new SpellsText(spellList[i].getName(), spellList[i].getLevel(), spellList[i].getStatValue(), spellList[i].getManaCost(), spellList[i].getDesc());
-                            spellText.spellDMGTextDisplay();
-                            break;
-                        case "DEFENSE":
-                            spellText = new SpellsText(spellList[i].getName(), spellList[i].getLevel(), spellList[i].getStatValue(), spellList[i].getManaCost(), spellList[i].getDesc());
-                            spellText.spellDEFTextDisplay();
-                            break;
-                        case "HEALTH":
-                            spellText = new SpellsText(spellList[i].getName(), spellList[i].getLevel(), spellList[i].getStatValue(), spellList[i].getManaCost(), spellList[i].getDesc());
-                            spellText.spellHPTextDisplay();
-                            break;
-                        default:
-                            spellText = new SpellsText(spellList[i].getName(), spellList[i].getLevel(), spellList[i].getStatValue(), spellList[i].getManaCost(), spellList[i].getDesc());
-                            spellText.spellDODGETextDisplay();
+            case "SPELLS" -> {
+                Spells[] spellList = p.spells();
+                SpellsText startSpellText = getSpellsText(spellList);
+                Scanner scanner1 = new Scanner(System.in);
+                String spellPicker = scanner1.nextLine().toUpperCase();
+                if (spellPicker.equals("BACK")) {
+                    playerTurn(p, e);
+                }
+                int spellCount = 0;
+                while (!spellPicker.equals(spellList[spellCount].getName())) {
+                    boolean found = false;
+                    for (int i = 0; i < spellList.length; i++) {
+                        if (spellPicker.equals(spellList[i].getName())) {
+                            spellCount = i;
+                            found = true;
+                        }
+                    }
+                    if (!found) {
+                        startSpellText.pickAgainTextDisplay();
+                        spellPicker = scanner1.nextLine().toUpperCase();
                     }
                 }
-            }
-            startSpellText.pickTextDisplay();
-            Scanner scanner1 = new Scanner(System.in);
-            String spellPicker = scanner1.nextLine().toUpperCase();
-            if (spellPicker.equals("BACK")) {
-                playerTurn(p, e);
-            }
-            int spellCount = 0;
 
-            while (!spellPicker.equals(spellList[spellCount].getName())) {
-                boolean found = false;
-                for (int i = 0; i < spellList.length; i++) {
-                    if (spellPicker.equals(spellList[i].getName())) {
-                        spellCount = i;
-                        found = true;
+                // if spell is valid, check for sufficient mana
+                if (p.getCurMana() - spellList[spellCount].getManaCost() < 0) {
+                    SpellsText noManaText = new SpellsText();
+                    noManaText.manaGoneTextDisplay();
+                    playerTurn(p, e);
+                }
+
+                // when spell is valid, react accordingly based on spellType - ATTACK, SUPPORT, WEAKEN
+                if (spellList[spellCount].getSpellType().equals("ATTACK")) {
+                    int damage = spellList[spellCount].runSpell();
+                    p.setMana(spellList[spellCount].getManaCost());
+                    SpellsText spellsDmgText = new SpellsText(spellList[spellCount].getName(), damage, spellList[spellCount].getManaCost(), e.getName());
+                    if (damage == 0) {
+                        spellsDmgText.missTextDisplay();
+                    } else {
+                        spellsDmgText.damageTextDisplay();
+                        e.takeMagicDamage(damage);
                     }
-                }
-                if (!found) {
-                    startSpellText.pickAgainTextDisplay();
-                    spellPicker = scanner1.nextLine().toUpperCase();
+                } else if (spellList[spellCount].getSpellType().equals("SUPPORT")) {
+                    if (spellList[spellCount].getStatChange().equals("ATTACK")) {
+                        int attack = spellList[spellCount].runSpell();
+                        p.changeStat("ATTACK", attack);
+                        SpellsText supportText = new SpellsText(spellList[spellCount].getName(), attack);
+                        supportText.attackTextDisplay();
+                    } else if (spellList[spellCount].getStatChange().equals("DEFENSE")) {
+                        int defense = spellList[spellCount].runSpell();
+                        p.changeStat("DEFENSE", defense);
+                        SpellsText supportText = new SpellsText(spellList[spellCount].getName(), defense);
+                        supportText.defenseTextDisplay();
+
+                    } else if (spellList[spellCount].getStatChange().equals("HEALTH")) {
+                        int health = spellList[spellCount].runSpell();
+                        p.changeStat("HEALTH", health);
+                        SpellsText supportText = new SpellsText(spellList[spellCount].getName(), health);
+                        supportText.healthTextDisplay();
+                    }
+                    p.setMana(spellList[spellCount].getManaCost());
+                } else if (spellList[spellCount].getSpellType().equals("WEAKEN")) {
+                    if (spellList[spellCount].getStatChange().equals("ATTACK")) {
+                        int attack = spellList[spellCount].runSpell();
+                        e.debuff("ATTACK", attack);
+                        SpellsText supportText = new SpellsText(spellList[spellCount].getName(), e.getName(), attack);
+                        supportText.debuffAttackTextDisplay();
+                    } else if (spellList[spellCount].getStatChange().equals("DEFENSE")) {
+                        int defense = spellList[spellCount].runSpell();
+                        e.debuff("DEFENSE", defense);
+                        SpellsText supportText = new SpellsText(spellList[spellCount].getName(), e.getName(), defense);
+                        supportText.debuffDefenseTextDisplay();
+
+                    } else if (spellList[spellCount].getStatChange().equals("DODGE")) {
+                        int dodge = spellList[spellCount].runSpell();
+                        e.debuff("DODGE", dodge);
+                        SpellsText supportText = new SpellsText(spellList[spellCount].getName(), e.getName(), dodge);
+                        supportText.debuffDodgeTextDisplay();
+                    }
+                    p.setMana(spellList[spellCount].getManaCost());
+
                 }
             }
 
-            // if spell is valid, check for sufficient mana
-            if (p.getCurMana() - spellList[spellCount].getManaCost() < 0) {
-                SpellsText noManaText = new SpellsText();
-                noManaText.manaGoneTextDisplay();
-                playerTurn(p, e);
-            }
-
-            // when spell is valid, react accordingly based on spellType - ATTACK, SUPPORT, WEAKEN
-            if (spellList[spellCount].getSpellType().equals("ATTACK")) {
-                int damage = spellList[spellCount].runSpell();
-                p.setMana(spellList[spellCount].getManaCost());
-                SpellsText spellsDmgText = new SpellsText(spellList[spellCount].getName(), damage, spellList[spellCount].getManaCost(), e.getName());
-                if (damage == 0) {
-                    spellsDmgText.missTextDisplay();
-                } else {
-                    spellsDmgText.damageTextDisplay();
-                    e.takeMagicDamage(damage);
+            // flee
+            default -> {
+                int flee = p.flee();
+                if (flee == 1) {
+                    return 1;
                 }
-            } else if (spellList[spellCount].getSpellType().equals("SUPPORT")) {
-                if (spellList[spellCount].getStatChange().equals("ATTACK")) {
-                    int attack = spellList[spellCount].runSpell();
-                    p.changeStat("ATTACK", attack);
-                    SpellsText supportText = new SpellsText(spellList[spellCount].getName(), attack);
-                    supportText.attackTextDisplay();
-                } else if (spellList[spellCount].getStatChange().equals("DEFENSE")) {
-                    int defense = spellList[spellCount].runSpell();
-                    p.changeStat("DEFENSE", defense);
-                    SpellsText supportText = new SpellsText(spellList[spellCount].getName(), defense);
-                    supportText.defenseTextDisplay();
-
-                } else if (spellList[spellCount].getStatChange().equals("HEALTH")) {
-                    int health = spellList[spellCount].runSpell();
-                    p.changeStat("DEFENSE", health);
-                    SpellsText supportText = new SpellsText(spellList[spellCount].getName(), health);
-                    supportText.healthTextDisplay();
-                }
-                p.setMana(spellList[spellCount].getManaCost());
-            } else if (spellList[spellCount].getSpellType().equals("WEAKEN")) {
-
+                CombatText fleeText = new CombatText(0, e.getName());
+                fleeText.fleeFailTextDisplay();
             }
-
-        }
-
-        // flee
-        else {
-            int flee = p.flee();
-            if (flee == 1) {
-                return 1;
-            }
-            CombatText fleeText = new CombatText(0, e.getName());
-            fleeText.fleeFailTextDisplay();
         }
         return 0;
+    }
+
+    private static SpellsText getSpellsText(Spells[] spellList) {
+        SpellsText startSpellText = new SpellsText();
+        startSpellText.startTextDisplay();
+        for (Spells spells : spellList) {
+            if (spells.getSpellType().equals("ATTACK")) {
+                SpellsText spellText = new SpellsText(spells.getName(), spells.getLevel(), spells.getRawDamage(), spells.getManaCost(), spells.getDesc());
+                spellText.spellATKTextDisplay();
+            } else if (spells.getSpellType().equals("SUPPORT")) {
+                String statChange = spells.getStatChange();
+                SpellsText spellText = new SpellsText(spells.getName(), spells.getLevel(), spells.getStatValue(), spells.getManaCost(), spells.getDesc());
+                switch (statChange) {
+                    case "DAMAGE" -> spellText.spellDMGTextDisplay();
+                    case "DEFENSE" -> spellText.spellDEFTextDisplay();
+                    case "HEALTH" -> spellText.spellHPTextDisplay();
+                    default -> spellText.spellDODGETextDisplay();
+                }
+            } else if (spells.getSpellType().equals("WEAKEN")) {
+                String statChange = spells.getStatChange();
+                SpellsText spellText = new SpellsText(spells.getName(), spells.getLevel(), spells.getStatValue(), spells.getManaCost(), spells.getDesc());
+                switch (statChange) {
+                    case "ATTACK" -> spellText.spellEDDMGTextDisplay();
+                    case "DODGE" -> spellText.spellEDDODGETextDisplay();
+                    case "DEFENSE" -> spellText.spellEDDEFTextDisplay();
+                }
+            }
+        }
+        startSpellText.pickTextDisplay();
+        return startSpellText;
     }
 
     public static void enemyTurn(Player p, Enemies e) {
@@ -276,10 +299,7 @@ public class Main {
      * @return true if dead, false if alive
      */
     public static boolean enemyChecker(Enemies e) {
-        if (e.getCurHealth() <= 0) {
-            return true;
-        }
-        return false;
+        return e.getCurHealth() <= 0;
     }
 
     /**
@@ -289,10 +309,7 @@ public class Main {
      * @return true if dead, false if alive
      */
     public static boolean playerChecker(Player p) {
-        if (p.getCurHealth() <= 0) {
-            return true;
-        }
-        return false;
+        return p.getCurHealth() <= 0;
     }
 
     /**
@@ -314,9 +331,9 @@ public class Main {
 
         // combat variables
         int flee;
-        int con = -1;
+        int con;
 
-        while (con == -1) {
+        while (true) {
             // player turn
             flee = playerTurn(p, e);
 
@@ -426,7 +443,7 @@ public class Main {
         PlayerCreateText playerGenText = new PlayerCreateText(playerName, playerClass);
         playerGenText.playerConfirmTextDisplay();
         promptEnterKey();
-        p.setExpReq(p.getLevel());
+        p.setExpReq();
         playerGenText = new PlayerCreateText(p.getName(), p.getCurHealth(), p.getMaxHealth(), p.getCurMana(), p.getMaxMana(), p.getDefense(), p.getDodge(), p.getDamage(), p.getCurExp(), p.getExpReq(), p.getGold(), p.getLevel());
         playerGenText.playerStatTextDisplay();
         promptEnterKey();

@@ -11,7 +11,7 @@ public class RagingBoar implements Spells {
     int level = 0;
     String target = "ENEMY";
     String desc = "CALL UPON A SPECTRAL BOAR TO MAIM YOUR ENEMIES!";
-    String spellType = "OFFENSIVE";
+    String spellType = "ATTACK";
     String statChange = null;
 
     /**
@@ -38,24 +38,12 @@ public class RagingBoar implements Spells {
     @Override
     public int getManaCost() {
         switch (this.level) {
-            case 1:
-                this.manaCost = 5;
-                break;
-            case 2:
-                this.manaCost = 7;
-                break;
-            case 3:
-                this.manaCost = 10;
-                break;
-            case 4:
-                this.manaCost = 14;
-                break;
-            case 5:
-                this.manaCost = 16;
-                break;
-            case 6:
-                this.manaCost = 22;
-                break;
+            case 1 -> this.manaCost = 5;
+            case 2 -> this.manaCost = 7;
+            case 3 -> this.manaCost = 10;
+            case 4 -> this.manaCost = 14;
+            case 5 -> this.manaCost = 16;
+            case 6 -> this.manaCost = 22;
         }
         return this.manaCost;
     }
@@ -76,28 +64,15 @@ public class RagingBoar implements Spells {
      * @return raw spell damage
      */
     public int getRawDamage() {
-        int val = this.damage;
         switch (this.level) {
-            case 1:
-                val = 5;
-                break;
-            case 2:
-                val = 10;
-                break;
-            case 3:
-                val = 17;
-                break;
-            case 4:
-                val = 26;
-                break;
-            case 5:
-                val = 34;
-                break;
-            case 6:
-                val = 40;
-                break;
+            case 1 -> this.damage = 5;
+            case 2 -> this.damage = 10;
+            case 3 -> this.damage = 17;
+            case 4 -> this.damage = 26;
+            case 5 -> this.damage = 34;
+            case 6 -> this.damage = 40;
         }
-        return val;
+        return this.damage;
     }
 
     /**

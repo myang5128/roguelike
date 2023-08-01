@@ -2,16 +2,6 @@ package MODEL.StartingClasses;
 
 public interface Classes {
     /**
-     * interface for starting classes
-     * ranger
-     * knight
-     * mage
-     * druid
-     * paladin
-     * rogue
-     */
-
-    /**
      * Default starting values
      */
     String name = null;
@@ -23,38 +13,44 @@ public interface Classes {
 
     /**
      * getter method for class name
+     *
      * @return name
      */
-    public String getName();
+    String getName();
 
     /**
      * getter method for class health
+     *
      * @return maxHealth
      */
-    public int getHealth();
+    int getHealth();
 
     /**
      * getter method for class mana
+     *
      * @return maxHMana
      */
-    public int getMana();
+    int getMana();
 
     /**
      * getter method for class defense
+     *
      * @return defense
      */
-    public int getDefense();
+    int getDefense();
 
     /**
      * getter method for class damage
+     *
      * @return damage
      */
-    public int getDamage();
+    int getDamage();
 
     /**
      * getter method for class dodge
+     *
      * @return dodge
      */
-    public int getDodge();
+    int getDodge();
 
 }

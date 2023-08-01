@@ -21,86 +21,91 @@ public interface Spells {
      *
      * @return name
      */
-    public String getName();
+    String getName();
 
     /**
      * getter method for mana cost
      *
      * @return mana cost
      */
-    public int getManaCost();
+    int getManaCost();
 
     /**
      * getter method for spell damage
      *
      * @return spell damage
      */
-    public int getDamage();
+    int getDamage();
 
     /**
      * getter method for raw spell damage
+     *
      * @return raw spell damage
      */
-    public int getRawDamage();
+    int getRawDamage();
 
     /**
      * getter method for misfire chance
      *
      * @return misfire chance
      */
-    public int getMisfire();
+    int getMisfire();
 
     /**
      * getter method for spell level
      *
      * @return spell level
      */
-    public int getLevel();
+    int getLevel();
 
     /**
      * getter method for spell target
      *
      * @return target
      */
-    public String getTarget();
+    String getTarget();
 
     /**
      * getter method for spell desc
      *
      * @return desc
      */
-    public String getDesc();
+    String getDesc();
 
     /**
      * getter method for spell type
+     *
      * @return ATTACK for offensive spells, SUPPORT for support spells, WEAKEN for enemy debuff spells
      */
-    public String getSpellType();
+    String getSpellType();
 
     /**
      * getter method for stat change
+     *
      * @return HEALTH for health changing, DEFENSE for defense changing, DODGE for dodge changing, DAMAGE for damage changing
      */
-    public String getStatChange();
+    String getStatChange();
 
     /**
      * getter method for stat change value
+     *
      * @return stat change value
      */
-    public int getStatValue();
+    int getStatValue();
 
     /**
      * getter method for raw stat change value
+     *
      * @return raw stat change value
      */
-    public int getRawStatValue();
+    int getRawStatValue();
 
     /**
      * run spell
      *
      * @return 0 if miss, >0 for damage
      */
-    public int runSpell();
+    int runSpell();
 
     /**
      * updates spell level
@@ -108,5 +113,5 @@ public interface Spells {
      * @param pLevel player level
      * @return t if updated, f if not
      */
-    public boolean updateLevel(int pLevel);
+    boolean updateLevel(int pLevel);
 }

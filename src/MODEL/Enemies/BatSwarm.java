@@ -21,10 +21,10 @@ public class BatSwarm implements Enemies {
         this.maxHealth = (int) ((Math.random() * 4) * scale + 2);
         this.curHealth = this.maxHealth;
         this.defense = scale;
-        this.dodge = (int) (55 + (scale * 3));
+        this.dodge = 55 + (scale * 3);
         this.damage = (int) ((Math.random() * scale) + 1);
         this.exp = 3 * scale;
-        this.gold = 1 * scale;
+        this.gold = scale;
     }
 
     /**
@@ -48,6 +48,7 @@ public class BatSwarm implements Enemies {
 
     /**
      * enemy takes magic damage
+     *
      * @param damage raw magic damage value
      * @return damage value
      */
@@ -67,7 +68,24 @@ public class BatSwarm implements Enemies {
      */
     @Override
     public void debuff(String stat, int damage) {
-
+        if (stat.equals("DODGE")) {
+            this.dodge -= damage;
+            if (this.dodge < 0) {
+                this.dodge = 0;
+            }
+        }
+        if (stat.equals("ATTACK")) {
+            this.damage -= damage;
+            if (this.damage < 1) {
+                this.damage = 1;
+            }
+        }
+        if (stat.equals("DEFENSE")) {
+            this.defense -= damage;
+            if (this.defense < 0) {
+                this.defense = 0;
+            }
+        }
     }
 
     /**
@@ -100,8 +118,6 @@ public class BatSwarm implements Enemies {
         return maxHealth;
     }
 
-    ;
-
     /**
      * getter method for enemy cur health
      *
@@ -110,8 +126,6 @@ public class BatSwarm implements Enemies {
     public int getCurHealth() {
         return curHealth;
     }
-
-    ;
 
     /**
      * getter method for enemy defense
@@ -149,15 +163,15 @@ public class BatSwarm implements Enemies {
 
     /**
      * runs an attack for the enemy
+     *
      * @param pDodge player dodge chance
      * @return 0 if miss, >0 for raw damage value
      */
     public int lightAttack(int pDodge) {
-        int hitChance = ( (int)(Math.random() * 100)) + 10;
+        int hitChance = ((int) (Math.random() * 100)) + 10;
         if (hitChance >= pDodge) {
             return this.damage;
-        }
-        else {
+        } else {
             return 0;
         }
     }
@@ -169,11 +183,10 @@ public class BatSwarm implements Enemies {
      * @return 0 for miss, >0 for raw damage value
      */
     public int heavyAttack(int pDodge) {
-        int hitChance = ( (int)(Math.random() * 100)) + 5;
+        int hitChance = ((int) (Math.random() * 100)) + 5;
         if (hitChance >= pDodge) {
             return (int) (this.damage * 1.5);
-        }
-        else {
+        } else {
             return 0;
         }
     }
@@ -192,7 +205,7 @@ public class BatSwarm implements Enemies {
     /**
      * getter method for enemy exp
      *
-     * @return
+     * @return exp
      */
     @Override
     public int getExp() {

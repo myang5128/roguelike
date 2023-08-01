@@ -12,91 +12,105 @@ public interface Enemies {
 
     /**
      * enemy takes damage
-     * @return -1 if miss, >0 for damage done
+     *
      * @param damage damage value
+     * @return -1 if miss, >0 for damage done
      */
-    public int takeDamage(int damage);
+    int takeDamage(int damage);
 
     /**
      * enemy takes magic damage
-     * @param damage raw magicdamage value
+     *
+     * @param damage raw magic damage value
      * @return damage value
      */
-    public int takeMagicDamage(int damage);
+    int takeMagicDamage(int damage);
 
     /**
      * enemy gets a debuff
-     * @param stat stat getting debuffed
+     *
+     * @param stat   stat getting debuffed
      * @param damage debuff strength
      */
-    public void debuff(String stat, int damage);
+    void debuff(String stat, int damage);
 
     /**
      * enemy gets a buff
-     * @param stat stat getting buffed
+     *
+     * @param stat   stat getting buffed
      * @param damage buff strength
      */
-    public void buff(String stat, int damage);
+    void buff(String stat, int damage);
 
     /**
      * getter method for enemy name
+     *
      * @return name
      */
-    public String getName();
+    String getName();
 
     /**
      * getter method for enemy max health
+     *
      * @return max health
      */
-    public int getMaxHealth();
+    int getMaxHealth();
 
     /**
      * getter method for enemy cur health
+     *
      * @return cur health
      */
-    public int getCurHealth();
+    int getCurHealth();
 
     /**
      * getter method for enemy defense
+     *
      * @return defense
      */
-    public int getDefense();
+    int getDefense();
 
     /**
      * getter method for enemy dodge
+     *
      * @return dodge
      */
-    public int getDodge();
+    int getDodge();
 
     /**
      * getter method for enemy damage
+     *
      * @return damage
      */
-    public int getDamage();
+    int getDamage();
 
     /**
      * enemy light attack
+     *
      * @param pDodge player dodge chance
      * @return 0 for miss, >0 for raw damage value
      */
-    public int lightAttack(int pDodge);
+    int lightAttack(int pDodge);
 
     /**
      * enemy heavy attack
+     *
      * @param pDodge player dodge chance
      * @return 0 for miss, >0 for raw damage value
      */
-    public int heavyAttack(int pDodge);
+    int heavyAttack(int pDodge);
 
     /**
      * getter method for enemy gold
+     *
      * @return gold
      */
-    public int getGold();
+    int getGold();
 
     /**
      * getter method for enemy exp
-     * @return
+     *
+     * @return exp
      */
-    public int getExp();
+    int getExp();
 }

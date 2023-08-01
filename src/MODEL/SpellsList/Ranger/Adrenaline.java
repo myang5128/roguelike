@@ -31,24 +31,12 @@ public class Adrenaline implements Spells {
     @Override
     public int getManaCost() {
         switch (this.level) {
-            case 1:
-                this.manaCost = 2;
-                break;
-            case 2:
-                this.manaCost = 3;
-                break;
-            case 3:
-                this.manaCost = 5;
-                break;
-            case 4:
-                this.manaCost = 7;
-                break;
-            case 5:
-                this.manaCost = 9;
-                break;
-            case 6:
-                this.manaCost = 12;
-                break;
+            case 1 -> this.manaCost = 2;
+            case 2 -> this.manaCost = 3;
+            case 3 -> this.manaCost = 5;
+            case 4 -> this.manaCost = 7;
+            case 5 -> this.manaCost = 9;
+            case 6 -> this.manaCost = 12;
         }
         return this.manaCost;
     }
@@ -150,24 +138,12 @@ public class Adrenaline implements Spells {
      */
     public int getRawStatValue() {
         switch (this.level) {
-            case 1:
-                this.dodge = 5;
-                break;
-            case 2:
-                this.dodge = 7;
-                break;
-            case 3:
-                this.dodge = 10;
-                break;
-            case 4:
-                this.dodge = 14;
-                break;
-            case 5:
-                this.dodge = 19;
-                break;
-            case 6:
-                this.dodge = 25;
-                break;
+            case 1 -> this.dodge = 5;
+            case 2 -> this.dodge = 7;
+            case 3 -> this.dodge = 10;
+            case 4 -> this.dodge = 14;
+            case 5 -> this.dodge = 19;
+            case 6 -> this.dodge = 25;
         }
         return this.damage;
     }
@@ -193,7 +169,7 @@ public class Adrenaline implements Spells {
         if (pLevel == 2) {
             this.level = 1;
             return true;
-        } else if (pLevel == 7) {
+        } else if (pLevel == 8) {
             this.level = 2;
             return true;
         } else if (pLevel == 11) {

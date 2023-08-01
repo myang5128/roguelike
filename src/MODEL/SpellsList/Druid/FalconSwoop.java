@@ -11,7 +11,7 @@ public class FalconSwoop implements Spells {
     int level = 0;
     String target = "ENEMY";
     String desc = "ENLIST THE AID OF A TRUSTWORTHY FALCON TO HARASS YOUR FOE WITH VOLATILE RESULTS!";
-    String spellType = "OFFENSIVE";
+    String spellType = "ATTACK";
     String statChange = null;
 
     /**
@@ -38,24 +38,12 @@ public class FalconSwoop implements Spells {
     @Override
     public int getManaCost() {
         switch (this.level) {
-            case 1:
-                this.manaCost = 3;
-                break;
-            case 2:
-                this.manaCost = 5;
-                break;
-            case 3:
-                this.manaCost = 8;
-                break;
-            case 4:
-                this.manaCost = 12;
-                break;
-            case 5:
-                this.manaCost = 16;
-                break;
-            case 6:
-                this.manaCost = 21;
-                break;
+            case 1 -> this.manaCost = 3;
+            case 2 -> this.manaCost = 5;
+            case 3 -> this.manaCost = 8;
+            case 4 -> this.manaCost = 12;
+            case 5 -> this.manaCost = 16;
+            case 6 -> this.manaCost = 21;
         }
         return this.manaCost;
     }
@@ -76,28 +64,15 @@ public class FalconSwoop implements Spells {
      * @return raw spell damage
      */
     public int getRawDamage() {
-        int val = this.damage;
         switch (this.level) {
-            case 1:
-                val = 2;
-                break;
-            case 2:
-                val = 5;
-                break;
-            case 3:
-                val = 10;
-                break;
-            case 4:
-                val = 18;
-                break;
-            case 5:
-                val = 25;
-                break;
-            case 6:
-                val = 32;
-                break;
+            case 1 -> this.damage = 2;
+            case 2 -> this.damage = 5;
+            case 3 -> this.damage = 10;
+            case 4 -> this.damage = 18;
+            case 5 -> this.damage = 25;
+            case 6 -> this.damage = 32;
         }
-        return val;
+        return this.damage;
     }
 
     /**

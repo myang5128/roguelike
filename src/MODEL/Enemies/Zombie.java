@@ -21,7 +21,7 @@ public class Zombie implements Enemies {
         this.maxHealth = (int) ((Math.random() * 13) * scale + 3);
         this.curHealth = this.maxHealth;
         this.defense = (int) ((Math.random() * scale) + 2);
-        this.dodge = (int) (10 + (scale * 4));
+        this.dodge = 10 + (scale * 4);
         this.damage = (int) ((Math.random() * scale) + 1);
         this.exp = 6 * scale;
         this.gold = 2 * scale;
@@ -48,6 +48,7 @@ public class Zombie implements Enemies {
 
     /**
      * enemy takes magic damage
+     *
      * @param damage raw magic damage value
      * @return damage value
      */
@@ -67,7 +68,24 @@ public class Zombie implements Enemies {
      */
     @Override
     public void debuff(String stat, int damage) {
-
+        if (stat.equals("DODGE")) {
+            this.dodge -= damage;
+            if (this.dodge < 0) {
+                this.dodge = 0;
+            }
+        }
+        if (stat.equals("ATTACK")) {
+            this.damage -= damage;
+            if (this.damage < 1) {
+                this.damage = 1;
+            }
+        }
+        if (stat.equals("DEFENSE")) {
+            this.defense -= damage;
+            if (this.defense < 0) {
+                this.defense = 0;
+            }
+        }
     }
 
     /**
@@ -100,8 +118,6 @@ public class Zombie implements Enemies {
         return maxHealth;
     }
 
-    ;
-
     /**
      * getter method for enemy cur health
      *
@@ -110,8 +126,6 @@ public class Zombie implements Enemies {
     public int getCurHealth() {
         return curHealth;
     }
-
-    ;
 
     /**
      * getter method for enemy defense
@@ -149,15 +163,15 @@ public class Zombie implements Enemies {
 
     /**
      * runs an attack for the enemy
+     *
      * @param pDodge player dodge chance
      * @return 0 if miss, >0 for raw damage value
      */
     public int lightAttack(int pDodge) {
-        int hitChance = ( (int)(Math.random() * 100)) + 12;
+        int hitChance = ((int) (Math.random() * 100)) + 12;
         if (hitChance >= pDodge) {
             return this.damage;
-        }
-        else {
+        } else {
             return 0;
         }
     }
@@ -169,11 +183,10 @@ public class Zombie implements Enemies {
      * @return 0 for miss, >0 for raw damage value
      */
     public int heavyAttack(int pDodge) {
-        int hitChance = ( (int)(Math.random() * 100)) + 6;
+        int hitChance = ((int) (Math.random() * 100)) + 6;
         if (hitChance >= pDodge) {
             return (int) (this.damage * 1.5);
-        }
-        else {
+        } else {
             return 0;
         }
     }
@@ -191,7 +204,7 @@ public class Zombie implements Enemies {
     /**
      * getter method for enemy exp
      *
-     * @return
+     * @return exp
      */
     @Override
     public int getExp() {

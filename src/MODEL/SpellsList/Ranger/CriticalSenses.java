@@ -30,24 +30,12 @@ public class CriticalSenses implements Spells {
     @Override
     public int getManaCost() {
         switch (this.level) {
-            case 1:
-                this.manaCost = 1;
-                break;
-            case 2:
-                this.manaCost = 2;
-                break;
-            case 3:
-                this.manaCost = 3;
-                break;
-            case 4:
-                this.manaCost = 4;
-                break;
-            case 5:
-                this.manaCost = 5;
-                break;
-            case 6:
-                this.manaCost = 6;
-                break;
+            case 1 -> this.manaCost = 1;
+            case 2 -> this.manaCost = 2;
+            case 3 -> this.manaCost = 3;
+            case 4 -> this.manaCost = 4;
+            case 5 -> this.manaCost = 5;
+            case 6 -> this.manaCost = 6;
         }
         return this.manaCost;
     }
@@ -149,24 +137,12 @@ public class CriticalSenses implements Spells {
      */
     public int getRawStatValue() {
         switch (this.level) {
-            case 1:
-                this.attack = 2;
-                break;
-            case 2:
-                this.attack = 3;
-                break;
-            case 3:
-                this.attack = 5;
-                break;
-            case 4:
-                this.attack = 7;
-                break;
-            case 5:
-                this.attack = 10;
-                break;
-            case 6:
-                this.attack = 14;
-                break;
+            case 1 -> this.attack = 2;
+            case 2 -> this.attack = 3;
+            case 3 -> this.attack = 5;
+            case 4 -> this.attack = 7;
+            case 5 -> this.attack = 10;
+            case 6 -> this.attack = 14;
         }
         return this.attack;
     }
@@ -189,22 +165,22 @@ public class CriticalSenses implements Spells {
      */
     @Override
     public boolean updateLevel(int pLevel) {
-        if (pLevel == 2) {
+        if (pLevel == 3) {
             this.level = 1;
             return true;
-        } else if (pLevel == 7) {
+        } else if (pLevel == 6) {
             this.level = 2;
             return true;
-        } else if (pLevel == 11) {
+        } else if (pLevel == 14) {
             this.level = 3;
             return true;
-        } else if (pLevel == 16) {
+        } else if (pLevel == 17) {
             this.level = 4;
             return true;
-        } else if (pLevel == 21) {
+        } else if (pLevel == 22) {
             this.level = 5;
             return true;
-        } else if (pLevel == 27) {
+        } else if (pLevel == 26) {
             this.level = 6;
             return true;
         }

@@ -4,13 +4,6 @@ import MODEL.SpellsList.Spells;
 import MODEL.StartingClasses.Classes;
 
 public class Player {
-    /**
-     * Player class
-     */
-
-    /**
-     * values
-     */
     String name;
     Classes playerClass;
     int curHealth;
@@ -56,7 +49,7 @@ public class Player {
      *
      * @return exp needed
      */
-    public int setExpReq(int level) {
+    public int setExpReq() {
         if (this.level < 5) {
             this.expReq = (this.level * 15);
             return this.expReq;
@@ -66,8 +59,7 @@ public class Player {
         } else if (this.level < 20) {
             this.expReq = (this.level * 125);
             return this.expReq;
-        }
-        else {
+        } else {
             this.expReq = (this.level * 200);
             return this.expReq;
         }
@@ -78,33 +70,30 @@ public class Player {
      */
     public void PlayerLevelUp() {
         String className = playerClass.getName();
+        int healthGain;
+        int manaGain;
+        int damageGain;
+        int defenseGain;
+        int dodgeGain;
         switch (className) {
-
             // health - mana - damage - defense - dodge
             // druid - focus mana and health
-            case "DRUID CLASS":
-                int healthGain = (int) ((Math.random() * 4) + 2);
-                int manaGain = (int) ((Math.random() * 3) + 1);
-                int damageGain = (int) (Math.random() * 1);
-                int defenseGain = (int) ((Math.random() * 2) - 1);
+            case "DRUID CLASS" -> {
+                healthGain = (int) ((Math.random() * 4) + 2);
+                manaGain = (int) ((Math.random() * 3) + 1);
+                damageGain = (int) (Math.random() * 1);
+                defenseGain = (int) ((Math.random() * 2) - 1);
                 if (defenseGain < 0) {
                     defenseGain = 0;
                 }
-                int dodgeGain = (int) ((Math.random() * 3) - 2);
+                dodgeGain = (int) ((Math.random() * 3) - 2);
                 if (dodgeGain < 0) {
                     dodgeGain = 0;
                 }
-                this.curHealth += healthGain;
-                this.maxHealth += healthGain;
-                this.curMana += manaGain;
-                this.maxMana += manaGain;
-                this.damage += damageGain;
-                this.defense += defenseGain;
-                this.dodge += dodgeGain;
-                break;
+            }
 
             // knight - focus on defense and health
-            case "KNIGHT CLASS":
+            case "KNIGHT CLASS" -> {
                 healthGain = (int) ((Math.random() * 5) + 3);
                 manaGain = (int) (Math.random() * 2);
                 damageGain = (int) ((Math.random() * 3) + 2);
@@ -113,17 +102,10 @@ public class Player {
                 if (dodgeGain < 0) {
                     dodgeGain = 0;
                 }
-                this.curHealth += healthGain;
-                this.maxHealth += healthGain;
-                this.curMana += manaGain;
-                this.maxMana += manaGain;
-                this.damage += damageGain;
-                this.defense += defenseGain;
-                this.dodge += dodgeGain;
-                break;
+            }
 
             // mage - focus on mana
-            case "MAGE CLASS":
+            case "MAGE CLASS" -> {
                 healthGain = (int) ((Math.random() * 3) + 1);
                 manaGain = (int) ((Math.random() * 6) + 4);
                 damageGain = (int) ((Math.random() * 3) - 1);
@@ -138,17 +120,10 @@ public class Player {
                 if (dodgeGain < 0) {
                     dodgeGain = 0;
                 }
-                this.curHealth += healthGain;
-                this.maxHealth += healthGain;
-                this.curMana += manaGain;
-                this.maxMana += manaGain;
-                this.damage += damageGain;
-                this.defense += defenseGain;
-                this.dodge += dodgeGain;
-                break;
+            }
 
             // paladin - focus on defense, mana, and health
-            case "PALADIN CLASS":
+            case "PALADIN CLASS" -> {
                 healthGain = (int) ((Math.random() * 7) + 2);
                 manaGain = (int) ((Math.random() * 4) + 1);
                 damageGain = (int) ((Math.random() * 4) + 1);
@@ -157,17 +132,10 @@ public class Player {
                 if (dodgeGain < 0) {
                     dodgeGain = 0;
                 }
-                this.curHealth += healthGain;
-                this.maxHealth += healthGain;
-                this.curMana += manaGain;
-                this.maxMana += manaGain;
-                this.damage += damageGain;
-                this.defense += defenseGain;
-                this.dodge += dodgeGain;
-                break;
+            }
 
             // ranger - focus on dodge and damage
-            case "RANGER CLASS":
+            case "RANGER CLASS" -> {
                 healthGain = (int) ((Math.random() * 3) + 2);
                 manaGain = (int) (Math.random() * 2);
                 damageGain = (int) ((Math.random() * 4) + 2);
@@ -176,17 +144,10 @@ public class Player {
                     defenseGain = 0;
                 }
                 dodgeGain = (int) (Math.random() * 2);
-                this.curHealth += healthGain;
-                this.maxHealth += healthGain;
-                this.curMana += manaGain;
-                this.maxMana += manaGain;
-                this.damage += damageGain;
-                this.defense += defenseGain;
-                this.dodge += dodgeGain;
-                break;
+            }
 
             // default/rogue - focus on dodge and damage
-            default:
+            default -> {
                 healthGain = (int) ((Math.random() * 2) + 2);
                 manaGain = (int) (Math.random() * 2);
                 damageGain = (int) ((Math.random() * 6) + 1);
@@ -195,17 +156,17 @@ public class Player {
                     defenseGain = 0;
                 }
                 dodgeGain = (int) (Math.random() * 3);
-                this.curHealth += healthGain;
-                this.maxHealth += healthGain;
-                this.curMana += manaGain;
-                this.maxMana += manaGain;
-                this.damage += damageGain;
-                this.defense += defenseGain;
-                this.dodge += dodgeGain;
-
+            }
         }
         this.level += 1;
-        this.expReq = setExpReq(this.level);
+        this.curHealth += healthGain;
+        this.maxHealth += healthGain;
+        this.curMana += manaGain;
+        this.maxMana += manaGain;
+        this.damage += damageGain;
+        this.defense += defenseGain;
+        this.dodge += dodgeGain;
+        this.expReq = setExpReq();
     }
 
     /**
@@ -229,15 +190,6 @@ public class Player {
      */
     public String getName() {
         return this.name;
-    }
-
-    /**
-     * getter method for player class
-     *
-     * @return class
-     */
-    public Classes getPlayerClass() {
-        return this.playerClass;
     }
 
     /**
@@ -304,7 +256,7 @@ public class Player {
     }
 
     /**
-     * getter method for tempdodge
+     * getter method for temp dodge
      *
      * @return temp dodge
      */
@@ -315,7 +267,7 @@ public class Player {
     /**
      * getter method for damage
      *
-     * @return
+     * @return damage
      */
     public int getDamage() {
         return this.damage;
@@ -323,7 +275,8 @@ public class Player {
 
     /**
      * getter method for temp damage
-     * @return
+     *
+     * @return temp damage
      */
     public int getTempDamage() {
         return this.tempDamage;
@@ -376,8 +329,7 @@ public class Player {
         } else if (this.level < 10) {
             return 2;
         } else {
-            int scale = (int) (this.level / 5);
-            return scale;
+            return this.level / 5;
         }
     }
 
@@ -428,6 +380,7 @@ public class Player {
 
     /**
      * return spells
+     *
      * @return spell list
      */
     public Spells[] spells() {
@@ -477,15 +430,13 @@ public class Player {
     public boolean addExpGold(int exp, int gold) {
         this.gold += gold;
         this.curExp += exp;
-        if (ExpLevelEnough()) {
-            return true;
-        }
-        return false;
+        return ExpLevelEnough();
     }
 
     /**
      * modifies mana
-     * @param value
+     *
+     * @param value mana to be added/subtracted
      */
     public void setMana(int value) {
         this.curMana -= value;
@@ -502,20 +453,20 @@ public class Player {
 
     /**
      * change player stats
-     * @param stat stat to be changed
+     *
+     * @param stat  stat to be changed
      * @param value stat change modifier
      */
     public void changeStat(String stat, int value) {
-        if (stat.equals("ATTACK")) {
-            this.tempDamage+= value;
-        }
-        else if (stat.equals("DEFENSE")) {
-            this.tempDefense+= value;
-        }
-        else if (stat.equals("HEALTH")) {
-            this.curHealth += value;
-            if (this.curHealth >= this.maxHealth) {
-                this.curHealth = this.maxHealth;
+        switch (stat) {
+            case "ATTACK" -> this.tempDamage += value;
+            case "DEFENSE" -> this.tempDefense += value;
+            case "DODGE" -> this.tempDodge += value;
+            case "HEALTH" -> {
+                this.curHealth += value;
+                if (this.curHealth >= this.maxHealth) {
+                    this.curHealth = this.maxHealth;
+                }
             }
         }
     }

@@ -32,24 +32,12 @@ public class Waterblade implements Spells {
     @Override
     public int getManaCost() {
         switch (this.level) {
-            case 1:
-                this.manaCost = 5;
-                break;
-            case 2:
-                this.manaCost = 6;
-                break;
-            case 3:
-                this.manaCost = 8;
-                break;
-            case 4:
-                this.manaCost = 10;
-                break;
-            case 5:
-                this.manaCost = 12;
-                break;
-            case 6:
-                this.manaCost = 14;
-                break;
+            case 1 -> this.manaCost = 5;
+            case 2 -> this.manaCost = 6;
+            case 3 -> this.manaCost = 8;
+            case 4 -> this.manaCost = 10;
+            case 5 -> this.manaCost = 12;
+            case 6 -> this.manaCost = 14;
         }
         return this.manaCost;
     }
@@ -72,24 +60,12 @@ public class Waterblade implements Spells {
     @Override
     public int getRawDamage() {
         switch (this.level) {
-            case 1:
-                this.damage = 4;
-                break;
-            case 2:
-                this.damage = 7;
-                break;
-            case 3:
-                this.damage = 12;
-                break;
-            case 4:
-                this.damage = 18;
-                break;
-            case 5:
-                this.damage = 25;
-                break;
-            case 6:
-                this.damage = 32;
-                break;
+            case 1 -> this.damage = 4;
+            case 2 -> this.damage = 7;
+            case 3 -> this.damage = 12;
+            case 4 -> this.damage = 18;
+            case 5 -> this.damage = 25;
+            case 6 -> this.damage = 32;
         }
         return this.damage;
     }

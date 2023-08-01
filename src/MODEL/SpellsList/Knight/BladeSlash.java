@@ -31,24 +31,12 @@ public class BladeSlash implements Spells {
     @Override
     public int getManaCost() {
         switch (this.level) {
-            case 1:
-                this.manaCost = 3;
-                break;
-            case 2:
-                this.manaCost = 5;
-                break;
-            case 3:
-                this.manaCost = 7;
-                break;
-            case 4:
-                this.manaCost = 10;
-                break;
-            case 5:
-                this.manaCost = 12;
-                break;
-            case 6:
-                this.manaCost = 15;
-                break;
+            case 1 -> this.manaCost = 3;
+            case 2 -> this.manaCost = 5;
+            case 3 -> this.manaCost = 7;
+            case 4 -> this.manaCost = 10;
+            case 5 -> this.manaCost = 12;
+            case 6 -> this.manaCost = 15;
         }
         return this.manaCost;
     }
@@ -71,24 +59,12 @@ public class BladeSlash implements Spells {
     @Override
     public int getRawDamage() {
         switch (this.level) {
-            case 1:
-                this.damage = 3;
-                break;
-            case 2:
-                this.damage = 6;
-                break;
-            case 3:
-                this.damage = 10;
-                break;
-            case 4:
-                this.damage = 16;
-                break;
-            case 5:
-                this.damage = 21;
-                break;
-            case 6:
-                this.damage = 27;
-                break;
+            case 1 -> this.damage = 3;
+            case 2 -> this.damage = 6;
+            case 3 -> this.damage = 10;
+            case 4 -> this.damage = 16;
+            case 5 -> this.damage = 21;
+            case 6 -> this.damage = 27;
         }
         return this.damage;
     }

@@ -31,24 +31,12 @@ public class Thundercrack implements Spells {
     @Override
     public int getManaCost() {
         switch (this.level) {
-            case 1:
-                this.manaCost = 3;
-                break;
-            case 2:
-                this.manaCost = 4;
-                break;
-            case 3:
-                this.manaCost = 5;
-                break;
-            case 4:
-                this.manaCost = 7;
-                break;
-            case 5:
-                this.manaCost = 8;
-                break;
-            case 6:
-                this.manaCost = 11;
-                break;
+            case 1 -> this.manaCost = 3;
+            case 2 -> this.manaCost = 4;
+            case 3 -> this.manaCost = 5;
+            case 4 -> this.manaCost = 7;
+            case 5 -> this.manaCost = 8;
+            case 6 -> this.manaCost = 11;
         }
         return this.manaCost;
     }
@@ -71,24 +59,12 @@ public class Thundercrack implements Spells {
     @Override
     public int getRawDamage() {
         switch (this.level) {
-            case 1:
-                this.damage = 5;
-                break;
-            case 2:
-                this.damage = 8;
-                break;
-            case 3:
-                this.damage = 13;
-                break;
-            case 4:
-                this.damage = 18;
-                break;
-            case 5:
-                this.damage = 24;
-                break;
-            case 6:
-                this.damage = 31;
-                break;
+            case 1 -> this.damage = 5;
+            case 2 -> this.damage = 8;
+            case 3 -> this.damage = 13;
+            case 4 -> this.damage = 18;
+            case 5 -> this.damage = 24;
+            case 6 -> this.damage = 31;
         }
         return this.damage;
     }

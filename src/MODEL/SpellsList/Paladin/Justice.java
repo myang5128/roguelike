@@ -31,24 +31,12 @@ public class Justice implements Spells {
     @Override
     public int getManaCost() {
         switch (this.level) {
-            case 1:
-                this.manaCost = 7;
-                break;
-            case 2:
-                this.manaCost = 8;
-                break;
-            case 3:
-                this.manaCost = 10;
-                break;
-            case 4:
-                this.manaCost = 12;
-                break;
-            case 5:
-                this.manaCost = 14;
-                break;
-            case 6:
-                this.manaCost = 17;
-                break;
+            case 1 -> this.manaCost = 7;
+            case 2 -> this.manaCost = 8;
+            case 3 -> this.manaCost = 10;
+            case 4 -> this.manaCost = 12;
+            case 5 -> this.manaCost = 14;
+            case 6 -> this.manaCost = 17;
         }
         return this.manaCost;
     }
@@ -71,24 +59,12 @@ public class Justice implements Spells {
     @Override
     public int getRawDamage() {
         switch (this.level) {
-            case 1:
-                this.damage = 12;
-                break;
-            case 2:
-                this.damage = 16;
-                break;
-            case 3:
-                this.damage = 23;
-                break;
-            case 4:
-                this.damage = 29;
-                break;
-            case 5:
-                this.damage = 35;
-                break;
-            case 6:
-                this.damage = 44;
-                break;
+            case 1 -> this.damage = 12;
+            case 2 -> this.damage = 16;
+            case 3 -> this.damage = 23;
+            case 4 -> this.damage = 29;
+            case 5 -> this.damage = 35;
+            case 6 -> this.damage = 44;
         }
         return this.damage;
     }

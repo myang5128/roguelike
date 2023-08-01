@@ -5,13 +5,13 @@ import MODEL.SpellsList.Spells;
 public class Pummel implements Spells {
     String name = "PUMMEL";
     int manaCost = 1;
-    int damage = 2;
+    int dmgDebuff = 1;
     int misfire = 5;
     int level = 0;
     String target = "ENEMY";
-    String desc = "ATTACK YOUR ENEMY WITH A BLUNT STRIKE OF YOUR WEAPON!";
-    String spellType = "ATTACK";
-    String statChange = null;
+    String desc = "PUMMEL YOUR ENEMY WITH YOUR POMMEL, MAKING THEM LESS COHERENT AND LESS DANGEROUS!";
+    String spellType = "WEAKEN";
+    String statChange = "ATTACK";
 
     /**
      * getter method for spell name
@@ -31,24 +31,12 @@ public class Pummel implements Spells {
     @Override
     public int getManaCost() {
         switch (this.level) {
-            case 1:
-                this.manaCost = 1;
-                break;
-            case 2:
-                this.manaCost = 2;
-                break;
-            case 3:
-                this.manaCost = 4;
-                break;
-            case 4:
-                this.manaCost = 5;
-                break;
-            case 5:
-                this.manaCost = 7;
-                break;
-            case 6:
-                this.manaCost = 10;
-                break;
+            case 1 -> this.manaCost = 1;
+            case 2 -> this.manaCost = 2;
+            case 3 -> this.manaCost = 4;
+            case 4 -> this.manaCost = 5;
+            case 5 -> this.manaCost = 7;
+            case 6 -> this.manaCost = 10;
         }
         return this.manaCost;
     }
@@ -60,7 +48,7 @@ public class Pummel implements Spells {
      */
     @Override
     public int getDamage() {
-        return (int) (getRawDamage() + (Math.random() * level));
+        return 0;
     }
 
     /**
@@ -70,28 +58,7 @@ public class Pummel implements Spells {
      */
     @Override
     public int getRawDamage() {
-        int val = this.damage;
-        switch (this.level) {
-            case 1:
-                val = 2;
-                break;
-            case 2:
-                val = 4;
-                break;
-            case 3:
-                val = 7;
-                break;
-            case 4:
-                val = 11;
-                break;
-            case 5:
-                val = 16;
-                break;
-            case 6:
-                val = 23;
-                break;
-        }
-        return val;
+        return 0;
     }
 
     /**
@@ -161,7 +128,7 @@ public class Pummel implements Spells {
      */
     @Override
     public int getStatValue() {
-        return 0;
+        return (int) (getRawStatValue() + (Math.random() * this.level));
     }
 
     /**
@@ -170,7 +137,15 @@ public class Pummel implements Spells {
      * @return raw stat change value
      */
     public int getRawStatValue() {
-        return 0;
+        switch (this.level) {
+            case 1 -> dmgDebuff = 1;
+            case 2 -> dmgDebuff = 2;
+            case 3 -> dmgDebuff = 4;
+            case 4 -> dmgDebuff = 6;
+            case 5 -> dmgDebuff = 8;
+            case 6 -> dmgDebuff = 12;
+        }
+        return dmgDebuff;
     }
 
     /**
@@ -180,12 +155,7 @@ public class Pummel implements Spells {
      */
     @Override
     public int runSpell() {
-        int chance = (int) (Math.random() * 100 + this.level);
-        if (chance <= this.misfire) {
-            return 0;
-        } else {
-            return getDamage();
-        }
+        return getStatValue();
     }
 
     /**

@@ -11,7 +11,7 @@ public class ThornExplosion implements Spells {
     int level = 0;
     String target = "ENEMY";
     String desc = "CREATE A HAPHAZARD ASSORTMENT OF EXPLODER FLOWERS FOR YOUR UNGRATEFUL VISITORS!";
-    String spellType = "OFFENSIVE";
+    String spellType = "ATTACK";
     String statChange = null;
 
     /**
@@ -38,24 +38,12 @@ public class ThornExplosion implements Spells {
     @Override
     public int getManaCost() {
         switch (this.level) {
-            case 1:
-                this.manaCost = 6;
-                break;
-            case 2:
-                this.manaCost = 8;
-                break;
-            case 3:
-                this.manaCost = 12;
-                break;
-            case 4:
-                this.manaCost = 15;
-                break;
-            case 5:
-                this.manaCost = 19;
-                break;
-            case 6:
-                this.manaCost = 25;
-                break;
+            case 1 -> this.manaCost = 6;
+            case 2 -> this.manaCost = 8;
+            case 3 -> this.manaCost = 12;
+            case 4 -> this.manaCost = 15;
+            case 5 -> this.manaCost = 19;
+            case 6 -> this.manaCost = 25;
         }
         return this.manaCost;
     }
@@ -76,28 +64,15 @@ public class ThornExplosion implements Spells {
      * @return raw spell damage
      */
     public int getRawDamage() {
-        int val = this.damage;
         switch (this.level) {
-            case 1:
-                val = 7;
-                break;
-            case 2:
-                val = 15;
-                break;
-            case 3:
-                val = 24;
-                break;
-            case 4:
-                val = 36;
-                break;
-            case 5:
-                val = 45;
-                break;
-            case 6:
-                val = 54;
-                break;
+            case 1 -> this.damage = 7;
+            case 2 -> this.damage = 15;
+            case 3 -> this.damage = 24;
+            case 4 -> this.damage = 36;
+            case 5 -> this.damage = 45;
+            case 6 -> this.damage = 54;
         }
-        return val;
+        return this.damage;
     }
 
     /**

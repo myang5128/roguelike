@@ -21,7 +21,7 @@ public class FallenMage implements Enemies {
         this.maxHealth = (int) ((Math.random() * 6) * scale + 3);
         this.curHealth = this.maxHealth;
         this.defense = (int) ((Math.random() * scale) + 3);
-        this.dodge = (int) (35 + (scale * 4));
+        this.dodge = 35 + (scale * 4);
         this.damage = (int) ((Math.random() * 6) + scale);
         this.exp = 10 * scale;
         this.gold = 8 * scale;
@@ -48,6 +48,7 @@ public class FallenMage implements Enemies {
 
     /**
      * enemy takes magic damage
+     *
      * @param damage raw magic damage value
      * @return damage value
      */
@@ -67,7 +68,24 @@ public class FallenMage implements Enemies {
      */
     @Override
     public void debuff(String stat, int damage) {
-
+        if (stat.equals("DODGE")) {
+            this.dodge -= damage;
+            if (this.dodge < 0) {
+                this.dodge = 0;
+            }
+        }
+        if (stat.equals("ATTACK")) {
+            this.damage -= damage;
+            if (this.damage < 1) {
+                this.damage = 1;
+            }
+        }
+        if (stat.equals("DEFENSE")) {
+            this.defense -= damage;
+            if (this.defense < 0) {
+                this.defense = 0;
+            }
+        }
     }
 
     /**
@@ -100,7 +118,6 @@ public class FallenMage implements Enemies {
         return maxHealth;
     }
 
-    ;
 
     /**
      * getter method for enemy cur health
@@ -111,7 +128,6 @@ public class FallenMage implements Enemies {
         return curHealth;
     }
 
-    ;
 
     /**
      * getter method for enemy defense
@@ -149,15 +165,15 @@ public class FallenMage implements Enemies {
 
     /**
      * runs an attack for the enemy
+     *
      * @param pDodge player dodge chance
      * @return 0 if miss, >0 for raw damage value
      */
     public int lightAttack(int pDodge) {
-        int hitChance = ( (int)(Math.random() * 100)) + 17;
+        int hitChance = ((int) (Math.random() * 100)) + 17;
         if (hitChance >= pDodge) {
             return this.damage;
-        }
-        else {
+        } else {
             return 0;
         }
     }
@@ -169,11 +185,10 @@ public class FallenMage implements Enemies {
      * @return 0 for miss, >0 for raw damage value
      */
     public int heavyAttack(int pDodge) {
-        int hitChance = ( (int)(Math.random() * 100)) + 9;
+        int hitChance = ((int) (Math.random() * 100)) + 9;
         if (hitChance >= pDodge) {
             return (int) (this.damage * 1.5);
-        }
-        else {
+        } else {
             return 0;
         }
     }
@@ -191,7 +206,7 @@ public class FallenMage implements Enemies {
     /**
      * getter method for enemy exp
      *
-     * @return
+     * @return exp
      */
     @Override
     public int getExp() {

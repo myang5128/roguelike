@@ -30,24 +30,12 @@ public class ShieldBulwark implements Spells {
     @Override
     public int getManaCost() {
         switch (this.level) {
-            case 1:
-                this.manaCost = 1;
-                break;
-            case 2:
-                this.manaCost = 2;
-                break;
-            case 3:
-                this.manaCost = 4;
-                break;
-            case 4:
-                this.manaCost = 6;
-                break;
-            case 5:
-                this.manaCost = 8;
-                break;
-            case 6:
-                this.manaCost = 12;
-                break;
+            case 1 -> this.manaCost = 1;
+            case 2 -> this.manaCost = 2;
+            case 3 -> this.manaCost = 4;
+            case 4 -> this.manaCost = 6;
+            case 5 -> this.manaCost = 8;
+            case 6 -> this.manaCost = 12;
         }
         return this.manaCost;
     }
@@ -148,28 +136,15 @@ public class ShieldBulwark implements Spells {
      * @return raw stat change value
      */
     public int getRawStatValue() {
-        int val = this.defense;
         switch (this.level) {
-            case 1:
-                val = 1;
-                break;
-            case 2:
-                val = 2;
-                break;
-            case 3:
-                val = 4;
-                break;
-            case 4:
-                val = 6;
-                break;
-            case 5:
-                val = 12;
-                break;
-            case 6:
-                val = 20;
-                break;
+            case 1 -> this.defense = 1;
+            case 2 -> this.defense = 2;
+            case 3 -> this.defense = 4;
+            case 4 -> this.defense = 6;
+            case 5 -> this.defense = 12;
+            case 6 -> this.defense = 20;
         }
-        return val;
+        return this.defense;
     }
 
     /**
